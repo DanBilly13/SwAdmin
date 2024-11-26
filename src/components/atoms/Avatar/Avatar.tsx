@@ -11,7 +11,10 @@ const sizeClasses: Record<AvatarSize, string> = {
   'tiny': 'w-[24px] h-[24px]'
 };
 
-const DEFAULT_AVATAR = '/images/avatars/TheRock.jpg';
+const getDefaultAvatar = () => {
+  const isDev = import.meta.env.DEV;
+  return isDev ? '/images/avatars/TheRock.jpg' : '/SwAdmin/images/avatars/TheRock.jpg';
+};
 
 export interface AvatarProps {
   size?: AvatarSize;
@@ -24,7 +27,7 @@ export interface AvatarProps {
 
 export const Avatar: React.FC<AvatarProps> = ({
   size = 'medium',
-  src = DEFAULT_AVATAR,
+  src = getDefaultAvatar(),
   alt,
   name,
   className,

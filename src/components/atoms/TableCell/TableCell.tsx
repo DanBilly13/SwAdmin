@@ -97,9 +97,15 @@ const StructuredContent: React.FC<TableCellStructuredProps> = ({
   badge
 }) => {
   if (imageType === 'avatar' && avatar) {
+    const isDev = import.meta.env.DEV;
+    const adjustedAvatar = {
+      ...avatar,
+      src: avatar.src ? (isDev ? avatar.src.replace('/SwAdmin/', '/') : avatar.src) : undefined
+    };
+
     return (
       <div className="flex items-center gap-3">
-        <Avatar {...avatar} badge={badge} size="small" className="flex-shrink-0" />
+        <Avatar {...adjustedAvatar} badge={badge} size="small" className="flex-shrink-0" />
         <div className="flex flex-col">
           <span className="text-body-s text-content-primary">{title}</span>
           {description && (
