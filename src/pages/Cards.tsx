@@ -126,16 +126,19 @@ const Cards = () => {
               Basic Modal
             </h3>
             <div className="flex gap-4">
-              <Button onClick={() => setBasicModalOpen(true)}>Open Basic Modal</Button>
+              <Button onClick={() => setBasicModalOpen(true)}>
+                Open Basic Modal
+              </Button>
               <Modal
                 isOpen={basicModalOpen}
                 onClose={() => setBasicModalOpen(false)}
                 title="Basic Modal"
+                description="Hantera åtkomstnivåer och behörigheter för denna roll i Min Fotboll."
               >
                 <p className="text-body-m text-content-secondary">
-                  This is a basic modal with a simple title and content. It can be closed
-                  using the close button in the top-right corner or by clicking outside
-                  the modal.
+                  This is a basic modal with a simple title and content. It can
+                  be closed using the close button in the top-right corner or by
+                  clicking outside the modal.
                 </p>
               </Modal>
             </div>
@@ -154,6 +157,7 @@ const Cards = () => {
                 isOpen={customHeaderModalOpen}
                 onClose={() => setCustomHeaderModalOpen(false)}
                 title="Custom Header Modal"
+                description="Hantera åtkomstnivåer och behörigheter för denna roll i Min Fotboll."
                 headerContent={
                   <div className="flex items-center gap-2">
                     <IconButton icon="settings" />
@@ -162,8 +166,9 @@ const Cards = () => {
                 }
               >
                 <p className="text-body-m text-content-secondary">
-                  This modal demonstrates a custom header with an icon and styled title.
-                  You can customize the header content to match your needs.
+                  This modal demonstrates a custom header with an icon and
+                  styled title. You can customize the header content to match
+                  your needs.
                 </p>
               </Modal>
             </div>
@@ -182,65 +187,33 @@ const Cards = () => {
                 isOpen={actionsModalOpen}
                 onClose={() => setActionsModalOpen(false)}
                 title="Confirm Action"
-                actions={
-                  <div className="flex justify-end gap-2">
-                    <Button
-                      variant="secondary"
-                      onClick={() => setActionsModalOpen(false)}
-                    >
-                      Cancel
-                    </Button>
-                    <Button
-                      variant="primary"
-                      onClick={() => {
-                        alert("Action confirmed!");
-                        setActionsModalOpen(false);
-                      }}
-                    >
-                      Confirm
-                    </Button>
-                  </div>
-                }
+                actions={{
+                  right: [
+                    <div className="flex justify-end gap-2" key="modal-actions">
+                      <Button
+                        variant="secondary"
+                        onClick={() => setActionsModalOpen(false)}
+                      >
+                        Cancel
+                      </Button>
+                      <Button
+                        variant="primary"
+                        onClick={() => {
+                          alert("Action confirmed!");
+                          setActionsModalOpen(false);
+                        }}
+                      >
+                        Confirm
+                      </Button>
+                    </div>,
+                  ],
+                }}
               >
                 <p className="text-body-m text-content-secondary">
-                  This modal includes action buttons in the footer. It's commonly used
-                  for confirmation dialogs or forms that require user actions.
+                  This modal includes action buttons in the footer. It's
+                  commonly used for confirmation dialogs or forms that require
+                  user actions.
                 </p>
-              </Modal>
-            </div>
-          </div>
-
-          {/* Different Sizes */}
-          <div className="mt-8">
-            <h3 className="text-title-s text-content-secondary mb-4">
-              Different Sizes
-            </h3>
-            <div className="flex gap-4">
-              <Button onClick={() => setSizeModalOpen(true)}>
-                Open Large Modal
-              </Button>
-              <Modal
-                isOpen={sizeModalOpen}
-                onClose={() => setSizeModalOpen(false)}
-                title="Large Modal"
-                size="lg"
-                actions={
-                  <div className="flex justify-end gap-2">
-                    <Button
-                      variant="secondary"
-                      onClick={() => setSizeModalOpen(false)}
-                    >
-                      Close
-                    </Button>
-                  </div>
-                }
-              >
-                <div className="space-y-4">
-                  <p className="text-body-m text-content-secondary">
-                    This is a large modal that provides more space for content. It's
-                    useful when you need to display more information or complex forms.
-                  </p>
-                </div>
               </Modal>
             </div>
           </div>
