@@ -1,4 +1,8 @@
 import React from 'react';
+import { ContentContainer } from "../components/atoms/ContentContainer/ContentContainer";
+import { MainContentHead } from "../components/molecules/MainContentHead/MainContentHead";
+import { useDrawerControl } from '../components/templates';
+import { PageTitle } from '../components/atoms/PageTitle/PageTitle';
 
 const TypographyExample = ({ className, name, specs }: { className: string; name: string; specs: string }) => (
   <div className="mb-8">
@@ -11,10 +15,34 @@ const TypographyExample = ({ className, name, specs }: { className: string; name
 );
 
 const Typography = () => {
-  return (
-    <div>
-      <h1 className="text-headline-l mb-8">Typography</h1>
+  const { toggleDrawer } = useDrawerControl();
 
+  return (
+    <ContentContainer>
+      <MainContentHead
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Design System", href: "/components" },
+          { label: "Typography", href: "/typography" },
+        ]}
+        onMenuClick={toggleDrawer}
+        actions={[
+          {
+            label: "View Source",
+            onClick: () =>
+              window.open(
+                "https://github.com/yourusername/SwAdmin/tree/main/src/styles/typography",
+                "_blank"
+              ),
+            leadingIcon: "code",
+          },
+        ]}
+      >
+        <PageTitle 
+          title="Typography" 
+          description="Typography styles and text components for consistent visual hierarchy."
+        />
+      </MainContentHead>
       <section className="mb-12">
         <h2 className="text-headline-s mb-6">Display</h2>
         <TypographyExample
@@ -109,7 +137,7 @@ const Typography = () => {
           specs="14/20, Regular"
         />
       </section>
-    </div>
+    </ContentContainer>
   );
 };
 

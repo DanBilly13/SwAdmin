@@ -1,8 +1,14 @@
 export { default as Home } from './Home';
-export { default as Components } from './Components';
 export { default as Molecules } from './Molecules';
 export { default as Typography } from './Typography';
 export { default as Colors } from './Colors';
 export { default as Templates } from './Templates';
 export { default as Tables } from './Tables';
-export { default as Atoms } from './Atoms';
+export { default as DataInput } from './DataInput';
+export { default as Buttons } from './Buttons';
+export { default as Navigation } from './Navigation';
+export { default as Images } from './Images';
+export { default as DataDisplay } from './DataDisplay';
+export { default as Containers } from './Containers';
+export { default as Cards } from './Cards';
+export { default as Spacers } from './Spacers';

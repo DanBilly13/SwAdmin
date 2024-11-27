@@ -1,4 +1,8 @@
 import React from 'react';
+import { ContentContainer } from "../components/atoms/ContentContainer/ContentContainer";
+import { MainContentHead } from "../components/molecules/MainContentHead/MainContentHead";
+import { useDrawerControl } from '../components/templates';
+import { PageTitle } from '../components/atoms/PageTitle/PageTitle';
 
 interface ColorBlockProps {
   colorClass: string;
@@ -6,22 +10,59 @@ interface ColorBlockProps {
   hexCode: string;
   tokenName: string;
   textClass?: string;
+  isBorder?: boolean;
 }
 
-const ColorBlock = ({ colorClass, label, hexCode, tokenName, textClass = 'text-black' }: ColorBlockProps) => (
-  <div className="flex flex-col">
-    <div className={`h-20 w-full rounded-lg ${colorClass} mb-2 border border-gray-100`} />
-    <p className={`text-label-l ${textClass}`}>{label}</p>
-    <p className="text-body-s text-content-secondary">Token: {tokenName}</p>
-    <p className="text-body-s text-content-secondary">Class: {colorClass}</p>
-    <p className="text-body-s text-content-tertiary">{hexCode}</p>
-  </div>
-);
+const ColorBlock = ({ colorClass, label, hexCode, tokenName, textClass = 'text-content', isBorder }: ColorBlockProps) => {
+  // For text colors, convert them to background colors
+  const bgColorClass = colorClass.replace('text-', 'bg-');
+  
+  return (
+    <div className="flex flex-col">
+      {isBorder ? (
+        <div className={`h-20 w-full rounded-lg bg-white border-2 ${colorClass} mb-4`} />
+      ) : (
+        <div className={`h-20 w-full rounded-lg ${bgColorClass} mb-4`} />
+      )}
+      <div className="space-y-1">
+        <p className={`text-label-l ${textClass}`}>{label}</p>
+        <p className="text-body-s text-content-secondary">Token: {tokenName}</p>
+        <p className="text-body-s text-content-secondary">Class: {colorClass}</p>
+        <p className="text-body-s text-content-tertiary">{hexCode}</p>
+      </div>
+    </div>
+  );
+};
 
 const Colors = () => {
+  const { toggleDrawer } = useDrawerControl();
+
   return (
-    <div>
-      <h1 className="text-headline-l mb-8">Colors</h1>
+    <ContentContainer>
+      <MainContentHead
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Design System", href: "/components" },
+          { label: "Colors", href: "/colors" },
+        ]}
+        onMenuClick={toggleDrawer}
+        actions={[
+          {
+            label: "View Source",
+            onClick: () =>
+              window.open(
+                "https://github.com/yourusername/SwAdmin/tree/main/src/styles/colors",
+                "_blank"
+              ),
+            leadingIcon: "code",
+          },
+        ]}
+      >
+        <PageTitle 
+          title="Colors" 
+          description="Color system and palette for consistent visual design."
+        />
+      </MainContentHead>
 
       {/* Raw Colors */}
       <section className="mb-12">
@@ -65,43 +106,43 @@ const Colors = () => {
         <h2 className="text-headline-s mb-6">Content Colors</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
           <ColorBlock
-            colorClass="text-content"
+            colorClass="bg-content"
             label="Content"
             tokenName="color-content"
             hexCode="#222222"
           />
           <ColorBlock
-            colorClass="text-content-secondary"
+            colorClass="bg-content-secondary"
             label="Content Secondary"
             tokenName="color-content-secondary"
             hexCode="#767676"
           />
           <ColorBlock
-            colorClass="text-content-tertiary"
+            colorClass="bg-content-tertiary"
             label="Content Tertiary"
             tokenName="color-content-tertiary"
             hexCode="#AFAFAF"
           />
           <ColorBlock
-            colorClass="text-content-disabled"
+            colorClass="bg-content-disabled"
             label="Content Disabled"
             tokenName="color-content-disabled"
             hexCode="#E2E2E2"
           />
           <ColorBlock
-            colorClass="text-content-error"
+            colorClass="bg-content-error"
             label="Content Error"
             tokenName="color-content-error"
             hexCode="#FF0000"
           />
           <ColorBlock
-            colorClass="text-content-success"
+            colorClass="bg-content-success"
             label="Content Success"
             tokenName="color-content-success"
             hexCode="#4BB543"
           />
           <ColorBlock
-            colorClass="text-content-caution"
+            colorClass="bg-content-caution"
             label="Content Caution"
             tokenName="color-content-caution"
             hexCode="#FF9500"
@@ -151,7 +192,7 @@ const Colors = () => {
             hexCode="#222222"
           />
           <ColorBlock
-            colorClass="text-fill-on"
+            colorClass="bg-fill-on"
             label="Fill On"
             tokenName="color-on-fill"
             hexCode="#FFFFFF"
@@ -168,6 +209,7 @@ const Colors = () => {
             label="Border"
             tokenName="color-border"
             hexCode="#E2E2E2"
+            isBorder
           />
           <ColorBlock
             colorClass="bg-bg"
@@ -177,7 +219,7 @@ const Colors = () => {
           />
         </div>
       </section>
-    </div>
+    </ContentContainer>
   );
 };
 

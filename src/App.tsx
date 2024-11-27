@@ -1,30 +1,44 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import {
   Home,
-  Components,
   Molecules,
   Typography,
   Colors,
   Templates,
-  Atoms,
   Tables,
+  DataInput,
+  Buttons,
+  Navigation,
+  Images,
+  DataDisplay,
+  Containers,
+  Cards,
+  Spacers,
 } from './pages';
 import { DesignSystemLayout } from './layouts/DesignSystemLayout';
+import { BreakpointIndicator } from './components/atoms';
 
 function App() {
   return (
     <Router>
+      <BreakpointIndicator />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route element={<DesignSystemLayout />}>
-          <Route path="/atoms" element={<Atoms />} />
           <Route path="/molecules" element={<Molecules />} />
-          <Route path="/components" element={<Components />} />
           <Route path="/typography" element={<Typography />} />
           <Route path="/colors" element={<Colors />} />
           <Route path="/tables" element={<Tables />} />
           <Route path="/templates" element={<Templates />} />
+          <Route path="/data-input" element={<DataInput />} />
+          <Route path="/buttons" element={<Buttons />} />
+          <Route path="/navigation" element={<Navigation />} />
+          <Route path="/images" element={<Images />} />
+          <Route path="/data-display" element={<DataDisplay />} />
+          <Route path="/containers" element={<Containers />} />
+          <Route path="/cards" element={<Cards />} />
+          <Route path="/spacers" element={<Spacers />} />
         </Route>
       </Routes>
     </Router>

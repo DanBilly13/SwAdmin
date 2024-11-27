@@ -23,6 +23,7 @@ export interface AvatarProps {
   name?: string;
   className?: string;
   badge?: Omit<BadgeProps, 'className'>;
+  initials?: string;
 }
 
 export const Avatar: React.FC<AvatarProps> = ({
@@ -32,13 +33,14 @@ export const Avatar: React.FC<AvatarProps> = ({
   name,
   className,
   badge,
+  initials,
 }) => {
-  const initials = name
+  const displayInitials = initials || (name
     ? name
         .split(' ')
         .map((n) => n[0])
         .join('')
-    : undefined;
+    : undefined);
 
   return (
     <div className="relative inline-block">
@@ -56,7 +58,7 @@ export const Avatar: React.FC<AvatarProps> = ({
             className="w-full h-full object-cover"
           />
         ) : (
-          <span className="text-sm font-medium">{initials}</span>
+          <span className="text-sm font-medium">{displayInitials}</span>
         )}
       </div>
       {badge && (

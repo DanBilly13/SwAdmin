@@ -17,6 +17,7 @@ export interface DropdownProps {
   options: DropdownOption[];
   onChange?: (value: string) => void;
   error?: boolean;
+  errorMessage?: string;
   disabled?: boolean;
   className?: string;
   trailingIcon?: string;
@@ -31,6 +32,7 @@ export const Dropdown = ({
   options,
   onChange,
   error,
+  errorMessage,
   disabled,
   className,
   trailingIcon = "expand_more",
@@ -123,6 +125,9 @@ export const Dropdown = ({
             </button>
           ))}
         </div>
+      )}
+      {error && errorMessage && (
+        <div className="text-error text-body-s mt-1">{errorMessage}</div>
       )}
     </div>
   );

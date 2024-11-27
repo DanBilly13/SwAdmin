@@ -7,6 +7,7 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
   helperText?: string;
   containerClassName?: string;
   fullWidth?: boolean;
+  size?: 'small' | 'medium' | 'large';
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -20,6 +21,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       fullWidth = false,
       type,
       id,
+      size = 'medium',
       ...props
     },
     ref
@@ -31,7 +33,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       {
         'border-red-300 text-red-900 placeholder-red-300 focus:border-content-error focus:ring-content-error': error,
         'border-border text-content placeholder-content-tertiary focus:border-content focus:ring-content': !error,
-        'bg-gray-50 text-content-disabled cursor-not-allowed': props.disabled
+        'bg-gray-50 text-content-disabled cursor-not-allowed': props.disabled,
+        'py-2 text-sm': size === 'small',
+        'py-3 text-base': size === 'medium',
+        'py-4 text-lg': size === 'large'
       },
       className
     );

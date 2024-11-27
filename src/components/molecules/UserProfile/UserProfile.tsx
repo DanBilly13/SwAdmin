@@ -64,7 +64,7 @@ export const UserProfile: React.FC<UserProfileProps> = ({
         </h3>
         {size === 'large' ? (
           <div className="inline-block">
-            <Chip variant="primary" className={roleClasses[size]}>
+            <Chip variant="neutral" className={roleClasses[size]}>
               {role}
             </Chip>
           </div>

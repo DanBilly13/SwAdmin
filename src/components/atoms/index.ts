@@ -9,9 +9,12 @@ export * from './Thumbnail/Thumbnail';
 export * from './Spacer';
 export * from './Modal/Modal';
 export * from './TableHead/TableHead';
+export * from './SectionCard/SectionCard';
+export * from './PageTitle/PageTitle';
 
 export { default as Button } from './Button/Button';
-export { InlineInput as InlineInput } from './Input/InlineInput';
+export { InlineInput } from './Input/InlineInput';
+export { Input } from './Input/Input';
 export { default as Thumbnail } from './Thumbnail/Thumbnail';
 export { default as NavButton } from './NavButton/NavButton';
 export { default as Dropdown } from './Dropdown/Dropdown';
@@ -19,7 +22,12 @@ export { default as Radio } from './Radio/Radio';
 export { default as IconButton } from './IconButton/IconButton';
 export { default as TableCell } from './TableCell/TableCell';
 export { default as Card } from './Card/Card';
+export { default as Avatar } from './Avatar/Avatar';
+export { Badge } from './Badge/Badge';
+export { default as Breadcrumb } from './Breadcrumb/Breadcrumb';
+export { default as SearchBar } from './SearchBar/SearchBar';
 export { default as TableHead } from './TableHead/TableHead';
+export { default as BreakpointIndicator } from './BreakpointIndicator/BreakpointIndicator';
 
 // Types
 export type { AvatarProps, AvatarSize } from './Avatar/Avatar';

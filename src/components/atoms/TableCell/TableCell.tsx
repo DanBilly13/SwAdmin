@@ -179,4 +179,5 @@ export const TableCell = (props: TableCellProps) => {
   );
 };
 
+export type { TableCellProps };
 export default TableCell;

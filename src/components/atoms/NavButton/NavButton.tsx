@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, LinkProps, useLocation } from "react-router-dom";
 import classNames from "classnames";
+import { useDrawerControl } from "../../templates";
 
 type NavButtonBaseProps = {
   to: string;
@@ -20,6 +21,7 @@ export const NavButton = ({
   ...props
 }: NavButtonProps) => {
   const location = useLocation();
+  const { setIsDrawerOpen } = useDrawerControl();
   const isActive = location.pathname === to;
 
   const buttonClasses = classNames(
@@ -36,8 +38,15 @@ export const NavButton = ({
     "w-5 h-5 flex items-center justify-center"
   );
 
+  const handleClick = () => {
+    // Close drawer on mobile when navigating
+    if (window.innerWidth < 1280) { // 1280px is xl breakpoint
+      setIsDrawerOpen(false);
+    }
+  };
+
   return (
-    <Link to={to} className={buttonClasses} {...props}>
+    <Link to={to} className={buttonClasses} onClick={handleClick} {...props}>
       {icon && <span className={iconClasses}>{icon}</span>}
       {children}
     </Link>

@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 
 export type ThumbnailSize = "large" | "medium" | "small" | "tiny";
-export type ThumbnailType = "image" | "teamBadge";
+export type ThumbnailType = "image" | "teamBadge" | "icon";
 
 const sizeClasses: Record<ThumbnailSize, string> = {
   large: "w-[60px] h-[60px]",
@@ -28,6 +28,8 @@ export interface ThumbnailProps {
   alt?: string;
   className?: string;
   isVideo?: boolean;
+  icon?: string;
+  disabled?: boolean;
 }
 
 export const Thumbnail = ({
@@ -37,6 +39,8 @@ export const Thumbnail = ({
   alt,
   className,
   isVideo = false,
+  icon,
+  disabled,
 }: ThumbnailProps) => {
   const [imgSrc, setImgSrc] = React.useState(
     src || (type === "teamBadge" ? DEFAULT_TEAM_BADGE : DEFAULT_IMAGE)
@@ -111,12 +115,24 @@ export const Thumbnail = ({
 
   return (
     <div className={containerClasses}>
-      <img
-        src={imgSrc}
-        alt={alt}
-        onError={handleError}
-        className="w-full h-full object-cover rounded"
-      />
+      {type === "icon" && icon ? (
+        <img
+          src={icon}
+          alt={alt}
+          className="w-full h-full object-contain rounded"
+        />
+      ) : (
+        <img
+          src={imgSrc}
+          alt={alt}
+          onError={handleError}
+          className={classNames(
+            "w-full h-full object-cover rounded",
+            disabled && "opacity-50 cursor-not-allowed"
+          )}
+          {...(disabled ? { disabled: true } : {})}
+        />
+      )}
       {isVideo && type === "image" && (
         <div className="absolute inset-0 bg-content/30 rounded flex items-center justify-center">
           <div className={circleClasses} style={getMaskStyle()} />
