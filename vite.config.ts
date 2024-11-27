@@ -21,6 +21,7 @@ export default defineConfig({
         chunkFileNames: 'assets/[name].js',
         entryFileNames: 'assets/[name].js'
       }
-    }
+    },
+    assetsInlineLimit: 0
   }
 })

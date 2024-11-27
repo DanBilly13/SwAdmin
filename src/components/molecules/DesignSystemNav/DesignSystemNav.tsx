@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { NavButton } from "../../atoms";
 import { TeamProfile } from "../TeamProfile";
+import { getImagePath } from "../../../utils/imagePaths";
 
 type NavigationItem = {
   name: string;
@@ -25,7 +26,7 @@ export const DesignSystemNav: React.FC<DesignSystemNavProps> = ({
             size="medium"
             name="Min Fotboll"
             division="Admin"
-            badgeSrc="/images/team-badges/svff.jpg"
+            badgeSrc={getImagePath("svff.jpg", "team-badges")}
           />
         </Link>
       </div>

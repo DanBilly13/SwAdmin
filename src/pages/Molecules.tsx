@@ -10,6 +10,7 @@ import {
   FilterAndSearch,
 } from "../components/molecules";
 import { Card } from "../components/atoms/Card/Card";
+import { getImagePath } from "../utils/imagePaths";
 
 const Molecules = () => {
   const { toggleDrawer } = useDrawerControl();
@@ -108,7 +109,7 @@ const Molecules = () => {
                   size="large"
                   name="Dwayne Johnson"
                   role="Administrator"
-                  avatarSrc="/images/avatars/TheRock.jpg"
+                  avatarSrc={getImagePath("TheRock.jpg")}
                   badge={{ variant: "success" }}
                 />
               </div>
@@ -123,7 +124,7 @@ const Molecules = () => {
                   size="medium"
                   name="The Rock"
                   role="Editor"
-                  avatarSrc="/images/avatars/TheRock.jpg"
+                  avatarSrc={getImagePath("TheRock.jpg")}
                   badge={{ variant: "warning" }}
                 />
               </div>
@@ -138,7 +139,7 @@ const Molecules = () => {
                   size="small"
                   name="Rocky Maivia"
                   role="Viewer"
-                  avatarSrc="/images/avatars/TheRock.jpg"
+                  avatarSrc={getImagePath("TheRock.jpg")}
                   badge={{ variant: "error" }}
                 />
               </div>
@@ -153,21 +154,21 @@ const Molecules = () => {
                   size="medium"
                   name="Dwayne Johnson"
                   role="Administrator"
-                  avatarSrc="/images/avatars/TheRock.jpg"
+                  avatarSrc={getImagePath("TheRock.jpg")}
                   badge={{ variant: "success" }}
                 />
                 <UserProfile
                   size="medium"
                   name="The Rock"
                   role="Editor"
-                  avatarSrc="/images/avatars/TheRock.jpg"
+                  avatarSrc={getImagePath("TheRock.jpg")}
                   badge={{ variant: "info" }}
                 />
                 <UserProfile
                   size="medium"
                   name="Rocky Maivia"
                   role="Viewer"
-                  avatarSrc="/images/avatars/TheRock.jpg"
+                  avatarSrc={getImagePath("TheRock.jpg")}
                   badge={{ variant: "neutral" }}
                 />
               </div>
@@ -182,19 +183,19 @@ const Molecules = () => {
                   size="large"
                   name="Dwayne Johnson"
                   role="Administrator"
-                  avatarSrc="/images/avatars/TheRock.jpg"
+                  avatarSrc={getImagePath("TheRock.jpg")}
                 />
                 <UserProfile
                   size="medium"
                   name="The Rock"
                   role="Editor"
-                  avatarSrc="/images/avatars/TheRock.jpg"
+                  avatarSrc={getImagePath("TheRock.jpg")}
                 />
                 <UserProfile
                   size="small"
                   name="Rocky Maivia"
                   role="Viewer"
-                  avatarSrc="/images/avatars/TheRock.jpg"
+                  avatarSrc={getImagePath("TheRock.jpg")}
                 />
               </div>
             </div>
@@ -213,7 +214,7 @@ const Molecules = () => {
                   size="large"
                   name="IFK Stockholm"
                   division="Division 1"
-                  badgeSrc="/images/team-badges/IFK-Stockholm.png"
+                  badgeSrc={getImagePath("IFK-Stockholm.png", "team-badges")}
                 />
               </div>
             </div>
@@ -227,7 +228,7 @@ const Molecules = () => {
                   size="medium"
                   name="Umeå FC"
                   division="Division 2"
-                  badgeSrc="/images/team-badges/UmeaFC.jpg"
+                  badgeSrc={getImagePath("UmeaFC.jpg", "team-badges")}
                 />
               </div>
             </div>
@@ -241,7 +242,7 @@ const Molecules = () => {
                   size="small"
                   name="Djurgårdens IF"
                   division="Allsvenskan"
-                  badgeSrc="/images/team-badges/DIF.png"
+                  badgeSrc={getImagePath("DIF.png", "team-badges")}
                 />
               </div>
             </div>

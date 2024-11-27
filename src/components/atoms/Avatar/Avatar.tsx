@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { Badge, BadgeProps } from '../Badge/Badge';
+import { getImagePath, DEFAULT_AVATAR } from '../../../utils/imagePaths';
 
 export type AvatarSize = 'large' | 'medium' | 'small' | 'tiny';
 
@@ -9,11 +10,6 @@ const sizeClasses: Record<AvatarSize, string> = {
   'medium': 'w-[48px] h-[48px]',
   'small': 'w-[36px] h-[36px]',
   'tiny': 'w-[24px] h-[24px]'
-};
-
-const getDefaultAvatar = () => {
-  const isDev = import.meta.env.DEV;
-  return isDev ? '/images/avatars/TheRock.jpg' : '/SwAdmin/images/avatars/TheRock.jpg';
 };
 
 export interface AvatarProps {
@@ -28,7 +24,7 @@ export interface AvatarProps {
 
 export const Avatar: React.FC<AvatarProps> = ({
   size = 'medium',
-  src = getDefaultAvatar(),
+  src = getImagePath(DEFAULT_AVATAR),
   alt,
   name,
   className,

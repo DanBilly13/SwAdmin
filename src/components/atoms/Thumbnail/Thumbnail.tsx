@@ -1,30 +1,26 @@
 import React from "react";
 import classNames from "classnames";
+import { getImagePath, DEFAULT_AVATAR, DEFAULT_TEAM_BADGE } from "../../../utils/imagePaths";
 
-export type ThumbnailSize = "large" | "medium" | "small" | "tiny";
-export type ThumbnailType = "image" | "teamBadge" | "icon";
+export type ThumbnailSize = "sm" | "md" | "lg";
+export type ThumbnailType = "avatar" | "team-badge";
 
 const sizeClasses: Record<ThumbnailSize, string> = {
-  large: "w-[60px] h-[60px]",
-  medium: "w-[48px] h-[48px]",
-  small: "w-[36px] h-[36px]",
-  tiny: "w-[24px] h-[24px]",
+  sm: "w-8 h-8",
+  md: "w-10 h-10",
+  lg: "w-12 h-12",
 };
 
 const teamBadgePaddingClasses: Record<ThumbnailSize, string> = {
-  large: "p-2",
-  medium: "p-1.5",
-  small: "p-1",
-  tiny: "p-0.5",
+  sm: "p-1",
+  md: "p-1.5",
+  lg: "p-2",
 };
 
-const DEFAULT_IMAGE = "/images/avatars/TheRock.jpg";
-const DEFAULT_TEAM_BADGE = "/images/team-badges/svff.jpg";
-
 export interface ThumbnailProps {
+  src?: string;
   size?: ThumbnailSize;
   type?: ThumbnailType;
-  src?: string;
   alt?: string;
   className?: string;
   isVideo?: boolean;
@@ -33,33 +29,31 @@ export interface ThumbnailProps {
 }
 
 export const Thumbnail = ({
-  size = "medium",
-  type = "image",
   src,
+  size = "md",
+  type = "avatar",
   alt,
   className,
   isVideo = false,
   icon,
   disabled,
 }: ThumbnailProps) => {
-  const [imgSrc, setImgSrc] = React.useState(
-    src || (type === "teamBadge" ? DEFAULT_TEAM_BADGE : DEFAULT_IMAGE)
-  );
+  const defaultImage = type === "avatar" ? DEFAULT_AVATAR : DEFAULT_TEAM_BADGE;
+
+  const [imgSrc, setImgSrc] = React.useState(src || defaultImage);
 
   const handleError = () => {
-    setImgSrc(type === "teamBadge" ? DEFAULT_TEAM_BADGE : DEFAULT_IMAGE);
+    setImgSrc(defaultImage);
   };
 
   React.useEffect(() => {
-    setImgSrc(
-      src || (type === "teamBadge" ? DEFAULT_TEAM_BADGE : DEFAULT_IMAGE)
-    );
-  }, [src, type]);
+    setImgSrc(src || defaultImage);
+  }, [src]);
 
   const containerClasses = classNames(
     "rounded relative",
     sizeClasses[size],
-    type === "teamBadge" && [teamBadgePaddingClasses[size], "border border-border"],
+    type === "team-badge" && [teamBadgePaddingClasses[size], "border border-border"],
     className
   );
 
@@ -68,18 +62,16 @@ export const Thumbnail = ({
     "border-y-[5px] border-l-[8px] border-r-0",
     "border-y-fill-on border-l-content border-solid",
     {
-      "!border-y-[3px] !border-l-[5px]": size === "tiny",
-      "!border-y-[4px] !border-l-[6px]": size === "small",
-      "!border-y-[5px] !border-l-[8px]": size === "medium",
-      "!border-y-[6px] !border-l-[10px]": size === "large",
+      "!border-y-[3px] !border-l-[5px]": size === "sm",
+      "!border-y-[4px] !border-l-[6px]": size === "md",
+      "!border-y-[5px] !border-l-[8px]": size === "lg",
     }
   );
 
   const maskSizes = {
-    tiny: { circle: 16, triangle: 5, offset: 1 },
-    small: { circle: 20, triangle: 6, offset: 1 },
-    medium: { circle: 24, triangle: 8, offset: 1 },
-    large: { circle: 32, triangle: 10, offset: 2 },
+    sm: { circle: 16, triangle: 5, offset: 1 },
+    md: { circle: 20, triangle: 6, offset: 1 },
+    lg: { circle: 24, triangle: 8, offset: 1 },
   };
 
   const getMaskSvg = (circleSize: number, triangleSize: number, offset: number) => {
@@ -98,10 +90,9 @@ export const Thumbnail = ({
   const circleClasses = classNames(
     "bg-fill-on rounded-full flex items-center justify-center",
     {
-      "w-4 h-4": size === "tiny",
-      "w-5 h-5": size === "small",
-      "w-6 h-6": size === "medium",
-      "w-8 h-8": size === "large",
+      "w-4 h-4": size === "sm",
+      "w-5 h-5": size === "md",
+      "w-6 h-6": size === "lg",
     }
   );
 
@@ -133,7 +124,7 @@ export const Thumbnail = ({
           {...(disabled ? { disabled: true } : {})}
         />
       )}
-      {isVideo && type === "image" && (
+      {isVideo && type === "avatar" && (
         <div className="absolute inset-0 bg-content/30 rounded flex items-center justify-center">
           <div className={circleClasses} style={getMaskStyle()} />
         </div>
