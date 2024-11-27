@@ -7,14 +7,14 @@ export default defineConfig({
   base: '/SwAdmin/',
   build: {
     outDir: 'docs',
-    assetsDir: 'assets',
+    assetsDir: '',
     rollupOptions: {
       output: {
         assetFileNames: (assetInfo) => {
-          if (assetInfo.name.endsWith('.jpg')) {
-            return 'images/avatars/[name][extname]'
+          if (assetInfo.name.endsWith('.jpg') || assetInfo.name.endsWith('.png')) {
+            return 'images/[name][extname]'
           }
-          return 'assets/[name][extname]'
+          return '[name][extname]'
         }
       }
     }
