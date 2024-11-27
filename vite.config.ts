@@ -7,15 +7,19 @@ export default defineConfig({
   base: '/SwAdmin/',
   build: {
     outDir: 'docs',
-    assetsDir: '',
+    assetsDir: 'assets',
     rollupOptions: {
       output: {
         assetFileNames: (assetInfo) => {
-          if (assetInfo.name.endsWith('.jpg') || assetInfo.name.endsWith('.png')) {
-            return 'images/[name][extname]'
+          const info = assetInfo.name.split('.')
+          const ext = info[info.length - 1]
+          if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(ext)) {
+            return `images/${assetInfo.name}`
           }
-          return '[name][extname]'
-        }
+          return `assets/${assetInfo.name}`
+        },
+        chunkFileNames: 'assets/[name].js',
+        entryFileNames: 'assets/[name].js'
       }
     }
   }
