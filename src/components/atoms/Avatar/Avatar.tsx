@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { Badge, BadgeProps } from '../Badge/Badge';
+import { getAssetPath } from '../../../utils/paths';
 
 export type AvatarSize = 'lg' | 'md' | 'sm' | 'xsm';
 
@@ -12,8 +13,7 @@ const sizeClasses: Record<AvatarSize, string> = {
 };
 
 const getDefaultAvatar = () => {
-  const isDev = import.meta.env.DEV;
-  return isDev ? '/images/avatars/TheRock.jpg' : '/SwAdmin/images/avatars/TheRock.jpg';
+  return getAssetPath('/images/avatars/TheRock.jpg');
 };
 
 export interface AvatarProps {

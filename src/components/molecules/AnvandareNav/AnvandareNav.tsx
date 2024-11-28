@@ -9,12 +9,12 @@ type NavigationItem = {
   href: string;
 };
 
-interface DesignSystemNavProps {
+interface AnvandareNavProps {
   navigation: NavigationItem[];
   activeItem?: string;
 }
 
-export const DesignSystemNav: React.FC<DesignSystemNavProps> = ({
+export const AnvandareNav: React.FC<AnvandareNavProps> = ({
   navigation,
   activeItem,
 }) => {
@@ -32,7 +32,7 @@ export const DesignSystemNav: React.FC<DesignSystemNavProps> = ({
       </div>
 
       <div className="flex flex-col gap-1">
-        <h2 className="text-headline-s mb-6">Design System</h2>
+        <h2 className="text-headline-s mb-6">Användare</h2>
 
         <div className="space-y-2">
           {navigation.map(({ href, name }) => (
@@ -48,37 +48,27 @@ export const DesignSystemNav: React.FC<DesignSystemNavProps> = ({
 
 const getIconForRoute = (route: string): string => {
   switch (route) {
-    case "/components":
-      return "widgets";
-    case "/molecules":
-      return "science";
-    case "/templates":
-      return "dashboard_customize";
-    case "/typography":
-      return "text_fields";
-    case "/colors":
-      return "palette";
-    case "/tables":
-      return "table_view";
-    case "/data-input":
-      return "input";
-    case "/data-display":
-      return "data_object";
-    case "/containers":
-      return "grid_view";
-    case "/buttons":
-      return "smart_button";
-    case "/navigation":
-      return "menu";
-    case "/images":
-      return "image";
-    case "/cards":
+    case "/anvandare":
       return "dashboard";
-    case "/spacers":
-      return "space_bar";
+    case "/anvandare/users":
+      return "group";
+    case "/anvandare/account":
+      return "person";
+    case "/anvandare/lagroller":
+      return "groups";
+    case "/anvandare/foljande":
+      return "favorite";
+    case "/anvandare/inlagg-och-kommentarer":
+      return "chat";
+    case "/anvandare/inskickade-rapporter":
+      return "report";
+    case "/anvandare/inkop":
+      return "shopping_cart";
+    case "/anvandare/behorighet":
+      return "security";
     default:
       return "chevron_right";
   }
 };
 
-export default DesignSystemNav;
+export default AnvandareNav;

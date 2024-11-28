@@ -2,13 +2,14 @@ import React from 'react';
 import { Avatar, Chip, Badge } from '../../atoms';
 import classNames from 'classnames';
 import type { BadgeVariant } from '../../atoms/Badge/Badge';
+import type { AvatarSize } from '../../atoms/Avatar/Avatar';
 
 export type UserProfileSize = 'large' | 'medium' | 'small';
 
-const avatarSizes: Record<UserProfileSize, 'large' | 'medium' | 'small'> = {
-  large: 'large',
-  medium: 'medium',
-  small: 'small'
+const avatarSizes: Record<UserProfileSize, AvatarSize> = {
+  large: 'lg',
+  medium: 'md',
+  small: 'sm'
 };
 
 const nameTextClasses: Record<UserProfileSize, string> = {

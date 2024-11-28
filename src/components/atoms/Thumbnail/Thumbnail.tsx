@@ -1,25 +1,26 @@
 import React from "react";
 import classNames from "classnames";
+import { getAssetPath } from '../../../utils/paths';
 
-export type ThumbnailSize = "lg" | "md" | "sm" | "xsm";
+export type ThumbnailSize = 'lg' | 'md' | 'sm' | 'xsm';
 export type ThumbnailType = "image" | "teamBadge" | "icon";
 
 const sizeClasses: Record<ThumbnailSize, string> = {
-  lg: "w-[60px] h-[60px]",
-  md: "w-[48px] h-[48px]",
-  sm: "w-[36px] h-[36px]",
-  xsm: "w-[24px] h-[24px]",
+  'lg': 'w-[60px] h-[60px]',
+  'md': 'w-[48px] h-[48px]',
+  'sm': 'w-[36px] h-[36px]',
+  'xsm': 'w-[24px] h-[24px]'
 };
 
 const teamBadgePaddingClasses: Record<ThumbnailSize, string> = {
-  lg: "p-2",
-  md: "p-1.5",
-  sm: "p-1",
-  xsm: "p-0.5",
+  'lg': 'p-2',
+  'md': 'p-1.5',
+  'sm': 'p-1',
+  'xsm': 'p-0.5'
 };
 
-const DEFAULT_IMAGE = "/images/avatars/TheRock.jpg";
-const DEFAULT_TEAM_BADGE = "/images/team-badges/svff.jpg";
+const DEFAULT_IMAGE = getAssetPath("/images/avatars/TheRock.jpg");
+const DEFAULT_TEAM_BADGE = getAssetPath("/images/team-badges/svff.jpg");
 
 export interface ThumbnailProps {
   size?: ThumbnailSize;

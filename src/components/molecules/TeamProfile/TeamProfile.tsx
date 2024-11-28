@@ -2,13 +2,14 @@ import React from "react";
 import classNames from "classnames";
 import { Thumbnail } from "../../atoms";
 import type { ThumbnailSize } from "../../atoms/Thumbnail/Thumbnail";
+import { getAssetPath } from "../../../utils/paths";
 
 export type TeamProfileSize = "large" | "medium" | "small";
 
 const thumbnailSizes: Record<TeamProfileSize, ThumbnailSize> = {
-  large: "large",
-  medium: "medium",
-  small: "small",
+  large: "lg",
+  medium: "md",
+  small: "sm",
 };
 
 const nameTextClasses: Record<TeamProfileSize, string> = {
@@ -38,21 +39,13 @@ export const TeamProfile: React.FC<TeamProfileProps> = ({
   size = "large",
   className = "",
 }) => {
-  const isDev = import.meta.env.DEV;
-  const adjustedBadgeSrc = badgeSrc
-    ? isDev
-      ? badgeSrc.replace("/SwAdmin/", "/")
-      : badgeSrc
-    : undefined;
-
   return (
     <div className={classNames("flex items-center", className)}>
       <div className="relative flex-shrink-0">
         <Thumbnail
-          type="teamBadge"
           size={thumbnailSizes[size]}
-          src={adjustedBadgeSrc}
-          alt={`${name} badge`}
+          type="teamBadge"
+          src={badgeSrc ? getAssetPath(badgeSrc) : undefined}
         />
       </div>
       <div className={classNames(

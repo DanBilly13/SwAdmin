@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 
-export type ChipVariant = "success" | "error" | "warning" | "info" | "neutral";
+export type ChipVariant = "success" | "error" | "warning" | "info" | "neutral" | "primary";
 
 const variantClasses: Record<
   ChipVariant,
@@ -26,6 +26,10 @@ const variantClasses: Record<
   neutral: {
     background: "bg-bg",
     text: "text-content",
+  },
+  primary: {
+    background: "bg-surface-primary",
+    text: "text-content-primary",
   },
 };
 
