@@ -9,6 +9,7 @@ export interface RadioProps {
   name?: string;
   value?: string;
   label?: string;
+  readOnly?: boolean;
 }
 
 export const Radio = ({
@@ -19,6 +20,7 @@ export const Radio = ({
   name,
   value,
   label,
+  readOnly,
 }: RadioProps) => {
   return (
     <div className="flex items-center">
@@ -36,8 +38,8 @@ export const Radio = ({
           },
           className
         )}
-        onClick={() => !disabled && onChange?.(!checked)}
-        disabled={disabled}
+        onClick={() => !disabled && !readOnly && onChange?.(!checked)}
+        disabled={disabled || readOnly}
       >
         {checked && (
           <span className="material-symbols-rounded text-fill-on text-sm">check</span>

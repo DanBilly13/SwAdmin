@@ -1,21 +1,21 @@
 import React from "react";
 import classNames from "classnames";
 
-export type ThumbnailSize = "large" | "medium" | "small" | "tiny";
+export type ThumbnailSize = "lg" | "md" | "sm" | "xsm";
 export type ThumbnailType = "image" | "teamBadge" | "icon";
 
 const sizeClasses: Record<ThumbnailSize, string> = {
-  large: "w-[60px] h-[60px]",
-  medium: "w-[48px] h-[48px]",
-  small: "w-[36px] h-[36px]",
-  tiny: "w-[24px] h-[24px]",
+  lg: "w-[60px] h-[60px]",
+  md: "w-[48px] h-[48px]",
+  sm: "w-[36px] h-[36px]",
+  xsm: "w-[24px] h-[24px]",
 };
 
 const teamBadgePaddingClasses: Record<ThumbnailSize, string> = {
-  large: "p-2",
-  medium: "p-1.5",
-  small: "p-1",
-  tiny: "p-0.5",
+  lg: "p-2",
+  md: "p-1.5",
+  sm: "p-1",
+  xsm: "p-0.5",
 };
 
 const DEFAULT_IMAGE = "/images/avatars/TheRock.jpg";
@@ -33,7 +33,7 @@ export interface ThumbnailProps {
 }
 
 export const Thumbnail = ({
-  size = "medium",
+  size = "md",
   type = "image",
   src,
   alt,
@@ -68,18 +68,18 @@ export const Thumbnail = ({
     "border-y-[5px] border-l-[8px] border-r-0",
     "border-y-fill-on border-l-content border-solid",
     {
-      "!border-y-[3px] !border-l-[5px]": size === "tiny",
-      "!border-y-[4px] !border-l-[6px]": size === "small",
-      "!border-y-[5px] !border-l-[8px]": size === "medium",
-      "!border-y-[6px] !border-l-[10px]": size === "large",
+      "!border-y-[3px] !border-l-[5px]": size === "xsm",
+      "!border-y-[4px] !border-l-[6px]": size === "sm",
+      "!border-y-[5px] !border-l-[8px]": size === "md",
+      "!border-y-[6px] !border-l-[10px]": size === "lg",
     }
   );
 
   const maskSizes = {
-    tiny: { circle: 16, triangle: 5, offset: 1 },
-    small: { circle: 20, triangle: 6, offset: 1 },
-    medium: { circle: 24, triangle: 8, offset: 1 },
-    large: { circle: 32, triangle: 10, offset: 2 },
+    xsm: { circle: 16, triangle: 5, offset: 1 },
+    sm: { circle: 20, triangle: 6, offset: 1 },
+    md: { circle: 24, triangle: 8, offset: 1 },
+    lg: { circle: 32, triangle: 10, offset: 2 },
   };
 
   const getMaskSvg = (circleSize: number, triangleSize: number, offset: number) => {
@@ -98,10 +98,10 @@ export const Thumbnail = ({
   const circleClasses = classNames(
     "bg-fill-on rounded-full flex items-center justify-center",
     {
-      "w-4 h-4": size === "tiny",
-      "w-5 h-5": size === "small",
-      "w-6 h-6": size === "medium",
-      "w-8 h-8": size === "large",
+      "w-4 h-4": size === "xsm",
+      "w-5 h-5": size === "sm",
+      "w-6 h-6": size === "md",
+      "w-8 h-8": size === "lg",
     }
   );
 

@@ -2,13 +2,13 @@ import React from 'react';
 import classNames from 'classnames';
 import { Badge, BadgeProps } from '../Badge/Badge';
 
-export type AvatarSize = 'large' | 'medium' | 'small' | 'tiny';
+export type AvatarSize = 'lg' | 'md' | 'sm' | 'xsm';
 
 const sizeClasses: Record<AvatarSize, string> = {
-  'large': 'w-[60px] h-[60px]',
-  'medium': 'w-[48px] h-[48px]',
-  'small': 'w-[36px] h-[36px]',
-  'tiny': 'w-[24px] h-[24px]'
+  'lg': 'w-[60px] h-[60px]',
+  'md': 'w-[48px] h-[48px]',
+  'sm': 'w-[36px] h-[36px]',
+  'xsm': 'w-[24px] h-[24px]'
 };
 
 const getDefaultAvatar = () => {
@@ -27,7 +27,7 @@ export interface AvatarProps {
 }
 
 export const Avatar: React.FC<AvatarProps> = ({
-  size = 'medium',
+  size = 'md',
   src = getDefaultAvatar(),
   alt,
   name,

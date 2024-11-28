@@ -39,10 +39,10 @@ const Images = () => {
         <div>
           <h3 className="text-title-s text-content-secondary mb-4">Basic</h3>
           <div className="flex flex-wrap gap-4 items-center">
-            <Avatar size="tiny" />
-            <Avatar size="small" />
-            <Avatar size="medium" />
-            <Avatar size="large" />
+            <Avatar size="xsm" />
+            <Avatar size="sm" />
+            <Avatar size="md" />
+            <Avatar size="lg" />
           </div>
         </div>
 
@@ -52,10 +52,10 @@ const Images = () => {
             With Initials
           </h3>
           <div className="flex flex-wrap gap-4 items-center">
-            <Avatar size="tiny" name="John Doe" />
-            <Avatar size="small" name="Jane Smith" />
-            <Avatar size="medium" name="Robert Johnson" />
-            <Avatar size="large" name="Alice Brown" />
+            <Avatar size="xsm" name="John Doe" />
+            <Avatar size="sm" name="Jane Smith" />
+            <Avatar size="md" name="Robert Johnson" />
+            <Avatar size="lg" name="Alice Brown" />
           </div>
         </div>
 
@@ -65,9 +65,10 @@ const Images = () => {
             With Badge
           </h3>
           <div className="flex flex-wrap gap-4 items-center">
-            <Avatar size="tiny" badge={{ variant: "success" }} />
-
-            <Avatar size="medium" badge={{ variant: "error" }} />
+            <Avatar size="xsm" badge={{ variant: "success" }} />
+            <Avatar size="sm" badge={{ variant: "warning" }} />
+            <Avatar size="md" badge={{ variant: "error" }} />
+            <Avatar size="lg" badge={{ variant: "info" }} />
           </div>
         </div>
       </SectionCard>
@@ -77,11 +78,11 @@ const Images = () => {
         {/* Basic */}
         <div>
           <h3 className="text-title-s text-content-secondary mb-4">Basic</h3>
-          <div className="flex flex-wrap gap-4 items-center">
-            <Thumbnail size="tiny" />
-            <Thumbnail size="small" />
-            <Thumbnail size="medium" />
-            <Thumbnail size="large" />
+          <div className="flex items-center gap-4">
+            <Thumbnail size="xsm" />
+            <Thumbnail size="sm" />
+            <Thumbnail size="md" />
+            <Thumbnail size="lg" />
           </div>
         </div>
 
@@ -90,11 +91,11 @@ const Images = () => {
           <h3 className="text-title-s text-content-secondary mb-4">
             With Video Indicator
           </h3>
-          <div className="flex flex-wrap gap-4 items-center">
-            <Thumbnail size="tiny" isVideo />
-            <Thumbnail size="small" isVideo />
-            <Thumbnail size="medium" isVideo />
-            <Thumbnail size="large" isVideo />
+          <div className="flex items-center gap-4">
+            <Thumbnail size="xsm" isVideo />
+            <Thumbnail size="sm" isVideo />
+            <Thumbnail size="md" isVideo />
+            <Thumbnail size="lg" isVideo />
           </div>
         </div>
 
@@ -103,11 +104,11 @@ const Images = () => {
           <h3 className="text-title-s text-content-secondary mb-4">
             With Icon
           </h3>
-          <div className="flex flex-wrap gap-4 items-center">
-            <Thumbnail size="tiny" type="icon" icon="image" />
-            <Thumbnail size="small" type="icon" icon="video_library" />
-            <Thumbnail size="medium" type="icon" icon="photo_library" />
-            <Thumbnail size="large" type="icon" icon="collections" />
+          <div className="flex items-center gap-4">
+            <Thumbnail size="xsm" type="icon" icon="image" />
+            <Thumbnail size="sm" type="icon" icon="video_library" />
+            <Thumbnail size="md" type="icon" icon="photo_library" />
+            <Thumbnail size="lg" type="icon" icon="collections" />
           </div>
         </div>
       </SectionCard>
@@ -117,22 +118,22 @@ const Images = () => {
         {/* Basic */}
         <div>
           <h3 className="text-title-s text-content-secondary mb-4">Basic</h3>
-          <div className="flex flex-wrap gap-4 items-center">
-            <Thumbnail size="tiny" type="teamBadge" />
-            <Thumbnail size="small" type="teamBadge" />
-            <Thumbnail size="medium" type="teamBadge" />
-            <Thumbnail size="large" type="teamBadge" />
+          <div className="flex items-center gap-4">
+            <Thumbnail size="xsm" type="teamBadge" />
+            <Thumbnail size="sm" type="teamBadge" />
+            <Thumbnail size="md" type="teamBadge" />
+            <Thumbnail size="lg" type="teamBadge" />
           </div>
         </div>
 
         {/* Disabled */}
         <div className="mt-8">
           <h3 className="text-title-s text-content-secondary mb-4">Disabled</h3>
-          <div className="flex flex-wrap gap-4 items-center">
-            <Thumbnail size="tiny" type="teamBadge" disabled />
-            <Thumbnail size="small" type="teamBadge" disabled />
-            <Thumbnail size="medium" type="teamBadge" disabled />
-            <Thumbnail size="large" type="teamBadge" disabled />
+          <div className="flex items-center gap-4">
+            <Thumbnail size="xsm" type="teamBadge" disabled />
+            <Thumbnail size="sm" type="teamBadge" disabled />
+            <Thumbnail size="md" type="teamBadge" disabled />
+            <Thumbnail size="lg" type="teamBadge" disabled />
           </div>
         </div>
       </SectionCard>

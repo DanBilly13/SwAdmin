@@ -79,12 +79,13 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
   );
 
   if (to) {
+    const { to: propsTo, ...restProps } = props as LinkProps;
     return (
       <Link
         ref={ref as React.Ref<HTMLAnchorElement>}
         to={to}
         className={classNames(commonClasses, 'no-underline')}
-        {...(props as LinkProps)}
+        {...restProps}
       >
         {leadingIcon && (
           <span className={iconClasses}>{leadingIcon}</span>

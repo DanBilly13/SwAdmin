@@ -105,7 +105,7 @@ const StructuredContent: React.FC<TableCellStructuredProps> = ({
 
     return (
       <div className="flex items-center gap-3">
-        <Avatar {...adjustedAvatar} badge={badge} size="small" className="flex-shrink-0" />
+        <Avatar {...adjustedAvatar} badge={badge} size="sm" className="flex-shrink-0" />
         <div className="flex flex-col">
           <span className="text-body-s text-content-primary">{title}</span>
           {description && (
