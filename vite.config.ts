@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   base: '/SwAdmin/',
   build: {
-    assetsDir: 'assets',
+    outDir: 'docs',
     rollupOptions: {
       output: {
         assetFileNames: (assetInfo) => {
