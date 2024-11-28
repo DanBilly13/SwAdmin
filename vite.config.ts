@@ -6,13 +6,12 @@ export default defineConfig({
   plugins: [react()],
   base: '/SwAdmin/',
   build: {
-    outDir: 'docs',
     assetsDir: 'assets',
     rollupOptions: {
       output: {
         assetFileNames: (assetInfo) => {
-          if (assetInfo.name.endsWith('.jpg')) {
-            return 'images/avatars/[name][extname]'
+          if (assetInfo.name.endsWith('.jpg') || assetInfo.name.endsWith('.png')) {
+            return 'images/[name][extname]'
           }
           return 'assets/[name][extname]'
         }
