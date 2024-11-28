@@ -65,10 +65,10 @@ const Images = () => {
             With Badge
           </h3>
           <div className="flex flex-wrap gap-4 items-center">
-            <Avatar size="xsm" badge={{ variant: "success" }} />
-            <Avatar size="sm" badge={{ variant: "warning" }} />
-            <Avatar size="md" badge={{ variant: "error" }} />
-            <Avatar size="lg" badge={{ variant: "info" }} />
+            <Avatar size="xsm" badge={{ variant: "success", icon: true }} />
+            <Avatar size="sm" badge={{ variant: "warning", icon: true }} />
+            <Avatar size="md" badge={{ variant: "error", icon: true }} />
+            <Avatar size="lg" badge={{ variant: "info", icon: true }} />
           </div>
         </div>
       </SectionCard>

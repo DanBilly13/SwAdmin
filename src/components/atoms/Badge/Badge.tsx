@@ -1,55 +1,82 @@
-import React from 'react';
-import classNames from 'classnames';
+import React from "react";
+import classNames from "classnames";
 
-export type BadgeVariant = 'success' | 'error' | 'warning' | 'info' | 'neutral';
+export type BadgeVariant = "success" | "error" | "warning" | "info" | "neutral";
 
-const variantClasses: Record<BadgeVariant, { background: string; icon: string }> = {
-  'success': {
-    background: 'bg-content-success',
-    icon: 'check'
+const variantClasses: Record<
+  BadgeVariant,
+  { background: string; icon: string; fill?: number; weight?: number }
+> = {
+  success: {
+    background: "bg-content-success text-fill-on",
+    icon: "check",
+    fill: 1,
+    weight: 700,
   },
-  'error': {
-    background: 'bg-content-error',
-    icon: 'priority_high'
+  error: {
+    background: "bg-content-error text-fill-on",
+    icon: "priority_high",
+    fill: 1,
+    weight: 500,
   },
-  'warning': {
-    background: 'bg-content-caution',
-    icon: 'warning'
+  warning: {
+    background: "bg-content-caution text-fill-on",
+    icon: "stat_0",
+    fill: 1,
+    weight: 700,
   },
-  'info': {
-    background: 'bg-content-info',
-    icon: 'info'
+  info: {
+    background: "bg-content-info text-fill-on",
+    icon: "info_i",
+    fill: 0,
+    weight: 600,
   },
-  'neutral': {
-    background: 'bg-content-tertiary',
-    icon: 'circle'
-  }
+  neutral: {
+    background: "bg-content text-fill-on",
+    icon: "circle",
+    fill: 1,
+    weight: 700,
+  },
 };
 
 export interface BadgeProps {
   variant: BadgeVariant;
   className?: string;
-  children?: React.ReactNode;
-  icon?: string;
+  icon?: string | boolean;
 }
 
-export const Badge = ({ variant, className, children, icon }: BadgeProps) => {
+export const Badge = ({ variant, className, icon }: BadgeProps) => {
+  // Determine if we should show an icon and which one
+  const showIcon = icon !== undefined && icon !== false;
+  const iconName =
+    typeof icon === "string" ? icon : variantClasses[variant].icon;
+
+  const variantStyle = variantClasses[variant];
+
   return (
     <div
       className={classNames(
-        'flex items-center rounded-full text-xs',
+        "flex items-center justify-center rounded-full",
         {
-          'w-5 h-5 justify-center': !children,
-          'gap-1 px-2 py-1': children
+          "w-6 h-6": !showIcon,
+          "w-5 h-5": showIcon,
         },
         variantClasses[variant].background,
         className
       )}
     >
-      <span className="material-symbols-rounded text-fill-on text-xs">
-        {icon || variantClasses[variant].icon}
-      </span>
-      {children && <span className="text-fill-on">{children}</span>}
+      {showIcon && (
+        <span
+          className="material-symbols-rounded text-xs text-white"
+          style={{
+            fontVariationSettings: `'FILL' ${variantStyle.fill || 0}, 'wght' ${
+              variantStyle.weight || 400
+            }`,
+          }}
+        >
+          {iconName}
+        </span>
+      )}
     </div>
   );
 };

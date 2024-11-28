@@ -42,11 +42,11 @@ const DataDisplay = () => {
               Variants
             </h3>
             <div className="flex flex-wrap gap-4">
-              <Chip variant="success">Saved</Chip>
-              <Chip variant="error">Failed</Chip>
-              <Chip variant="warning">Expiring Soon</Chip>
-              <Chip variant="info">Pending</Chip>
-              <Chip variant="neutral">Normal</Chip>
+              <Chip variant="success">Success</Chip>
+              <Chip variant="error">Error</Chip>
+              <Chip variant="warning">Warning</Chip>
+              <Chip variant="info">Info</Chip>
+              <Chip variant="neutral">Neutral</Chip>
             </div>
           </div>
 
@@ -57,19 +57,19 @@ const DataDisplay = () => {
             </h3>
             <div className="flex flex-wrap gap-4">
               <Chip variant="success" leadingIcon="check">
-                Online
+                Success
               </Chip>
               <Chip variant="error" leadingIcon="error">
-                Offline
+                Error
               </Chip>
-              <Chip variant="warning" leadingIcon="schedule">
-                Expiring Soon
+              <Chip variant="warning" leadingIcon="warning">
+                Warning
               </Chip>
               <Chip variant="info" leadingIcon="info">
-                In Progress
+                Info
               </Chip>
-              <Chip variant="neutral" leadingIcon="sync">
-                Processing
+              <Chip variant="neutral" leadingIcon="circle">
+                Neutral
               </Chip>
             </div>
           </div>
@@ -81,19 +81,19 @@ const DataDisplay = () => {
             </h3>
             <div className="flex flex-wrap gap-4">
               <Chip variant="success" onClose={() => {}}>
-                Active
+                Success
               </Chip>
               <Chip variant="error" onClose={() => {}}>
-                Blocked
+                Error
               </Chip>
               <Chip variant="warning" onClose={() => {}}>
-                Review Needed
+                Warning
               </Chip>
               <Chip variant="info" onClose={() => {}}>
-                Draft
+                Info
               </Chip>
               <Chip variant="neutral" onClose={() => {}}>
-                Default
+                Neutral
               </Chip>
             </div>
           </div>
@@ -124,17 +124,31 @@ const DataDisplay = () => {
         </SectionCard>
 
         <SectionCard title="Badges">
-          {/* Variants */}
+          {/* Empty Badges */}
           <div>
             <h3 className="text-title-s text-content-secondary mb-4">
-              Status Indicators
+              Empty Badges
             </h3>
-            <div className="flex flex-wrap items-center gap-4">
+            <div className="flex flex-wrap gap-4 items-center">
               <Badge variant="success" />
               <Badge variant="error" />
               <Badge variant="warning" />
               <Badge variant="info" />
               <Badge variant="neutral" />
+            </div>
+          </div>
+
+          {/* With Icons */}
+          <div className="mt-8">
+            <h3 className="text-title-s text-content-secondary mb-4">
+              With Icons
+            </h3>
+            <div className="flex flex-wrap gap-4 items-center">
+              <Badge variant="success" icon={true} />
+              <Badge variant="error" icon={true} />
+              <Badge variant="warning" icon={true} />
+              <Badge variant="info" icon={true} />
+              <Badge variant="neutral" icon={true} />
             </div>
           </div>
         </SectionCard>
