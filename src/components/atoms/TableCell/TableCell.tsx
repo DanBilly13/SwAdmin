@@ -5,25 +5,25 @@ import { Chip, ChipProps } from "../Chip/Chip";
 import { Avatar, AvatarProps } from "../Avatar/Avatar";
 import { BadgeProps } from "../Badge/Badge";
 import { IconButton } from "../IconButton/IconButton";
+import { Dropdown, DropdownProps } from "../Dropdown/Dropdown";
 
 /**
  * Type definitions for TableCell configuration
  * These types control the appearance and behavior of table cells
  */
-type TableCellAlign = "left" | "center" | "right";  // Controls text and content alignment
-type TableCellPadding = "normal" | "compact" | "none";  // Controls cell padding
-type TableCellVariant = "body" | "header" | "footer";  // Different cell styles based on position
-type TableCellSize = "small" | "medium";  // Controls text size
-type TableSortDirection = "ascending" | "descending" | "none" | false;  // For sortable columns
+type TableCellAlign = "left" | "center" | "right"; // Controls text and content alignment
+type TableCellPadding = "normal"; // Controls cell padding
+type TableCellVariant = "body" | "header" | "footer"; // Different cell styles based on position
+type TableSortDirection = "ascending" | "descending" | "none" | false; // For sortable columns
 
 /**
  * Responsive boolean interface for properties that can change based on screen size
  * Example: A cell might be first in row on mobile but not on desktop
  */
 interface ResponsiveBoolean {
-  sm?: boolean;  // Small screens (mobile)
-  md?: boolean;  // Medium screens (tablet)
-  lg?: boolean;  // Large screens (desktop)
+  sm?: boolean; // Small screens (mobile)
+  md?: boolean; // Medium screens (tablet)
+  lg?: boolean; // Large screens (desktop)
 }
 
 /**
@@ -33,11 +33,10 @@ interface TableCellBaseProps {
   className?: string;
   align?: TableCellAlign;
   padding?: TableCellPadding;
-  size?: TableCellSize;
   variant?: TableCellVariant;
   sortDirection?: TableSortDirection;
-  isFirst?: boolean | ResponsiveBoolean;  // Is this the first cell in its row?
-  isLast?: boolean | ResponsiveBoolean;   // Is this the last cell in its row?
+  isFirst?: boolean | ResponsiveBoolean; // Is this the first cell in its row?
+  isLast?: boolean | ResponsiveBoolean; // Is this the last cell in its row?
 }
 
 /**
@@ -53,13 +52,14 @@ interface TableCellSimpleProps extends TableCellBaseProps {
  * Example: A cell with an avatar, title, description, and badge
  */
 interface TableCellStructuredProps extends TableCellBaseProps {
-  title?: string;              // Main text content
-  description?: string;        // Secondary text content
-  imageType?: "thumbnail" | "avatar";  // Type of image to display
-  thumbnail?: Omit<ThumbnailProps, "className">;  // Image thumbnail config
-  avatar?: Omit<AvatarProps, "className"> | null;  // Avatar image config
-  chip?: Omit<ChipProps, "className">;  // Chip/tag config
-  badge?: Omit<BadgeProps, "className">;  // Status badge config
+  title?: string; // Main text content
+  description?: string; // Secondary text content
+  imageType?: "thumbnail" | "avatar"; // Type of image to display
+  thumbnail?: Omit<ThumbnailProps, "className">; // Image thumbnail config
+  avatar?: Omit<AvatarProps, "className"> | null; // Avatar image config
+  chip?: Omit<ChipProps, "className">; // Chip/tag config
+  badge?: Omit<BadgeProps, "className">; // Status badge config
+  dropdown?: Omit<DropdownProps, "className">;
   iconButton?: {
     icon: string;
     onClick?: () => void;
@@ -79,7 +79,6 @@ type TableCellProps = TableCellSimpleProps | TableCellStructuredProps;
 const getTableCellClasses = (
   align: TableCellAlign = "left",
   padding: TableCellPadding = "normal",
-  size: TableCellSize = "medium",
   variant: TableCellVariant = "body",
   isFirst: boolean | ResponsiveBoolean = false,
   isLast: boolean | ResponsiveBoolean = false,
@@ -98,62 +97,21 @@ const getTableCellClasses = (
       "justify-center text-center": align === "center",
       "justify-end text-right": align === "right",
 
-      // Padding - Default (sm)
+      // Padding - Default
       "py-4": padding === "normal",
-      "py-2": padding === "compact",
-      "px-4": padding === "normal" && !isFirstBool && !isLastBool,
-      "pl-0 pr-4":
-        padding === "normal" &&
-        (isFirstBool || isFirstResponsive.sm) &&
-        !isLastBool,
-      "pr-0 pl-4":
-        padding === "normal" &&
-        !isFirstBool &&
-        (isLastBool || isLastResponsive.sm),
-      "px-0":
-        (padding === "normal" &&
-          ((isFirstBool && isLastBool) ||
-            (isFirstResponsive.sm && isLastResponsive.sm))) ||
-        (padding === "compact" &&
-          ((isFirstBool && isLastBool) ||
-            (isFirstResponsive.sm && isLastResponsive.sm))),
-      "px-2": padding === "compact" && !isFirstBool && !isLastBool,
-      "pl-0 pr-2":
-        padding === "compact" &&
-        (isFirstBool || isFirstResponsive.sm) &&
-        !isLastBool,
-      "pr-0 pl-2":
-        padding === "compact" &&
-        !isFirstBool &&
-        (isLastBool || isLastResponsive.sm),
-      "p-0": padding === "none",
+      "pl-0 pr-4": padding === "normal" && !isLastBool,
+      "px-0": padding === "normal" && isLastBool,
 
       // Responsive Padding - md
-      "md:px-4":
-        padding === "normal" && !isFirstResponsive.md && !isLastResponsive.md,
-      "md:pl-0 md:pr-4":
-        padding === "normal" && isFirstResponsive.md && !isLastResponsive.md,
-      "md:pr-0 md:pl-4":
-        padding === "normal" && !isFirstResponsive.md && isLastResponsive.md,
-      "md:px-0":
-        padding === "normal" && isFirstResponsive.md && isLastResponsive.md,
+      "md:pl-0 md:pr-4": padding === "normal" && !isLastResponsive.md,
+      "md:px-0": padding === "normal" && isLastResponsive.md,
 
       // Responsive Padding - lg
-      "lg:px-4":
-        padding === "normal" && !isFirstResponsive.lg && !isLastResponsive.lg,
-      "lg:pl-0 lg:pr-4":
-        padding === "normal" && isFirstResponsive.lg && !isLastResponsive.lg,
-      "lg:pr-0 lg:pl-4":
-        padding === "normal" && !isFirstResponsive.lg && isLastResponsive.lg,
-      "lg:px-0":
-        padding === "normal" && isFirstResponsive.lg && isLastResponsive.lg,
-
-      // Size
-      "text-body-s": size === "medium",
-      "text-label-s": size === "small",
+      "lg:pl-0 lg:pr-4": padding === "normal" && !isLastResponsive.lg,
+      "lg:px-0": padding === "normal" && isLastResponsive.lg,
 
       // Variant
-      "font-medium bg-surface-secondary": variant === "header",
+      "text-label-s bg-surface-secondary": variant === "header",
       "border-t border-border": variant === "footer",
     },
     className
@@ -168,11 +126,50 @@ const getAriaSortValue = (sortDirection?: TableSortDirection) => {
   return sortDirection;
 };
 
+// Utility function to adjust avatar src path based on environment
+const getAdjustedAvatarProps = (avatar: Omit<AvatarProps, "className">) => {
+  const isDev = import.meta.env.DEV;
+  return {
+    ...avatar,
+    src: avatar.src
+      ? isDev
+        ? avatar.src.replace("/SwAdmin/", "/")
+        : avatar.src
+      : undefined,
+  };
+};
+
+// Component for rendering cell content with title and description
+const ContentText: React.FC<{ title?: string; description?: string }> = ({
+  title,
+  description,
+}) => {
+  if (!title && !description) return null;
+  return (
+    <div className="flex flex-col min-h-[32px] justify-center">
+      {title && <div className="text-body-s text-content">{title}</div>}
+      {description && (
+        <div className="text-body-s text-content-secondary">{description}</div>
+      )}
+    </div>
+  );
+};
+
+// Component for rendering action buttons (IconButton or Dropdown)
+const ActionButtons: React.FC<
+  Pick<TableCellStructuredProps, "iconButton" | "dropdown">
+> = ({ iconButton, dropdown }) => {
+  return (
+    <>
+      {iconButton && <IconButton {...iconButton} className="ml-auto" />}
+      {dropdown && <Dropdown {...dropdown} className="ml-auto" size="small" />}
+    </>
+  );
+};
+
 /**
  * Renders structured content within a table cell
- * This component handles two main layouts:
- * 1. Avatar Layout: Avatar + Title + Description + Optional Badge
- * 2. Simple Layout: Title + Description + Optional Thumbnail/Chip
+ * This component handles different layouts based on the content type
  */
 const StructuredContent: React.FC<TableCellStructuredProps> = ({
   title,
@@ -183,71 +180,47 @@ const StructuredContent: React.FC<TableCellStructuredProps> = ({
   chip,
   badge,
   iconButton,
+  dropdown,
 }) => {
-  // Avatar layout: Used for cells that show user information
-  if (imageType === "avatar" && avatar) {
-    const isDev = import.meta.env.DEV;
-    // Handle avatar src path differences between dev and prod
-    const adjustedAvatar = {
-      ...avatar,
-      src: avatar.src
-        ? isDev
-          ? avatar.src.replace("/SwAdmin/", "/")
-          : avatar.src
-        : undefined,
-    };
-
-    return (
-      <div className="flex items-center gap-4">
-        <Avatar
-          {...adjustedAvatar}
-          badge={badge}
-          size="sm"
-          className="flex-shrink-0"
-        />
-        <div className="flex flex-col">
-          <span className="text-body-s text-content-primary">{title}</span>
-          {description && (
-            <span className="text-body-s text-content-secondary">
-              {description}
-            </span>
-          )}
-        </div>
-      </div>
-    );
-  }
-
-  // Simple layout: Used for cells with basic content or thumbnails
-  if (chip && !title && !description && !thumbnail && !iconButton) {
+  // If only chip is present, render it alone
+  if (
+    chip &&
+    !title &&
+    !description &&
+    !thumbnail &&
+    !iconButton &&
+    !dropdown
+  ) {
     return <Chip {...chip} />;
   }
 
   return (
     <div className="flex items-center gap-4">
+      {/* Image (Avatar or Thumbnail) */}
+      {imageType === "avatar" && avatar && (
+        <Avatar
+          {...getAdjustedAvatarProps(avatar)}
+          badge={badge}
+          size="sm"
+          className="flex-shrink-0"
+        />
+      )}
       {imageType === "thumbnail" && thumbnail && (
         <Thumbnail {...thumbnail} className="flex-shrink-0" />
       )}
-      <div className="flex flex-col min-h-[32px] justify-center">
-        {title && <div className="text-body-s text-content">{title}</div>}
-        {description && (
-          <div className="text-body-s text-content-secondary">{description}</div>
-        )}
+
+      {/* Content (Title, Description, and optional Chip) */}
+      <div className="flex flex-col flex-grow">
+        <ContentText title={title} description={description} />
         {chip && (
           <div className="mt-1">
             <Chip {...chip} />
           </div>
         )}
       </div>
-      {iconButton && (
-        <IconButton
-          icon={iconButton.icon}
-          onClick={iconButton.onClick}
-          menuOptions={iconButton.menuOptions}
-          menuPosition={iconButton.menuPosition}
-          menuType={iconButton.menuType}
-          className="ml-auto"
-        />
-      )}
+
+      {/* Actions */}
+      <ActionButtons iconButton={iconButton} dropdown={dropdown} />
     </div>
   );
 };
@@ -261,57 +234,39 @@ const StructuredContent: React.FC<TableCellStructuredProps> = ({
  * - Different content layouts (avatar, thumbnail, simple text)
  * - Accessibility roles
  */
-export const TableCell = (props: TableCellProps) => {
+const TableCell: React.FC<TableCellProps> = (props) => {
   const {
     align = "left",
     padding = "normal",
-    size = "medium",
     variant = "body",
     className,
     sortDirection,
     isFirst = false,
     isLast = false,
+    ...rest
   } = props;
 
-  const cellClasses = classNames(
-    // Base styles
-    "py-4 pl-0 pr-4",
-    {
-      // Only override right padding for last item
-      "pr-0": typeof isLast === "boolean" ? isLast : false,
-      
-      // Responsive padding
-      "sm:pr-0": typeof isLast === "object" && isLast.sm,
-      "md:pr-0": typeof isLast === "object" && isLast.md,
-      "lg:pr-0": typeof isLast === "object" && isLast.lg,
-    },
-    // Alignment
-    {
-      "text-left": align === "left",
-      "text-center": align === "center",
-      "text-right": align === "right",
-      "justify-start": align === "left",
-      "justify-center": align === "center",
-      "justify-end": align === "right",
-    },
+  // Get base classes for the cell
+  const cellClasses = getTableCellClasses(
+    align,
+    padding,
+    variant,
+    isFirst,
+    isLast,
     className
   );
 
+  // Get ARIA attributes for sorting
+  const ariaSortValue = getAriaSortValue(sortDirection);
+  const ariaSort = ariaSortValue ? { "aria-sort": ariaSortValue } : {};
+
+  // Render either simple content (children) or structured content
   return (
-    <div className={cellClasses} role="cell">
-      {"children" in props ? (
-        props.children
+    <div className={cellClasses} {...ariaSort}>
+      {"children" in rest ? (
+        rest.children
       ) : (
-        <StructuredContent
-          title={props.title}
-          description={props.description}
-          imageType={props.imageType}
-          thumbnail={props.thumbnail}
-          avatar={props.avatar}
-          chip={props.chip}
-          badge={props.badge}
-          iconButton={props.iconButton}
-        />
+        <StructuredContent {...(rest as TableCellStructuredProps)} />
       )}
     </div>
   );

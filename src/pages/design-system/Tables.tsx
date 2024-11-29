@@ -1,5 +1,5 @@
 import React from "react";
-import { TableCell } from "../../components/atoms/TableCell/TableCell";
+import TableCell from "../../components/atoms/TableCell/TableCell";
 import { ContentContainer } from "../../components/atoms/ContentContainer/ContentContainer";
 import { MainContentHead } from "../../components/molecules/MainContentHead/MainContentHead";
 import { useDrawerControl } from "../../components/templates";
@@ -214,6 +214,31 @@ const Tables = () => {
                 className={classNames(
                   getColumnSpanClasses(fullWidthSpan),
                   "justify-end"
+                )}
+              />
+            </GridTableRow>
+          </Card>
+        </SectionCard>
+
+        {/* Dropdown Cell Example */}
+        <SectionCard title="Dropdown Cell">
+          <Card variant="table">
+            <GridTableRow>
+              <TableCell
+                dropdown={{
+                  options: [
+                    { value: "edit", label: "Edit" },
+                    { value: "delete", label: "Delete" },
+                    { value: "archive", label: "Archive" }
+                  ],
+                  value: "",
+                  onChange: (value: string) => console.log('Selected:', value),
+                  placeholder: "Select action",
+                  size: "small",
+                  menuType: "action"
+                }}
+                className={classNames(
+                  getColumnSpanClasses(fullWidthSpan)
                 )}
               />
             </GridTableRow>

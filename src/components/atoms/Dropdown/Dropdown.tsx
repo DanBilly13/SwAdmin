@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useId } from "react";
 import classNames from "classnames";
 import { Radio } from '../Radio/Radio';
+import { useMenu } from '../../../contexts/MenuContext';
 
 export interface DropdownOption {
   value: string;
@@ -39,7 +40,9 @@ export const Dropdown = ({
   size = "large",
   menuType = 'action',
 }: DropdownProps) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const menuId = useId();
+  const { openMenuId, setOpenMenuId } = useMenu();
+  const isOpen = openMenuId === menuId;
 
   const containerClasses = classNames(
     "relative w-full",
@@ -66,7 +69,11 @@ export const Dropdown = ({
 
   const handleSelect = (optionValue: string) => {
     onChange?.(optionValue);
-    setIsOpen(false);
+    setOpenMenuId(null);
+  };
+
+  const handleToggle = () => {
+    setOpenMenuId(isOpen ? null : menuId);
   };
 
   return (
@@ -74,7 +81,7 @@ export const Dropdown = ({
       <button
         type="button"
         className={buttonClasses}
-        onClick={() => !disabled && setIsOpen(!isOpen)}
+        onClick={() => !disabled && handleToggle()}
         disabled={disabled}
       >
         {/* Label section */}

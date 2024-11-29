@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useId } from 'react';
 import classNames from 'classnames';
 import { Radio } from '../Radio/Radio';
+import { useMenu } from '../../../contexts/MenuContext';
 
 export type MenuPosition = 'left' | 'center' | 'right';
 export type MenuType = 'action' | 'select';
@@ -24,7 +25,7 @@ export interface IconButtonProps {
   children?: React.ReactNode;
 }
 
-export const IconButton = ({
+export const IconButton: React.FC<IconButtonProps> = ({
   icon,
   onClick,
   disabled = false,
@@ -36,12 +37,15 @@ export const IconButton = ({
   variant,
   size,
   children,
-}: IconButtonProps) => {
-  const [isOpen, setIsOpen] = useState(false);
+}) => {
+  const menuId = useId();
+  const { openMenuId, setOpenMenuId } = useMenu();
+  const isOpen = openMenuId === menuId;
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent) => {
     if (menuOptions) {
-      setIsOpen(!isOpen);
+      e.stopPropagation();
+      setOpenMenuId(isOpen ? null : menuId);
     } else {
       onClick?.();
     }
@@ -53,7 +57,7 @@ export const IconButton = ({
     } else {
       onClick?.();
     }
-    setIsOpen(false);
+    setOpenMenuId(null);
   };
 
   const menuPositionClasses = {

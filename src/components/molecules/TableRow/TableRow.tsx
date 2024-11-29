@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import { TableCell } from "../../atoms/TableCell/TableCell";
+import TableCell from "../../atoms/TableCell/TableCell";
 import { Chip } from "../../atoms/Chip/Chip";
 import { IconButton } from "../../atoms/IconButton/IconButton";
 

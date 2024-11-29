@@ -12,7 +12,10 @@ import {
   isFirstInRow,
   isLastInRow,
 } from "../../utils/tableUtils";
-import { Thumbnail, ThumbnailType } from "../../components/atoms/Thumbnail/Thumbnail";
+import {
+  Thumbnail,
+  ThumbnailType,
+} from "../../components/atoms/Thumbnail/Thumbnail";
 
 interface TableCellData {
   type: "text" | "image";
@@ -28,11 +31,30 @@ interface TableCellData {
     variant: "success" | "error";
     icon: string;
   };
+  iconButton?: {
+    icon: string;
+    onClick?: () => void;
+    menuOptions?: { value: string; label: string }[];
+    menuPosition?: "left" | "right" | "center";
+    menuType?: "action" | "select";
+  };
 }
 
 interface TableRowData {
   id: string | number;
   content: TableCellData[];
+}
+
+interface ColumnDefinition {
+  header: string;
+  span: {
+    xs: number;
+    sm: number;
+    md: number;
+    lg: number;
+  };
+  align: "left" | "right";
+  className?: string;
 }
 
 const tableData: TableRowData[] = teams.map((team) => ({
@@ -61,25 +83,42 @@ const tableData: TableRowData[] = teams.map((team) => ({
       type: "text",
       value: team.kalla,
     },
+    {
+      type: "text",
+      value: "",
+      iconButton: {
+        icon: "more_vert",
+        menuOptions: [
+          { value: "edit", label: "Redigera" },
+          { value: "delete", label: "Ta bort" },
+        ],
+        menuPosition: "right",
+        menuType: "action",
+        onClick: () => {
+          // Add your click handling logic here
+          console.log("Button clicked");
+        },
+      },
+    },
   ],
 }));
 
-const columns = [
+const columns: ColumnDefinition[] = [
   {
     header: "Klub",
     span: {
       xs: 16,
       sm: 16,
-      md: 6,
-      lg: 6,
+      md: 7,
+      lg: 7,
     },
     align: "left" as const,
   },
   {
     header: "Roll",
     span: {
-      xs: 16,
-      sm: 4,
+      xs: 10,
+      sm: 10,
       md: 3,
       lg: 3,
     },
@@ -88,23 +127,32 @@ const columns = [
   {
     header: "Säsong",
     span: {
-      xs: 16,
-      sm: 4,
-      md: 4,
-      lg: 4,
+      xs: 6,
+      sm: 6,
+      md: 3,
+      lg: 3,
     },
     align: "left" as const,
   },
   {
     header: "Källa",
     span: {
-      xs: 16,
-      sm: 4,
-      md: 3,
-      lg: 3,
+      xs: 10,
+      sm: 10,
+      md: 2,
+      lg: 2,
+    },
+    align: "left" as const,
+  },
+  {
+    header: "",
+    span: {
+      xs: 6,
+      sm: 6,
+      md: 1,
+      lg: 1,
     },
     align: "right" as const,
-    className: "!pr-0",
   },
 ];
 
@@ -130,11 +178,12 @@ const Lagroller = () => {
       <div className="space-y-8">
         <Card variant="table">
           <TableHead>
-            <GridTableRow>
+            <GridTableRow hasBorder={false}>
               {columns.map((column, index) => (
                 <TableCell
                   key={index}
                   align={column.align}
+                  variant="header"
                   className={classNames(
                     getColumnSpanClasses(column.span),
                     column.className,
@@ -181,6 +230,7 @@ const Lagroller = () => {
                     imageType={cell.imageType}
                     thumbnail={cell.thumbnail}
                     badge={cell.badge}
+                    iconButton={cell.iconButton}
                   />
                 );
               })}
