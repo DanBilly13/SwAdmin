@@ -1,112 +1,26 @@
 import React from "react";
-import { Card, TableCell, TableHead } from "../../components/atoms";
-import { classNames } from "../../utils/classNames";
-import { users } from "../../data/users";
+import { TableCell } from "../../components/atoms/TableCell/TableCell";
 import { ContentContainer } from "../../components/atoms/ContentContainer/ContentContainer";
 import { MainContentHead } from "../../components/molecules/MainContentHead/MainContentHead";
 import { useDrawerControl } from "../../components/templates";
 import { PageTitle } from "../../components/atoms/PageTitle/PageTitle";
-
-interface TableCellData {
-  type: "text" | "image";
-  imageType?: "avatar" | "thumbnail";
-  value: string;
-  avatar?: string;
-  badge?: {
-    variant: "success" | "error";
-    icon: string;
-  };
-}
-
-interface TableRowData {
-  id: string | number;
-  content: TableCellData[];
-}
-
-const tableData: TableRowData[] = users.map((user) => ({
-  id: user.id,
-  content: [
-    {
-      type: "text",
-      imageType: "avatar",
-      value: user.name,
-      avatar: user.avatar,
-      badge:
-        user.account === "Active"
-          ? { variant: "success", icon: "check" }
-          : user.account === "Suspended"
-          ? { variant: "error", icon: "priority_high" }
-          : undefined,
-    },
-    {
-      type: "text",
-      value: user.email,
-    },
-    {
-      type: "text",
-      value: user.mobile,
-    },
-    {
-      type: "text",
-      value: user.personnr,
-    },
-    {
-      type: "text",
-      value: user.source,
-    },
-  ],
-}));
-
-const columns = [
-  {
-    header: "User",
-    span: {
-      sm: 8,
-      md: 4,
-      lg: 4,
-    },
-    align: "left" as const,
-  },
-  {
-    header: "Email",
-    span: {
-      sm: 6,
-      md: 4,
-      lg: 5,
-    },
-    align: "left" as const,
-  },
-  {
-    header: "Mobile",
-    span: {
-      sm: 4,
-      md: 4,
-      lg: 3,
-    },
-    align: "left" as const,
-  },
-  {
-    header: "Personnr",
-    span: {
-      sm: 4,
-      md: 2,
-      lg: 3,
-    },
-    align: "left" as const,
-  },
-  {
-    header: "Source",
-    align: "right" as const,
-    span: {
-      sm: 8,
-      md: 2,
-      lg: 1,
-    },
-  },
-];
+import { SectionCard } from "../../components/atoms/SectionCard/SectionCard";
+import { getAssetPath } from "../../utils/paths";
+import { GridTableRow } from "../../components/molecules/GridTableRow/GridTableRow";
+import { Card } from "../../components/atoms/Card/Card";
+import { classNames } from "../../utils/classNames";
+import { getColumnSpanClasses } from "../../utils/tableUtils";
 
 const Tables = () => {
   const { toggleDrawer } = useDrawerControl();
+
+  // Define column spans for examples
+  const fullWidthSpan = {
+    xs: 16,
+    sm: 16,
+    md: 16,
+    lg: 16,
+  };
 
   return (
     <ContentContainer>
@@ -131,108 +45,180 @@ const Tables = () => {
       >
         <PageTitle
           title="Tables"
-          description="Interactive data tables with sorting, filtering, and pagination capabilities."
+          description="A collection of table cell variants for displaying different types of content."
         />
       </MainContentHead>
 
       <div className="space-y-8">
-        {/* User Table Example */}
-        <Card variant="table">
-          <TableHead>
-            <div className="grid grid-cols-16">
-              {columns.map((column, index) => (
-                <TableCell
-                  key={index}
-                  variant="header"
-                  align={column.align}
-                  className={classNames({
-                    "col-span-8": column.span.sm === 8,
-                    "col-span-7": column.span.sm === 7,
-                    "col-span-6": column.span.sm === 6,
-                    "col-span-5": column.span.sm === 5,
-                    "col-span-4": column.span.sm === 4,
-                    "col-span-3": column.span.sm === 3,
-                    "col-span-2": column.span.sm === 2,
-                    "col-span-1": column.span.sm === 1,
-                    "col-span-0": column.span.sm === 0,
-                    "md:col-span-8": column.span.md === 8,
-                    "md:col-span-7": column.span.md === 7,
-                    "md:col-span-6": column.span.md === 6,
-                    "md:col-span-5": column.span.md === 5,
-                    "md:col-span-4": column.span.md === 4,
-                    "md:col-span-3": column.span.md === 3,
-                    "md:col-span-2": column.span.md === 2,
-                    "md:col-span-1": column.span.md === 1,
-                    "md:col-span-0": column.span.md === 0,
-                    "lg:col-span-8": column.span.lg === 8,
-                    "lg:col-span-7": column.span.lg === 7,
-                    "lg:col-span-6": column.span.lg === 6,
-                    "lg:col-span-5": column.span.lg === 5,
-                    "lg:col-span-4": column.span.lg === 4,
-                    "lg:col-span-3": column.span.lg === 3,
-                    "lg:col-span-2": column.span.lg === 2,
-                    "lg:col-span-1": column.span.lg === 1,
-                    "lg:col-span-0": column.span.lg === 0,
-                  })}
-                  isFirst={index === 0}
-                  isLast={index === columns.length - 1}
-                >
-                  {column.header}
-                </TableCell>
-              ))}
-            </div>
-          </TableHead>
-          {/* Body Row */}
-          {tableData.map((row, index) => (
-            <div
-              key={index}
-              className="grid grid-cols-16 border-b border-border"
-            >
-              {row.content.map((cell, cellIndex) => (
-                <TableCell
-                  key={cellIndex}
-                  className={classNames({
-                    "col-span-8": columns[cellIndex].span.sm === 8,
-                    "col-span-7": columns[cellIndex].span.sm === 7,
-                    "col-span-6": columns[cellIndex].span.sm === 6,
-                    "col-span-5": columns[cellIndex].span.sm === 5,
-                    "col-span-4": columns[cellIndex].span.sm === 4,
-                    "col-span-3": columns[cellIndex].span.sm === 3,
-                    "col-span-2": columns[cellIndex].span.sm === 2,
-                    "col-span-1": columns[cellIndex].span.sm === 1,
-                    "col-span-0": columns[cellIndex].span.sm === 0,
-                    "md:col-span-8": columns[cellIndex].span.md === 8,
-                    "md:col-span-7": columns[cellIndex].span.md === 7,
-                    "md:col-span-6": columns[cellIndex].span.md === 6,
-                    "md:col-span-5": columns[cellIndex].span.md === 5,
-                    "md:col-span-4": columns[cellIndex].span.md === 4,
-                    "md:col-span-3": columns[cellIndex].span.md === 3,
-                    "md:col-span-2": columns[cellIndex].span.md === 2,
-                    "md:col-span-1": columns[cellIndex].span.md === 1,
-                    "md:col-span-0": columns[cellIndex].span.md === 0,
-                    "lg:col-span-5": columns[cellIndex].span.lg === 5,
-                    "lg:col-span-4": columns[cellIndex].span.lg === 4,
-                    "lg:col-span-3": columns[cellIndex].span.lg === 3,
-                    "lg:col-span-2": columns[cellIndex].span.lg === 2,
-                    "lg:col-span-1": columns[cellIndex].span.lg === 1,
-                    "lg:col-span-0": columns[cellIndex].span.lg === 0,
-                  })}
-                  title={cell.value}
-                  imageType={cell.imageType}
-                  align={columns[cellIndex].align}
-                  isFirst={cellIndex === 0}
-                  isLast={cellIndex === row.content.length - 1}
-                  avatar={
-                    cell.imageType === "avatar"
-                      ? { src: cell.avatar, alt: cell.value }
-                      : undefined
-                  }
-                  badge={cell.badge}
-                />
-              ))}
-            </div>
-          ))}
-        </Card>
+        {/* Avatar Cell Example */}
+        <SectionCard title="Avatar Cell">
+          <Card variant="table">
+            <GridTableRow>
+              <TableCell
+                title="Daniel Billingham"
+                description="daniel.billingham@example.com"
+                imageType="avatar"
+                avatar={{
+                  src: getAssetPath("/images/avatars/TheRock.jpg"),
+                  size: "sm",
+                  badge: { variant: "success" },
+                }}
+                className={classNames(
+                  getColumnSpanClasses(fullWidthSpan),
+                  "flex items-center gap-4"
+                )}
+                isFirst
+                isLast
+              />
+            </GridTableRow>
+          </Card>
+        </SectionCard>
+
+        {/* Team Badge Cell Example */}
+        <SectionCard title="Team Badge Cell">
+          <Card variant="table">
+            <GridTableRow>
+              <TableCell
+                title="SVFF"
+                description="Team"
+                imageType="thumbnail"
+                thumbnail={{
+                  src: getAssetPath("/images/team-badges/svff.jpg"),
+                  size: "sm",
+                  type: "teamBadge",
+                }}
+                className={classNames(
+                  getColumnSpanClasses(fullWidthSpan),
+                  "flex items-center gap-4"
+                )}
+                isFirst
+                isLast
+              />
+            </GridTableRow>
+          </Card>
+        </SectionCard>
+
+        {/* Thumbnail Cell Example */}
+        <SectionCard title="Thumbnail Cell">
+          <Card variant="table">
+            <GridTableRow>
+              <TableCell
+                title="Match Highlights"
+                description="Final Game 2023"
+                imageType="thumbnail"
+                thumbnail={{
+                  src: getAssetPath("/images/thumbnails/default.jpg"),
+                  size: "sm",
+                  type: "image",
+                  isVideo: true,
+                }}
+                className={classNames(
+                  getColumnSpanClasses(fullWidthSpan),
+                  "flex items-center gap-4"
+                )}
+                isFirst
+                isLast
+              />
+            </GridTableRow>
+          </Card>
+        </SectionCard>
+
+        {/* Text Cell Example */}
+        <SectionCard title="Text Cell">
+          <Card variant="table">
+            <GridTableRow>
+              <TableCell
+                title="Regular Text Cell"
+                description="With optional description"
+                className={classNames(
+                  getColumnSpanClasses(fullWidthSpan),
+                  "flex items-center gap-4"
+                )}
+                isFirst
+                isLast
+              />
+            </GridTableRow>
+          </Card>
+        </SectionCard>
+
+        {/* Text with Badge Example */}
+        <SectionCard title="Text with Badge">
+          <Card variant="table">
+            <GridTableRow>
+              <TableCell
+                title="Status Cell"
+                description="With status badge"
+                badge={{ variant: "success", icon: "check" }}
+                className={classNames(
+                  getColumnSpanClasses(fullWidthSpan),
+                  "flex items-center gap-4"
+                )}
+                isFirst
+                isLast
+              />
+            </GridTableRow>
+          </Card>
+        </SectionCard>
+
+        {/* Text with Chip Example */}
+        <SectionCard title="Text with Chip">
+          <Card variant="table">
+            <GridTableRow>
+              <TableCell
+                title="Category Cell"
+                description="With category chip"
+                chip={{ children: "Active", variant: "success" }}
+                className={classNames(
+                  getColumnSpanClasses(fullWidthSpan),
+                  "flex items-center gap-4"
+                )}
+                isFirst
+                isLast
+              />
+            </GridTableRow>
+          </Card>
+        </SectionCard>
+
+        {/* Chip Only Cell Example */}
+        <SectionCard title="Chip Only Cell">
+          <Card variant="table">
+            <GridTableRow>
+              <TableCell
+                chip={{
+                  children: "Active",
+                  variant: "success"
+                }}
+                className={classNames(
+                  getColumnSpanClasses(fullWidthSpan)
+                )}
+              />
+            </GridTableRow>
+          </Card>
+        </SectionCard>
+
+        {/* Icon Button Cell Example */}
+        <SectionCard title="Icon Button Cell">
+          <Card variant="table">
+            <GridTableRow>
+              <TableCell
+                iconButton={{
+                  icon: "more_vert",
+                  menuOptions: [
+                    { value: "edit", label: "Edit" },
+                    { value: "delete", label: "Delete" },
+                    { value: "share", label: "Share" }
+                  ],
+                  menuPosition: "right",
+                  menuType: "action"
+                }}
+                className={classNames(
+                  getColumnSpanClasses(fullWidthSpan),
+                  "justify-end"
+                )}
+              />
+            </GridTableRow>
+          </Card>
+        </SectionCard>
       </div>
     </ContentContainer>
   );
