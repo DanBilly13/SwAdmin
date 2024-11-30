@@ -84,33 +84,50 @@ const getTableCellClasses = (
   isLast: boolean | ResponsiveBoolean = false,
   className?: string
 ) => {
-  const isFirstBool = typeof isFirst === "boolean" ? isFirst : false;
-  const isLastBool = typeof isLast === "boolean" ? isLast : false;
+  // Handle isFirst/isLast values for mobile-first approach
+  // If the value is a boolean, use it directly
+  // If it's a ResponsiveBoolean object, use the sm breakpoint value
+  // This ensures mobile layout uses sm breakpoint values for first/last detection
+  const isFirstBool = typeof isFirst === "boolean" ? isFirst : isFirst?.sm || false;
+  const isLastBool = typeof isLast === "boolean" ? isLast : isLast?.sm || false;
+
+  // For md/lg breakpoints, if the value is a ResponsiveBoolean object, use it
+  // Otherwise create an empty object (no responsive overrides)
   const isFirstResponsive = typeof isFirst === "object" ? isFirst : {};
   const isLastResponsive = typeof isLast === "object" ? isLast : {};
 
   return classNames(
     "flex items-center min-h-[40px]",
     {
-      // Alignment
+      // Alignment classes
       "justify-start text-left": align === "left",
       "justify-center text-center": align === "center",
       "justify-end text-right": align === "right",
 
-      // Padding - Default
-      "py-4": padding === "normal",
+      // Mobile-First Base Padding
+      // All cells get bottom padding
+      "pb-4": padding === "normal",
+      // Only header cells and first cells in a row get top padding on mobile
+      "pt-4": padding === "normal" && (variant === "header" || isFirstBool),
+      // Horizontal padding - no left padding, right padding except for last cell
       "pl-0 pr-4": padding === "normal" && !isLastBool,
       "px-0": padding === "normal" && isLastBool,
 
-      // Responsive Padding - md
+      // Medium Screens (md) Padding
+      // All cells get vertical padding on md and up
+      "md:py-4": padding === "normal",
+      // Horizontal padding at md
       "md:pl-0 md:pr-4": padding === "normal" && !isLastResponsive.md,
       "md:px-0": padding === "normal" && isLastResponsive.md,
 
-      // Responsive Padding - lg
+      // Large Screens (lg) Padding
+      // All cells get vertical padding on lg
+      "lg:py-4": padding === "normal",
+      // Horizontal padding at lg
       "lg:pl-0 lg:pr-4": padding === "normal" && !isLastResponsive.lg,
       "lg:px-0": padding === "normal" && isLastResponsive.lg,
 
-      // Variant
+      // Variant-specific styles
       "text-label-s bg-surface-secondary": variant === "header",
       "border-t border-border": variant === "footer",
     },

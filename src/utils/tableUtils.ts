@@ -105,10 +105,24 @@ export const isFirstInRow = (
   columns: Column[],
   totalCells: number
 ): ResponsivePosition => {
+  let currentColXs = 0;
+  let currentColSm = 0;
+  let currentColMd = 0;
+  let currentColLg = 0;
+
+  // Calculate if this cell starts a new row at each breakpoint
+  for (let i = 0; i <= cellIndex; i++) {
+    const col = columns[i];
+    currentColXs += col.span.xs || 0;
+    currentColSm += col.span.sm || 0;
+    currentColMd += col.span.md || 0;
+    currentColLg += col.span.lg || 0;
+  }
+
   return {
-    sm: cellIndex === 0,
-    md: cellIndex === 0,
-    lg: cellIndex === 0
+    sm: (currentColSm - (columns[cellIndex].span.sm || 0)) === 0,
+    md: (currentColMd - (columns[cellIndex].span.md || 0)) === 0,
+    lg: (currentColLg - (columns[cellIndex].span.lg || 0)) === 0
   };
 };
 
@@ -117,9 +131,23 @@ export const isLastInRow = (
   columns: Column[],
   totalCells: number
 ): ResponsivePosition => {
+  let currentColXs = 0;
+  let currentColSm = 0;
+  let currentColMd = 0;
+  let currentColLg = 0;
+
+  // Calculate if this cell ends a row at each breakpoint
+  for (let i = 0; i <= cellIndex; i++) {
+    const col = columns[i];
+    currentColXs += col.span.xs || 0;
+    currentColSm += col.span.sm || 0;
+    currentColMd += col.span.md || 0;
+    currentColLg += col.span.lg || 0;
+  }
+
   return {
-    sm: cellIndex === totalCells - 1,
-    md: cellIndex === totalCells - 1,
-    lg: cellIndex === totalCells - 1
+    sm: currentColSm === 16 || cellIndex === totalCells - 1,
+    md: currentColMd === 16 || cellIndex === totalCells - 1,
+    lg: currentColLg === 16 || cellIndex === totalCells - 1
   };
 };

@@ -83,7 +83,7 @@ const columns = [
   {
     header: "Mobile",
     span: {
-      xs: 16,
+      xs: 7,
       sm: 4,
       md: 4,
       lg: 4,
@@ -93,7 +93,7 @@ const columns = [
   {
     header: "Personnr",
     span: {
-      xs: 8,
+      xs: 7,
       sm: 5,
       md: 3,
       lg: 3,
@@ -103,7 +103,7 @@ const columns = [
   {
     header: "Source",
     span: {
-      xs: 8,
+      xs: 2,
       sm: 6,
       md: 2,
       lg: 2,

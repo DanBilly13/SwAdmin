@@ -67,7 +67,7 @@ const tableData: TableRowData[] = teams.map((team) => ({
       description: `${team.lag} - ${team.kon} - ${team.sport}`,
       thumbnail: {
         src: team.klubBadge,
-        size: "lg",
+        size: "md",
         type: "teamBadge",
       },
     },
@@ -117,7 +117,7 @@ const columns: ColumnDefinition[] = [
   {
     header: "Roll",
     span: {
-      xs: 10,
+      xs: 5,
       sm: 10,
       md: 3,
       lg: 3,
@@ -127,7 +127,7 @@ const columns: ColumnDefinition[] = [
   {
     header: "Säsong",
     span: {
-      xs: 6,
+      xs: 5,
       sm: 6,
       md: 3,
       lg: 3,
@@ -137,7 +137,7 @@ const columns: ColumnDefinition[] = [
   {
     header: "Källa",
     span: {
-      xs: 10,
+      xs: 5,
       sm: 10,
       md: 2,
       lg: 2,
@@ -147,7 +147,7 @@ const columns: ColumnDefinition[] = [
   {
     header: "",
     span: {
-      xs: 6,
+      xs: 1,
       sm: 6,
       md: 1,
       lg: 1,
