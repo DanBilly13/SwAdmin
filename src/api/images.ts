@@ -1,5 +1,5 @@
 // Base URL for the GitHub Pages hosted image API
-const BASE_URL = 'https://cdn.jsdelivr.net/gh/DanBilly13/sw-admin-assets@main/api/v1';
+const BASE_URL = 'https://danbilly13.github.io/sw-admin-assets/api/v1';
 
 export type ImageType = 'avatars' | 'team-badges' | 'thumbnails';
 
