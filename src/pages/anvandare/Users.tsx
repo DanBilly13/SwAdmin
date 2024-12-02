@@ -12,6 +12,7 @@ import {
   isFirstInRow,
   isLastInRow,
 } from "../../utils/tableUtils";
+import { FilterAndSearch } from "../../components/molecules";
 
 interface TableCellData {
   type: "text" | "image";
@@ -115,6 +116,34 @@ const columns = [
 
 const Users = () => {
   const { toggleDrawer } = useDrawerControl();
+  const [searchValue, setSearchValue] = React.useState("");
+  const [accountFilter, setAccountFilter] = React.useState("all");
+  const [sourceFilter, setSourceFilter] = React.useState("all");
+
+  // Filter the table data based on search and filters
+  const filteredData = tableData.filter((row) => {
+    const user = users.find((u) => u.id === row.id);
+    if (!user) return false;
+
+    // Search filter
+    const searchLower = searchValue.toLowerCase();
+    const matchesSearch =
+      searchValue === "" ||
+      user.name.toLowerCase().includes(searchLower) ||
+      user.email.toLowerCase().includes(searchLower) ||
+      user.mobile.toLowerCase().includes(searchLower) ||
+      user.personnr.toLowerCase().includes(searchLower);
+
+    // Account status filter
+    const matchesAccount =
+      accountFilter === "all" || user.account.toLowerCase() === accountFilter;
+
+    // Source filter
+    const matchesSource =
+      sourceFilter === "all" || user.source.toLowerCase() === sourceFilter;
+
+    return matchesSearch && matchesAccount && matchesSource;
+  });
 
   return (
     <ContentContainer>
@@ -132,6 +161,32 @@ const Users = () => {
       />
 
       <div className="space-y-8">
+        <FilterAndSearch
+          filters={[
+            {
+              label: "Status",
+              value: accountFilter,
+              onChange: setAccountFilter,
+              options: [
+                { label: "All", value: "all" },
+                { label: "Active", value: "active" },
+                { label: "Suspended", value: "suspended" },
+              ],
+            },
+            {
+              label: "Source",
+              value: sourceFilter,
+              onChange: setSourceFilter,
+              options: [
+                { label: "All", value: "all" },
+                { label: "App", value: "app" },
+                { label: "Fogis", value: "fogis" },
+              ],
+            },
+          ]}
+          searchValue={searchValue}
+          onSearchChange={setSearchValue}
+        />
         <Card variant="table">
           <TableHead>
             <GridTableRow>
@@ -152,8 +207,7 @@ const Users = () => {
               ))}
             </GridTableRow>
           </TableHead>
-          {/* Body Row */}
-          {tableData.map((row, index) => (
+          {filteredData.map((row, index) => (
             <GridTableRow key={index}>
               {row.content.map((cell, cellIndex) => {
                 const first = isFirstInRow(

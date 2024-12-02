@@ -1,5 +1,5 @@
 import React from "react";
-import { ContentContainer } from "../../components/atoms/ContentContainer/ContentContainer";
+import { ContentContainerSlots } from "../../components/atoms/ContentContainerSlots/ContentContainerSlots";
 import { MainContentHead } from "../../components/molecules/MainContentHead/MainContentHead";
 import { useDrawerControl } from "../../components/templates";
 import { PageTitle } from "../../components/atoms/PageTitle/PageTitle";
@@ -7,6 +7,7 @@ import { Card, TableCell, TableHead } from "../../components/atoms";
 import { GridTableRow } from "../../components/molecules/GridTableRow/GridTableRow";
 import { teams } from "../../data/teams";
 import { classNames } from "../../utils/classNames";
+import { FilterAndSearch } from "../../components/molecules/FilterAndSearch/FilterAndSearch";
 import {
   getColumnSpanClasses,
   isFirstInRow,
@@ -158,24 +159,68 @@ const columns: ColumnDefinition[] = [
 
 const Lagroller = () => {
   const { toggleDrawer } = useDrawerControl();
+  const [searchValue, setSearchValue] = React.useState("");
+  const [roleFilter, setRoleFilter] = React.useState("all");
+  const [seasonFilter, setSeasonFilter] = React.useState("all");
+  const [sourceFilter, setSourceFilter] = React.useState("all");
 
   return (
-    <ContentContainer>
-      <MainContentHead
-        breadcrumbs={[
-          { label: "Home", href: "/" },
-          { label: "Användare", href: "/anvandare" },
-          { label: "Lagroller", href: "/anvandare/lagroller" },
-        ]}
-        onMenuClick={toggleDrawer}
-      />
-
-      <PageTitle
-        title="Lagroller"
-        description="Hantera användarroller och team"
-      />
-
-      <div className="space-y-8">
+    <ContentContainerSlots
+      header={
+        <>
+          <MainContentHead
+            breadcrumbs={[
+              { label: "Home", href: "/" },
+              { label: "Användare", href: "/anvandare" },
+              { label: "Lagroller", href: "/anvandare/lagroller" },
+            ]}
+            onMenuClick={toggleDrawer}
+          />
+          <PageTitle
+            title="Lagroller"
+            description="Hantera användarroller och team"
+          />
+        </>
+      }
+      filters={
+        <FilterAndSearch
+          filters={[
+            {
+              label: "Roll",
+              value: roleFilter,
+              onChange: setRoleFilter,
+              options: [
+                { value: "all", label: "All" },
+                { value: "staff", label: "Staff" },
+                { value: "spelare", label: "Spelare" },
+                { value: "guardian", label: "Guardian" },
+              ],
+            },
+            {
+              label: "Säsong",
+              value: seasonFilter,
+              onChange: setSeasonFilter,
+              options: [
+                { value: "all", label: "All" },
+                { value: "2023-2024", label: "2023-2024" },
+              ],
+            },
+            {
+              label: "Källa",
+              value: sourceFilter,
+              onChange: setSourceFilter,
+              options: [
+                { value: "all", label: "All" },
+                { value: "fogis", label: "Fogis" },
+              ],
+            },
+          ]}
+          searchValue={searchValue}
+          onSearchChange={setSearchValue}
+          showSpacer={true}
+        />
+      }
+      content={
         <Card variant="table">
           <TableHead>
             <GridTableRow hasBorder={false}>
@@ -237,8 +282,8 @@ const Lagroller = () => {
             </GridTableRow>
           ))}
         </Card>
-      </div>
-    </ContentContainer>
+      }
+    />
   );
 };
 
