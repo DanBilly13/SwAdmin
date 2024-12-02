@@ -6,8 +6,8 @@
   "homepage": "https://danbilly13.github.io/SwAdmin",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
+    "build": "vite build --base=/SwAdmin/",
+    "preview": "vite preview --base=/SwAdmin/",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d docs"
   },
