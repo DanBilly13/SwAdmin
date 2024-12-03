@@ -81,7 +81,7 @@ export const reports: Report[] = [
     thumbnail: "/images/avatars/TheRock.png",
     postAuthor: "Jasmine Benjelloun",
     postText:
-      "Gå in i dom GBG dom e asss åt up dom dom suger period speciellt deras p/tränare period 😂",
+      "Gå in i dom GBG dom e asss ät up dom dom suger period speciellt deras p/tränare period 😏",
     reportedBy: ["Alexander Sebastian"],
     reasons: ["Sådanna kommentarer vill"],
     date: "Oct 13, 11:16",

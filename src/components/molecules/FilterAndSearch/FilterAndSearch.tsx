@@ -70,7 +70,7 @@ export const FilterAndSearch: React.FC<FilterAndSearchProps> = ({
         </div>
 
         {/* Spacer - grows to fill available space */}
-        {showSpacer && <div className="hidden md:block flex-grow bg-red-600 h-10" />}
+        {showSpacer && <div className="hidden md:block flex-grow" />}
 
         {/* Search bar - full width on mobile, fixed width on larger screens */}
         <SearchBar
