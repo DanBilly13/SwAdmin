@@ -11,6 +11,16 @@ export * from './Modal/Modal';
 export * from './TableHead/TableHead';
 export * from './SectionCard/SectionCard';
 export * from './PageTitle/PageTitle';
+export * from './Icon';
+export * from './CodeBlock/CodeBlock';
+export * from './NavButton/NavButton';
+export * from './Dropdown/Dropdown';
+export * from './Radio/Radio';
+export * from './IconButton/IconButton';
+export * from './TableCell/TableCell';
+export * from './Breadcrumb/Breadcrumb';
+export * from './SearchBar/SearchBar';
+export * from './BreakpointIndicator/BreakpointIndicator';
 
 export { default as Button } from './Button/Button';
 export { InlineInput } from './Input/InlineInput';

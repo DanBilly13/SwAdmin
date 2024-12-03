@@ -6,6 +6,7 @@ import { Outlet } from 'react-router-dom';
 export const DesignSystemLayout = () => {
   const navigation = [
     { name: 'Buttons', href: '/buttons' },
+    { name: 'Code Blocks', href: '/code-blocks' },
     { name: 'Containers', href: '/containers' },
     { name: 'Data Display', href: '/data-display' },
     { name: 'Data Input', href: '/data-input' },
@@ -17,11 +18,12 @@ export const DesignSystemLayout = () => {
     { name: 'Colors', href: '/colors' },
     { name: 'Tables', href: '/tables' },
     { name: 'Molecules', href: '/molecules' },
+    { name: 'Text Blocks', href: '/text-blocks' },
     { name: 'Cards', href: '/cards' },
   ].sort((a, b) => {
     // Ensure Molecules and Cards are always last
-    if (['Molecules', 'Cards'].includes(a.name)) return 1;
-    if (['Molecules', 'Cards'].includes(b.name)) return -1;
+    if (['Molecules', 'Cards', 'Text Blocks'].includes(a.name)) return 1;
+    if (['Molecules', 'Cards', 'Text Blocks'].includes(b.name)) return -1;
     
     // Sort the rest alphabetically
     return a.name.localeCompare(b.name);

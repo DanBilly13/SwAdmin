@@ -1,3 +1,5 @@
+import { getAssetPath } from "../utils/paths";
+
 export interface Team {
   id: string;
   klubName: string;

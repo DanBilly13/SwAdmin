@@ -13,7 +13,7 @@ const sizeClasses: Record<AvatarSize, string> = {
 };
 
 const getDefaultAvatar = () => {
-  return getAssetPath('/images/avatars/TheRock.jpg');
+  return getAssetPath('avatars/TheRock.jpg');
 };
 
 export interface AvatarProps {

@@ -19,8 +19,8 @@ const teamBadgePaddingClasses: Record<ThumbnailSize, string> = {
   'xsm': 'p-0.5'
 };
 
-const DEFAULT_IMAGE = getAssetPath("/images/avatars/TheRock.jpg");
-const DEFAULT_TEAM_BADGE = getAssetPath("/images/team-badges/svff.jpg");
+const DEFAULT_IMAGE = getAssetPath("avatars/TheRock.jpg");
+const DEFAULT_TEAM_BADGE = getAssetPath("team-badges/svff.jpg");
 
 export interface ThumbnailProps {
   size?: ThumbnailSize;

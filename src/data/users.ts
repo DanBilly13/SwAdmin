@@ -1,3 +1,5 @@
+import { getAssetPath } from '../utils/paths';
+
 export type AccountStatus = 'Active' | 'Suspended' | 'None';
 
 export interface User {
@@ -11,14 +13,6 @@ export interface User {
   account: AccountStatus;
 }
 
-// Helper function to get the correct image path based on environment
-const getImagePath = (imageName: string) => {
-  // Check if we're in development mode
-  const isDev = import.meta.env.DEV;
-  const basePath = isDev ? '' : '/SwAdmin';
-  return `${basePath}/images/avatars/${imageName}`;
-};
-
 export const users: User[] = [
   {
     id: '1',
@@ -27,7 +21,7 @@ export const users: User[] = [
     mobile: '+46 70 123 4567',
     personnr: '19750113-2877',
     source: 'Fogis',
-    avatar: getImagePath('AndersPersson.jpg'),
+    avatar: getAssetPath('avatars/AndersPersson.jpg'),
     account: 'Active'
   },
   {
@@ -37,7 +31,7 @@ export const users: User[] = [
     mobile: '+46 73 234 5678',
     personnr: '19820524-1234',
     source: 'App',
-    avatar: getImagePath('AnnaJohansson.jpg'),
+    avatar: getAssetPath('avatars/AnnaJohansson.jpg'),
     account: 'Suspended'
   },
   {
@@ -47,7 +41,7 @@ export const users: User[] = [
     mobile: '+46 76 345 6789',
     personnr: '19900807-5678',
     source: 'Fogis',
-    avatar: getImagePath('ErikSvensson.jpg'),
+    avatar: getAssetPath('avatars/ErikSvensson.jpg'),
     account: 'None'
   },
   {
@@ -57,7 +51,7 @@ export const users: User[] = [
     mobile: '+46 70 456 7890',
     personnr: '19880215-9012',
     source: 'App',
-    avatar: getImagePath('EmmaKarlsson.jpg'),
+    avatar: getAssetPath('avatars/EmmaKarlsson.jpg'),
     account: 'Active'
   },
   {
@@ -67,7 +61,7 @@ export const users: User[] = [
     mobile: '+46 73 567 8901',
     personnr: '19770630-3456',
     source: 'Fogis',
-    avatar: getImagePath('LarsNilsson.jpg'),
+    avatar: getAssetPath('avatars/LarsNilsson.jpg'),
     account: 'Suspended'
   },
   {
@@ -77,7 +71,7 @@ export const users: User[] = [
     mobile: '+46 76 678 9012',
     personnr: '19950418-7890',
     source: 'App',
-    avatar: getImagePath('SofieEriksson.jpg'),
+    avatar: getAssetPath('avatars/SofieEriksson.jpg'),
     account: 'Active'
   },
   {
@@ -87,7 +81,7 @@ export const users: User[] = [
     mobile: '+46 70 789 0123',
     personnr: '19831102-2345',
     source: 'Fogis',
-    avatar: getImagePath('JohanAndersson.jpg'),
+    avatar: getAssetPath('avatars/JohanAndersson.jpg'),
     account: 'None'
   },
   {
@@ -97,7 +91,7 @@ export const users: User[] = [
     mobile: '+46 73 890 1234',
     personnr: '19910925-6789',
     source: 'App',
-    avatar: getImagePath('SaraBergstrom.jpg'),
+    avatar: getAssetPath('avatars/SaraBergstrom.jpg'),
     account: 'Active'
   },
   {
@@ -107,7 +101,7 @@ export const users: User[] = [
     mobile: '+46 76 901 2345',
     personnr: '19840307-0123',
     source: 'Fogis',
-    avatar: getImagePath('FredrikOlsson.jpg'),
+    avatar: getAssetPath('avatars/FredrikOlsson.jpg'),
     account: 'Suspended'
   },
   {
@@ -117,7 +111,7 @@ export const users: User[] = [
     mobile: '+46 70 012 3456',
     personnr: '19930712-4567',
     source: 'App',
-    avatar: getImagePath('ElinLarsson.jpg'),
+    avatar: getAssetPath('avatars/ElinLarsson.jpg'),
     account: 'Active'
   }
 ];

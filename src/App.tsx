@@ -16,6 +16,8 @@ import {
   Containers,
   Cards,
   Spacers,
+  TextBlocks,
+  CodeBlocks,
   User,
   Users,
   Account,
@@ -53,6 +55,8 @@ function App() {
             <Route path="/containers" element={<Containers />} />
             <Route path="/cards" element={<Cards />} />
             <Route path="/spacers" element={<Spacers />} />
+            <Route path="/text-blocks" element={<TextBlocks />} />
+            <Route path="/code-blocks" element={<CodeBlocks />} />
           </Route>
 
           {/* Användare Routes */}

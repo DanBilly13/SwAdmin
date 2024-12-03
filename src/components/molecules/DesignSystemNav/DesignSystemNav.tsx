@@ -50,7 +50,7 @@ export const DesignSystemNav: React.FC<DesignSystemNavProps> = ({
           <Label text="Molecules" />
           {navigation
             .filter(({ href }) => 
-              ['molecules', 'cards'].includes(href.replace('/', ''))
+              ['molecules', 'cards', 'text-blocks'].includes(href.replace('/', ''))
             )
             .map(({ href, name }) => (
               <NavButton key={href} to={href} icon={getIconForRoute(href)}>
@@ -93,6 +93,10 @@ const getIconForRoute = (route: string): string => {
       return "dashboard";
     case "/spacers":
       return "space_bar";
+    case "/text-blocks":
+      return "text_format";
+    case "/code-blocks":
+      return "code";
     default:
       return "circle";
   }

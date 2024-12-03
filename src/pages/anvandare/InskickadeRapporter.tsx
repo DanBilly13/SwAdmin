@@ -117,7 +117,7 @@ const tableData: TableRowData[] = reports.map((report) => ({
       value: report.postAuthor,
       description: report.postText,
       thumbnail: {
-        src: report.thumbnail,
+        src: report.thumbnailSrc,
         size: "lg",
       },
     },

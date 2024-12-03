@@ -1,9 +1,11 @@
+import { getAssetPath } from "../utils/paths";
+
 export type PostType = "comment" | "video" | "image";
 
 export interface Report {
   id: number;
   postType: PostType;
-  thumbnail: string;
+  thumbnailSrc: string;
   postAuthor: string;
   postText: string;
   reportedBy: string[];
@@ -17,7 +19,7 @@ export const reports: Report[] = [
   {
     id: 78499,
     postType: "comment",
-    thumbnail: "/images/avatars/TheRock.png",
+    thumbnailSrc: getAssetPath("avatars/TheRock.jpg"),
     postAuthor: "Sixten Eklöf",
     postText: "William Svefors kan ju ta sig i röven",
     reportedBy: ["Alexander Sebastian", "Isabella Charlotta"],
@@ -29,7 +31,7 @@ export const reports: Report[] = [
   {
     id: 78498,
     postType: "video",
-    thumbnail: "/images/avatars/TheRock.png",
+    thumbnailSrc: getAssetPath("avatars/TheRock.jpg"),
     postAuthor: "Theo Nott",
     postText:
       "Olle Oldaeus är väldigt nervös och bränner sin straff i SEF trophy.",
@@ -42,7 +44,7 @@ export const reports: Report[] = [
   {
     id: 78497,
     postType: "comment",
-    thumbnail: "/images/avatars/TheRock.png",
+    thumbnailSrc: getAssetPath("avatars/TheRock.jpg"),
     postAuthor: "Sixten Eklöf",
     postText: "2-3 Varberg",
     reportedBy: ["Alexander Sebastian"],
@@ -54,7 +56,7 @@ export const reports: Report[] = [
   {
     id: 78496,
     postType: "comment",
-    thumbnail: "/images/avatars/TheRock.png",
+    thumbnailSrc: getAssetPath("avatars/TheRock.jpg"),
     postAuthor: "Sixten Eklöf",
     postText: "Nej men 2-3 står det nu",
     reportedBy: ["Alexander Sebastian"],
@@ -66,7 +68,7 @@ export const reports: Report[] = [
   {
     id: 78495,
     postType: "image",
-    thumbnail: "/images/avatars/TheRock.png",
+    thumbnailSrc: getAssetPath("avatars/TheRock.jpg"),
     postAuthor: "Levis Lendgrin",
     postText: "Den var dälig",
     reportedBy: ["Alexander Sebastian"],
@@ -78,7 +80,7 @@ export const reports: Report[] = [
   {
     id: 78494,
     postType: "comment",
-    thumbnail: "/images/avatars/TheRock.png",
+    thumbnailSrc: getAssetPath("avatars/TheRock.jpg"),
     postAuthor: "Jasmine Benjelloun",
     postText:
       "Gå in i dom GBG dom e asss ät up dom dom suger period speciellt deras p/tränare period 😏",
