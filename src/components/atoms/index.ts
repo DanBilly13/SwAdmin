@@ -52,3 +52,4 @@ export type { HorizontalSpacerProps, HorizontalSpacerSize } from './Spacer/Horiz
 export type { VerticalSpacerProps, VerticalSpacerSize } from './Spacer/VerticalSpacer';
 export type { ModalProps } from './Modal/Modal';
 export type { TableCellProps } from './TableCell/TableCell';
+export type { MenuType } from './Dropdown/Dropdown';
