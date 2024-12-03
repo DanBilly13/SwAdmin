@@ -35,7 +35,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
           className="absolute right-2 top-2 p-2 text-gray-400 hover:text-white transition-colors z-10"
           aria-label="Copy code"
         >
-          <Icon name="content_copy" size="small" />
+          <Icon name="content_copy" size="md" />
         </button>
       )}
       <div className="flex items-center justify-between px-4 py-2 border-b border-gray-700">
