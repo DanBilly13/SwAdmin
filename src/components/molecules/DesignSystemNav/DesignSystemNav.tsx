@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { NavButton } from "../../atoms";
 import { TeamProfile } from "../TeamProfile";
 import { getAssetPath } from "../../../utils/paths";
+import { Label } from "../../molecules/Label";
 
 type NavigationItem = {
   name: string;
@@ -35,11 +36,27 @@ export const DesignSystemNav: React.FC<DesignSystemNavProps> = ({
         <h2 className="text-headline-s mb-6">Design System</h2>
 
         <div className="space-y-2">
-          {navigation.map(({ href, name }) => (
-            <NavButton key={href} to={href} icon={getIconForRoute(href)}>
-              {name}
-            </NavButton>
-          ))}
+          <Label text="Atoms" />
+          {navigation
+            .filter(({ href }) => 
+              !['molecules', 'cards'].includes(href.replace('/', ''))
+            )
+            .map(({ href, name }) => (
+              <NavButton key={href} to={href} icon={getIconForRoute(href)}>
+                {name}
+              </NavButton>
+            ))}
+
+          <Label text="Molecules" />
+          {navigation
+            .filter(({ href }) => 
+              ['molecules', 'cards'].includes(href.replace('/', ''))
+            )
+            .map(({ href, name }) => (
+              <NavButton key={href} to={href} icon={getIconForRoute(href)}>
+                {name}
+              </NavButton>
+            ))}
         </div>
       </div>
     </div>
@@ -49,7 +66,7 @@ export const DesignSystemNav: React.FC<DesignSystemNavProps> = ({
 const getIconForRoute = (route: string): string => {
   switch (route) {
     case "/components":
-      return "widgets";
+      return "grid";
     case "/molecules":
       return "science";
     case "/templates":
@@ -77,7 +94,7 @@ const getIconForRoute = (route: string): string => {
     case "/spacers":
       return "space_bar";
     default:
-      return "chevron_right";
+      return "circle";
   }
 };
 
