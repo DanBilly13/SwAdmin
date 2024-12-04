@@ -3,12 +3,6 @@ import { SectionCard, PageTitle } from "../../components/atoms";
 import { DesignSystemContentContainerSlots } from "../../components/atoms/ContentContainerSlots/DesignSystemContentContainerSlots";
 import { MainContentHead } from "../../components/molecules/MainContentHead/MainContentHead";
 import { useDrawerControl } from "../../components/templates";
-import { 
-  DashboardTemplate, 
-  FormTemplate, 
-  ListTemplate, 
-  DetailTemplate 
-} from "../../components/templates";
 
 const Templates = () => {
   const { toggleDrawer } = useDrawerControl();
@@ -57,12 +51,12 @@ const Templates = () => {
             <div>
               <h3 className="text-title-s text-content-secondary mb-4">Basic Layout</h3>
               <div className="border rounded-lg p-4">
-                <DashboardTemplate 
+                {/* <DashboardTemplate 
                   header={<div className="text-title-m">Dashboard Header</div>}
                   sidebar={<div className="text-body-m">Sidebar Navigation</div>}
                   content={<div className="text-body-m">Main Dashboard Content</div>}
                   footer={<div className="text-label-s">Dashboard Footer</div>}
-                />
+                /> */}
               </div>
             </div>
           </SectionCard>
@@ -72,7 +66,7 @@ const Templates = () => {
             <div>
               <h3 className="text-title-s text-content-secondary mb-4">Registration Form</h3>
               <div className="border rounded-lg p-4">
-                <FormTemplate 
+                {/* <FormTemplate 
                   title="User Registration"
                   description="Create a new user account"
                   form={
@@ -94,7 +88,7 @@ const Templates = () => {
                       </button>
                     </div>
                   }
-                />
+                /> */}
               </div>
             </div>
           </SectionCard>
@@ -104,7 +98,7 @@ const Templates = () => {
             <div>
               <h3 className="text-title-s text-content-secondary mb-4">User List</h3>
               <div className="border rounded-lg p-4">
-                <ListTemplate 
+                {/* <ListTemplate 
                   title="User Management"
                   description="List of registered users"
                   list={
@@ -128,7 +122,7 @@ const Templates = () => {
                       Add New User
                     </button>
                   }
-                />
+                /> */}
               </div>
             </div>
           </SectionCard>
@@ -138,7 +132,7 @@ const Templates = () => {
             <div>
               <h3 className="text-title-s text-content-secondary mb-4">User Profile</h3>
               <div className="border rounded-lg p-4">
-                <DetailTemplate 
+                {/* <DetailTemplate 
                   title="User Profile"
                   description="Detailed information about a user"
                   details={
@@ -167,7 +161,7 @@ const Templates = () => {
                       </button>
                     </div>
                   }
-                />
+                /> */}
               </div>
             </div>
           </SectionCard>
