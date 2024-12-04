@@ -21,6 +21,7 @@ export * from './TableCell/TableCell';
 export * from './Breadcrumb/Breadcrumb';
 export * from './SearchBar/SearchBar';
 export * from './BreakpointIndicator/BreakpointIndicator';
+export * from './ContentContainerSlots/ContentContainerSlots';
 
 export { default as Button } from './Button/Button';
 export { InlineInput } from './Input/InlineInput';
@@ -38,6 +39,8 @@ export { default as Breadcrumb } from './Breadcrumb/Breadcrumb';
 export { default as SearchBar } from './SearchBar/SearchBar';
 export { default as TableHead } from './TableHead/TableHead';
 export { default as BreakpointIndicator } from './BreakpointIndicator/BreakpointIndicator';
+export { default as ContentContainerSlots } from './ContentContainerSlots/ContentContainerSlots';
+export { default as DesignSystemContentContainerSlots } from './ContentContainerSlots/DesignSystemContentContainerSlots';
 
 // Types
 export type { AvatarProps, AvatarSize } from './Avatar/Avatar';

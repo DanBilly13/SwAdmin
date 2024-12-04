@@ -1,6 +1,6 @@
 import React from "react";
 import { Chip, SectionCard, PageTitle, Badge } from "../../components/atoms";
-import { ContentContainer } from "../../components/atoms/ContentContainer/ContentContainer";
+import { DesignSystemContentContainerSlots } from "../../components/atoms/ContentContainerSlots/DesignSystemContentContainerSlots";
 import { MainContentHead } from "../../components/molecules/MainContentHead/MainContentHead";
 import { useDrawerControl } from "../../components/templates";
 
@@ -8,55 +8,58 @@ const DataDisplay = () => {
   const { toggleDrawer } = useDrawerControl();
 
   return (
-    <ContentContainer>
-      <MainContentHead
-        breadcrumbs={[
-          { label: "Home", href: "/" },
-          { label: "Design System", href: "/components" },
-          { label: "Data Display", href: "/data-display" },
-        ]}
-        onMenuClick={toggleDrawer}
-        actions={[
-          {
-            label: "View Source",
-            onClick: () =>
-              window.open(
-                "https://github.com/yourusername/SwAdmin/tree/main/src/components/atoms/Chip",
-                "_blank"
-              ),
-            leadingIcon: "code",
-          },
-        ]}
-      >
-        <PageTitle
-          title="Data Display"
-          description="Components for displaying and organizing information effectively."
-        />
-      </MainContentHead>
-
-      <div className="space-y-8">
-        <SectionCard title="Chips">
-          {/* Variants */}
-          <div>
-            <h3 className="text-title-s text-content-secondary mb-4">
-              Variants
-            </h3>
-            <div className="flex flex-wrap gap-4">
-              <Chip variant="success">Success</Chip>
-              <Chip variant="error">Error</Chip>
-              <Chip variant="warning">Warning</Chip>
-              <Chip variant="info">Info</Chip>
-              <Chip variant="neutral">Neutral</Chip>
+    <DesignSystemContentContainerSlots
+      header={
+        <>
+          <MainContentHead
+            breadcrumbs={[
+              { label: "Home", href: "/" },
+              { label: "Design System", href: "/design-system" },
+              { label: "Data Display", href: "/design-system/data-display" },
+            ]}
+            onMenuClick={toggleDrawer}
+            actions={[
+              {
+                label: "View Source",
+                onClick: () =>
+                  window.open(
+                    "https://github.com/yourusername/SwAdmin/tree/main/src/components/atoms/Chip",
+                    "_blank"
+                  ),
+                leadingIcon: "code",
+              },
+            ]}
+          />
+          <PageTitle
+            title="Data Display"
+            description="Components for displaying and organizing information effectively."
+          />
+        </>
+      }
+      content={
+        <div className="space-y-8">
+          <SectionCard title="Chips">
+            {/* Variants */}
+            <div>
+              <h3 className="text-title-s text-content-secondary mb-4">
+                Variants
+              </h3>
+              <div className="flex flex-wrap gap-4">
+                <Chip variant="success">Success</Chip>
+                <Chip variant="error">Error</Chip>
+                <Chip variant="warning">Warning</Chip>
+                <Chip variant="info">Info</Chip>
+                <Chip variant="neutral">Neutral</Chip>
+              </div>
             </div>
-          </div>
 
-          {/* With Icons */}
-          <div className="mt-8">
-            <h3 className="text-title-s text-content-secondary mb-4">
-              With Icons
-            </h3>
-            <div className="flex flex-wrap gap-4">
-              <Chip variant="success" leadingIcon="check">
+            {/* With Icons */}
+            <div className="mt-8">
+              <h3 className="text-title-s text-content-secondary mb-4">
+                With Icons
+              </h3>
+              <div className="flex flex-wrap gap-4">
+                <Chip variant="success" leadingIcon="check">
                 Success
               </Chip>
               <Chip variant="error" leadingIcon="error">
@@ -153,7 +156,8 @@ const DataDisplay = () => {
           </div>
         </SectionCard>
       </div>
-    </ContentContainer>
+    }
+  />
   );
 };
 

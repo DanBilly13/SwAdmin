@@ -1,8 +1,14 @@
 import React from "react";
 import { CodeBlock } from "../../components/atoms/CodeBlock/CodeBlock";
-import { PageTitle } from "../../components/atoms";
+import {
+  PageTitle,
+  DesignSystemContentContainerSlots,
+} from "../../components/atoms";
+import { MainContentHead } from "../../components/molecules";
+import { useDrawerControl } from "../../components/templates";
 
 const CodeBlocks: React.FC = () => {
+  const { toggleDrawer } = useDrawerControl();
   const typescriptExample = `
 interface User {
   id: number;
@@ -33,26 +39,39 @@ const Counter: React.FC = () => {
   `;
 
   return (
-    <div className="p-6">
-      <PageTitle
-        title="Code Blocks"
-        description="Syntax-highlighted code blocks with copy functionality"
-      />
+    <DesignSystemContentContainerSlots
+      header={
+        <>
+          <MainContentHead
+            breadcrumbs={[
+              { label: "Home", href: "/" },
+              { label: "Design System", href: "/design-system" },
+              { label: "Code Blocks", href: "/design-system/code-blocks" },
+            ]}
+            onMenuClick={toggleDrawer}
+          />
+          <PageTitle
+            title="Code Blocks"
+            description="Syntax-highlighted code blocks with copy functionality"
+          />
+        </>
+      }
+      content={
+        <div className="grid md:grid-cols-2 gap-6">
+          <div>
+            <h2 className="text-xl font-semibold mb-4">TypeScript Example</h2>
+            <CodeBlock code={typescriptExample} language="typescript" />
+          </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
-        <div>
-          <h2 className="text-xl font-semibold mb-4">TypeScript Example</h2>
-          <CodeBlock code={typescriptExample} language="typescript" />
+          <div>
+            <h2 className="text-xl font-semibold mb-4">
+              React Component Example
+            </h2>
+            <CodeBlock code={reactExample} language="typescript" />
+          </div>
         </div>
-
-        <div>
-          <h2 className="text-xl font-semibold mb-4">
-            React Component Example
-          </h2>
-          <CodeBlock code={reactExample} language="tsx" />
-        </div>
-      </div>
-    </div>
+      }
+    />
   );
 };
 

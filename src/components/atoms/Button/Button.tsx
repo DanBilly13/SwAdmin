@@ -10,7 +10,7 @@ type ButtonBaseProps = {
   variant?: ButtonVariant;
   fullWidth?: boolean;
   leadingIcon?: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   className?: string;
   disabled?: boolean;
   as?: typeof Link;
