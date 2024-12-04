@@ -28,25 +28,42 @@ jobs:
           node-version: 18  # Specify Node.js version
           cache: 'npm'      # Enable npm caching
       
+      # Print environment details
+      - name: Print Environment Details
+        run: |
+          echo "Node.js version:"
+          node --version
+          echo "npm version:"
+          npm --version
+          echo "Current directory:"
+          pwd
+          echo "Directory contents:"
+          ls -la
+      
       # Install project dependencies
       - name: Install dependencies
-        run: npm install
+        run: |
+          npm install
+          npm list || true
       
-      # Build the project
+      # Build the project with verbose output
       - name: Build project
-        run: npm run build
+        run: |
+          npm run build --verbose
       
-      # Debug: List build output
+      # Detailed build output
       - name: List build output
         run: |
-          ls -la
-          ls -la dist || true
+          echo "Dist directory contents:"
+          ls -la dist
+          echo "Build directory structure:"
+          find . -type d
       
       # Upload build artifacts to GitHub Pages
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./dist  # Changed from ./docs to ./dist
+          path: ./dist  # Specify artifact directory
 
   # Deploy job to publish to GitHub Pages
   deploy:
