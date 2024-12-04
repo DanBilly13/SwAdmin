@@ -28,36 +28,56 @@ jobs:
           node-version: 18  # Specify Node.js version
           cache: 'npm'      # Enable npm caching
       
-      # Print environment details
-      - name: Print Environment Details
+      # Detailed environment information
+      - name: System and Environment Details
         run: |
+          echo "Operating System:"
+          cat /etc/os-release
+          echo "---"
           echo "Node.js version:"
           node --version
+          echo "---"
           echo "npm version:"
           npm --version
+          echo "---"
           echo "Current directory:"
           pwd
+          echo "---"
           echo "Directory contents:"
           ls -la
+          echo "---"
+          echo "Git branch:"
+          git branch
       
-      # Install project dependencies
+      # Install project dependencies with verbose output
       - name: Install dependencies
         run: |
           npm install
+          echo "Installed packages:"
           npm list || true
       
-      # Build the project with verbose output
+      # Build the project with maximum verbosity
       - name: Build project
+        env:
+          NODE_OPTIONS: --max_old_space_size=4096
         run: |
           npm run build --verbose
+          echo "Build exit code: $?"
       
-      # Detailed build output
-      - name: List build output
+      # Comprehensive build output
+      - name: Detailed Build Output
         run: |
+          echo "Root directory contents:"
+          ls -la
+          echo "---"
           echo "Docs directory contents:"
-          ls -la docs
-          echo "Build directory structure:"
+          ls -la docs || echo "Docs directory not found"
+          echo "---"
+          echo "Full directory structure:"
           find . -type d
+          echo "---"
+          echo "Build log files:"
+          find . -name "*.log"
       
       # Upload build artifacts to GitHub Pages
       - name: Upload artifact
