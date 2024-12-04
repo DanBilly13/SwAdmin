@@ -22,7 +22,7 @@ import {
 interface TableCellData {
   type: "text" | "image";
   imageType?: "avatar" | "thumbnail";
-  value: string;
+  title?: string;
   description?: string;
   thumbnail?: {
     src: string;
@@ -109,12 +109,12 @@ const tableData: TableRowData[] = reports.map((report) => ({
   content: [
     {
       type: "text",
-      value: report.id.toString(),
+      title: report.id.toString(),
     },
     {
       type: "image",
       imageType: "thumbnail",
-      value: report.postAuthor,
+      title: report.postAuthor,
       description: report.postText,
       thumbnail: {
         src: report.thumbnailSrc,
@@ -123,19 +123,19 @@ const tableData: TableRowData[] = reports.map((report) => ({
     },
     {
       type: "text",
-      value: report.reportedBy.join(", "),
+      title: report.reportedBy.join(", "),
     },
     {
       type: "text",
-      value: report.reasons.join(", "),
+      title: report.reasons.join(", "),
     },
     {
       type: "text",
-      value: report.date,
+      title: report.date,
     },
     {
       type: "text",
-      value: "",
+      title: "",
       chip: {
         children: report.status,
         variant: report.status === "Anmälan avfärdad" ? "success" : "error",
@@ -144,7 +144,7 @@ const tableData: TableRowData[] = reports.map((report) => ({
     },
     {
       type: "text",
-      value: "",
+      title: "",
       iconButton: {
         icon: "more_vert",
         menuOptions: [
@@ -348,7 +348,7 @@ const InskickadeRapporter = () => {
                     )}
                     isFirst={first}
                     isLast={last}
-                    title={cell.value}
+                    title={cell.title}
                     description={cell.description}
                     imageType={cell.imageType}
                     thumbnail={cell.thumbnail}

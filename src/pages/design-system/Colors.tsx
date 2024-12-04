@@ -161,6 +161,12 @@ const Colors = () => {
                 tokenName="color-content-caution"
                 hexCode="#FF9500"
               />
+              <ColorBlock
+                colorClass="bg-content-info"
+                label="Content Info"
+                tokenName="color-content-info"
+                hexCode="#222222"
+              />
             </div>
           </SectionCard>
 
@@ -190,6 +196,12 @@ const Colors = () => {
                 label="Surface Caution"
                 tokenName="color-surface-caution"
                 hexCode="#FFE7C6"
+              />
+              <ColorBlock
+                colorClass="bg-surface-info"
+                label="Surface Info"
+                tokenName="color-surface-info"
+                hexCode="#F5F5F5"
               />
             </div>
           </SectionCard>

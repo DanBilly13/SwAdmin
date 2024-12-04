@@ -5,6 +5,7 @@ import { Outlet } from 'react-router-dom';
 
 export const DesignSystemLayout = () => {
   const navigation = [
+    { name: 'Accordion', href: '/accordion' },
     { name: 'Buttons', href: '/buttons' },
     { name: 'Code Blocks', href: '/code-blocks' },
     { name: 'Containers', href: '/containers' },

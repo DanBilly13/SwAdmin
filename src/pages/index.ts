@@ -14,6 +14,7 @@ export { default as Cards } from "./design-system/Cards";
 export { default as Spacers } from "./design-system/Spacers";
 export { default as TextBlocks } from './design-system/TextBlocks';
 export { default as CodeBlocks } from './design-system/CodeBlocks';
+export { default as Accordion } from "./design-system/Accordion";
 
 // Användare Pages
 export { default as Account } from "./anvandare/Account";

@@ -12,6 +12,17 @@ export default {
         'span-15': 'span 15 / span 15',
         'span-16': 'span 16 / span 16',
       },
+      fontWeight: {
+        100: '100',
+        200: '200',
+        300: '300',
+        400: '400',
+        500: '500',
+        600: '600',
+        700: '700',
+        800: '800',
+        900: '900'
+      },
       colors: {
         // Raw hex colors
         gray: {
@@ -30,7 +41,7 @@ export default {
           error: "#FF0000", // color-content-error
           success: "#4BB543", // color-content-success
           caution: "#FF9500", // color-content-caution
-          info: "#767676", // color-content-info
+          info: "#222222", // color-content-info
         },
         fill: {
           primary: "#222222", // color-fill-primary

@@ -10,6 +10,7 @@ import { GridTableRow } from "../../components/molecules/GridTableRow/GridTableR
 import { Card } from "../../components/atoms/Card/Card";
 import { classNames } from "../../utils/classNames";
 import { getColumnSpanClasses } from "../../utils/tableUtils";
+import { CodeBlock } from "../../components/atoms/CodeBlock/CodeBlock";
 
 const Tables = () => {
   const { toggleDrawer } = useDrawerControl();
@@ -21,6 +22,72 @@ const Tables = () => {
     md: 16,
     lg: 16,
   };
+
+  const avatarCellCode = `<TableCell
+  title="Daniel Billingham"
+  description="daniel.billingham@example.com"
+  imageType="avatar"
+  avatar={{
+    src: getAssetPath("avatars/TheRock.jpg"),
+    size: "sm"
+  }}
+  badge={{
+    variant: "success",
+    icon: "check"
+  }}
+  className="flex items-center gap-4"
+/>`;
+
+  const teamBadgeCellCode = `<TableCell
+  title="SVFF"
+  description="Team"
+  imageType="thumbnail"
+  thumbnail={{
+    src: getAssetPath("/images/team-badges/svff.jpg"),
+    size: "sm",
+    type: "teamBadge"
+  }}
+  className="flex items-center gap-4"
+/>`;
+
+  const thumbnailCellCode = `<TableCell
+  title="Match Highlights"
+  description="Final Game 2023"
+  imageType="thumbnail"
+  thumbnail={{
+    src: getAssetPath("/images/thumbnails/default.jpg"),
+    size: "sm",
+    type: "image",
+    isVideo: true
+  }}
+  className="flex items-center gap-4"
+/>`;
+
+  const textCellCode = `<TableCell
+  title="Regular Text Cell"
+  description="With optional description"
+  className="flex items-center gap-4"
+/>`;
+
+  const textWithBadgeCode = `<TableCell
+  title="Status Cell"
+  description="With status badge"
+  badge={{ 
+    variant: "success", 
+    icon: "check" 
+  }}
+  className="flex items-center gap-4"
+/>`;
+
+  const textWithChipCode = `<TableCell
+  title="Category Cell"
+  description="With category chip"
+  chip={{ 
+    children: "Active", 
+    variant: "success" 
+  }}
+  className="flex items-center gap-4"
+/>`;
 
   return (
     <DesignSystemContentContainerSlots
@@ -55,131 +122,164 @@ const Tables = () => {
         <div className="space-y-8">
           {/* Avatar Cell Example */}
           <SectionCard title="Avatar Cell">
-            <Card variant="table">
-              <GridTableRow>
-                <TableCell
-                  title="Daniel Billingham"
-                  description="daniel.billingham@example.com"
-                  imageType="avatar"
-                  avatar={{
-                    src: getAssetPath("avatars/TheRock.jpg"),
-                    size: "sm",
-                    badge: { variant: "success" },
-                  }}
-                  className={classNames(
-                    getColumnSpanClasses(fullWidthSpan),
-                    "flex items-center gap-4"
-                  )}
-                  isFirst
-                  isLast
-                />
-              </GridTableRow>
-            </Card>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Card variant="table">
+                <GridTableRow>
+                  <TableCell
+                    title="Daniel Billingham"
+                    description="daniel.billingham@example.com"
+                    imageType="avatar"
+                    avatar={{
+                      src: getAssetPath("avatars/TheRock.jpg"),
+                      size: "sm",
+                    }}
+                    badge={{
+                      variant: "success",
+                      icon: "check",
+                    }}
+                    className={classNames(
+                      getColumnSpanClasses(fullWidthSpan),
+                      "flex items-center gap-4"
+                    )}
+                    isFirst
+                    isLast
+                  />
+                </GridTableRow>
+              </Card>
+
+              {/* Code Block for Avatar Cell */}
+              <CodeBlock language="typescript" code={avatarCellCode} />
+            </div>
           </SectionCard>
 
           {/* Team Badge Cell Example */}
           <SectionCard title="Team Badge Cell">
-            <Card variant="table">
-              <GridTableRow>
-                <TableCell
-                  title="SVFF"
-                  description="Team"
-                  imageType="thumbnail"
-                  thumbnail={{
-                    src: getAssetPath("/images/team-badges/svff.jpg"),
-                    size: "sm",
-                    type: "teamBadge",
-                  }}
-                  className={classNames(
-                    getColumnSpanClasses(fullWidthSpan),
-                    "flex items-center gap-4"
-                  )}
-                  isFirst
-                  isLast
-                />
-              </GridTableRow>
-            </Card>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Card variant="table">
+                <GridTableRow>
+                  <TableCell
+                    title="SVFF"
+                    description="Team"
+                    imageType="thumbnail"
+                    thumbnail={{
+                      src: getAssetPath("/images/team-badges/svff.jpg"),
+                      size: "sm",
+                      type: "teamBadge",
+                    }}
+                    className={classNames(
+                      getColumnSpanClasses(fullWidthSpan),
+                      "flex items-center gap-4"
+                    )}
+                    isFirst
+                    isLast
+                  />
+                </GridTableRow>
+              </Card>
+
+              {/* Code Block for Team Badge Cell */}
+              <CodeBlock language="typescript" code={teamBadgeCellCode} />
+            </div>
           </SectionCard>
 
           {/* Thumbnail Cell Example */}
           <SectionCard title="Thumbnail Cell">
-            <Card variant="table">
-              <GridTableRow>
-                <TableCell
-                  title="Match Highlights"
-                  description="Final Game 2023"
-                  imageType="thumbnail"
-                  thumbnail={{
-                    src: getAssetPath("/images/thumbnails/default.jpg"),
-                    size: "sm",
-                    type: "image",
-                    isVideo: true,
-                  }}
-                  className={classNames(
-                    getColumnSpanClasses(fullWidthSpan),
-                    "flex items-center gap-4"
-                  )}
-                  isFirst
-                  isLast
-                />
-              </GridTableRow>
-            </Card>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Card variant="table">
+                <GridTableRow>
+                  <TableCell
+                    title="Match Highlights"
+                    description="Final Game 2023"
+                    imageType="thumbnail"
+                    thumbnail={{
+                      src: getAssetPath("/images/thumbnails/default.jpg"),
+                      size: "sm",
+                      type: "image",
+                      isVideo: true,
+                    }}
+                    className={classNames(
+                      getColumnSpanClasses(fullWidthSpan),
+                      "flex items-center gap-4"
+                    )}
+                    isFirst
+                    isLast
+                  />
+                </GridTableRow>
+              </Card>
+
+              {/* Code Block for Thumbnail Cell */}
+              <CodeBlock language="typescript" code={thumbnailCellCode} />
+            </div>
           </SectionCard>
 
           {/* Text Cell Example */}
           <SectionCard title="Text Cell">
-            <Card variant="table">
-              <GridTableRow>
-                <TableCell
-                  title="Regular Text Cell"
-                  description="With optional description"
-                  className={classNames(
-                    getColumnSpanClasses(fullWidthSpan),
-                    "flex items-center gap-4"
-                  )}
-                  isFirst
-                  isLast
-                />
-              </GridTableRow>
-            </Card>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Card variant="table">
+                <GridTableRow>
+                  <TableCell
+                    title="Regular Text Cell"
+                    description="With optional description"
+                    className={classNames(
+                      getColumnSpanClasses(fullWidthSpan),
+                      "flex items-center gap-4"
+                    )}
+                    isFirst
+                    isLast
+                  />
+                </GridTableRow>
+              </Card>
+
+              {/* Code Block for Text Cell */}
+              <CodeBlock language="typescript" code={textCellCode} />
+            </div>
           </SectionCard>
 
           {/* Text with Badge Example */}
           <SectionCard title="Text with Badge">
-            <Card variant="table">
-              <GridTableRow>
-                <TableCell
-                  title="Status Cell"
-                  description="With status badge"
-                  badge={{ variant: "success", icon: "check" }}
-                  className={classNames(
-                    getColumnSpanClasses(fullWidthSpan),
-                    "flex items-center gap-4"
-                  )}
-                  isFirst
-                  isLast
-                />
-              </GridTableRow>
-            </Card>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Card variant="table">
+                <GridTableRow>
+                  <TableCell
+                    title="Status Cell"
+                    description="With status badge"
+                    badge={{ variant: "success", icon: "check" }}
+                    className={classNames(
+                      getColumnSpanClasses(fullWidthSpan),
+                      "flex items-center gap-4"
+                    )}
+                    isFirst
+                    isLast
+                  />
+                </GridTableRow>
+              </Card>
+
+              {/* Code Block for Text with Badge */}
+              <CodeBlock language="typescript" code={textWithBadgeCode} />
+            </div>
           </SectionCard>
 
           {/* Text with Chip Example */}
           <SectionCard title="Text with Chip">
-            <Card variant="table">
-              <GridTableRow>
-                <TableCell
-                  title="Category Cell"
-                  description="With category chip"
-                  chip={{ children: "Active", variant: "success" }}
-                  className={classNames(
-                    getColumnSpanClasses(fullWidthSpan),
-                    "flex items-center gap-4"
-                  )}
-                  isFirst
-                  isLast
-                />
-              </GridTableRow>
-            </Card>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Card variant="table">
+                <GridTableRow>
+                  <TableCell
+                    title="Category Cell"
+                    description="With category chip"
+                    chip={{ children: "Active", variant: "success" }}
+                    className={classNames(
+                      getColumnSpanClasses(fullWidthSpan),
+                      "flex items-center gap-4"
+                    )}
+                    isFirst
+                    isLast
+                  />
+                </GridTableRow>
+              </Card>
+
+              {/* Code Block for Text with Chip */}
+              <CodeBlock language="typescript" code={textWithChipCode} />
+            </div>
           </SectionCard>
 
           {/* Chip Only Cell Example */}

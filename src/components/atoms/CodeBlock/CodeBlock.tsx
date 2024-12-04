@@ -38,8 +38,8 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
   }, [code, language]);
 
   return (
-    <div className={`rounded-lg   ${className}`}>
-      <div className="flex h-auto content-center items-center justify-between px-4 py-2 bg-red-200">
+    <div className={`rounded-lg overflow-hidden  ${className}`}>
+      <div className="flex h-auto content-center items-center justify-between px-4 py-2 bg-content">
         <span className="text-label-s text-content-secondary uppercase">
           {language}
         </span>
@@ -58,7 +58,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
       <pre className="p-4 overflow-x-auto" style={{ margin: 0 }}>
         <code
           className={`language-${language} text-body-s text-content-tertiary font-mono`}
-          style={{ margin: 0 }}
+          style={{ margin: 0, fontSize: 14 }}
         >
           {code}
         </code>

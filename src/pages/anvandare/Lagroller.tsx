@@ -21,7 +21,7 @@ import {
 interface TableCellData {
   type: "text" | "image";
   imageType?: "avatar" | "thumbnail";
-  value: string;
+  title?: string;
   description?: string;
   thumbnail?: {
     src: string;
@@ -64,7 +64,7 @@ const tableData: TableRowData[] = teams.map((team) => ({
     {
       type: "image",
       imageType: "thumbnail",
-      value: team.klubName,
+      title: team.klubName,
       description: `${team.lag} - ${team.kon} - ${team.sport}`,
       thumbnail: {
         src: team.klubBadge,
@@ -74,19 +74,19 @@ const tableData: TableRowData[] = teams.map((team) => ({
     },
     {
       type: "text",
-      value: team.roll,
+      description: team.roll,
     },
     {
       type: "text",
-      value: team.sasong,
+      description: team.sasong,
     },
     {
       type: "text",
-      value: team.kalla,
+      description: team.kalla,
     },
     {
       type: "text",
-      value: "",
+      title: "",
       iconButton: {
         icon: "more_vert",
         menuOptions: [
@@ -270,7 +270,7 @@ const Lagroller = () => {
                     )}
                     isFirst={first}
                     isLast={last}
-                    title={cell.value}
+                    title={cell.title}
                     description={cell.description}
                     imageType={cell.imageType}
                     thumbnail={cell.thumbnail}

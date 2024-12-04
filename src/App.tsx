@@ -27,6 +27,7 @@ import {
   InskickadeRapporter,
   Inkop,
   Behorighet,
+  Accordion,
 } from "./pages";
 import { DesignSystemLayout } from "./layouts/DesignSystemLayout";
 import { AnvandareLayout } from "./layouts/AnvandareLayout";
@@ -57,6 +58,7 @@ function App() {
             <Route path="/spacers" element={<Spacers />} />
             <Route path="/text-blocks" element={<TextBlocks />} />
             <Route path="/code-blocks" element={<CodeBlocks />} />
+            <Route path="/accordion" element={<Accordion />} />
           </Route>
 
           {/* Användare Routes */}
