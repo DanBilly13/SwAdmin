@@ -224,8 +224,8 @@ const Colors = () => {
             </div>
           </SectionCard>
 
-          {/* Border & Background Colors */}
-          <SectionCard title="Border & Background Colors">
+          {/* Border Colors */}
+          <SectionCard title="Border Colors">
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
               <ColorBlock
                 colorClass="border-border"
@@ -234,6 +234,33 @@ const Colors = () => {
                 hexCode="#E2E2E2"
                 isBorder
               />
+              <ColorBlock
+                colorClass="border-border-caution"
+                label="Border Caution"
+                tokenName="border-caution"
+                hexCode="#FFE7C6"
+                isBorder
+              />
+              <ColorBlock
+                colorClass="border-border-error"
+                label="Border Error"
+                tokenName="border-error"
+                hexCode="#F9DEDC"
+                isBorder
+              />
+              <ColorBlock
+                colorClass="border-border-success"
+                label="Border Success"
+                tokenName="border-success"
+                hexCode="#C0EECC"
+                isBorder
+              />
+            </div>
+          </SectionCard>
+
+          {/* Background Colors */}
+          <SectionCard title="Background Colors">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
               <ColorBlock
                 colorClass="bg-bg"
                 label="Background"

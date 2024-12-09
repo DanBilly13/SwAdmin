@@ -45,6 +45,22 @@ interface TableCellData {
     menuPosition?: "left" | "right" | "center";
     menuType?: "action" | "select";
   };
+  icon?: string;
+  inlineContent?: string[];
+  date?: string;
+  NotificationsCard?: {
+    icon: string;
+    title?: string;
+    description?: string;
+    date: string;
+    variant?: "inline" | "stacked";
+    secondReporter?: string;
+    secondReason?: string;
+    secondReportDate?: string;
+    thirdReporter?: string;
+    thirdReason?: string;
+    thirdReportDate?: string;
+  };
 }
 
 interface TableRowData {
@@ -112,8 +128,7 @@ const tableData: TableRowData[] = reports.map((report) => ({
       title: report.id.toString(),
     },
     {
-      type: "image",
-      imageType: "thumbnail",
+      type: "text",
       title: report.postAuthor,
       description: report.postText,
       thumbnail: {
@@ -121,18 +136,7 @@ const tableData: TableRowData[] = reports.map((report) => ({
         size: "lg",
       },
     },
-    {
-      type: "text",
-      title: report.reportedBy.join(", "),
-    },
-    {
-      type: "text",
-      title: report.reasons.join(", "),
-    },
-    {
-      type: "text",
-      title: report.date,
-    },
+
     {
       type: "text",
       title: "",
@@ -159,6 +163,23 @@ const tableData: TableRowData[] = reports.map((report) => ({
         },
       },
     },
+    {
+      type: "text",
+      title: "",
+    },
+    {
+      type: "text",
+      NotificationsCard: {
+        icon: "warning",
+        title: report.firstReporter,
+        description: report.firstReason,
+        date: report.firstReportDate || "", // Add a fallback empty string
+        variant: "inline",
+        secondReporter: report.secondReporter,
+        secondReason: report.secondReason,
+        secondReportDate: report.secondReportDate,
+      },
+    },
   ],
 }));
 
@@ -178,60 +199,50 @@ const columns: ColumnDefinition[] = [
     span: {
       xs: 16,
       sm: 16,
-      md: 5,
-      lg: 5,
-    },
-    align: "left" as const,
-  },
-  {
-    header: "Reported by",
-    span: {
-      xs: 16,
-      sm: 16,
-      md: 3,
-      lg: 3,
-    },
-    align: "left" as const,
-  },
-  {
-    header: "Reason",
-    span: {
-      xs: 16,
-      sm: 16,
-      md: 2,
-      lg: 2,
-    },
-    align: "left" as const,
-  },
-  {
-    header: "Date",
-    span: {
-      xs: 16,
-      sm: 16,
-      md: 2,
-      lg: 2,
+      md: 11,
+      lg: 11,
     },
     align: "left" as const,
   },
   {
     header: "Status",
     span: {
-      xs: 15,
-      sm: 15,
+      xs: 16,
+      sm: 16,
       md: 2,
       lg: 2,
     },
     align: "left" as const,
   },
   {
-    header: "",
+    header: "Action",
     span: {
-      xs: 1,
-      sm: 1,
+      xs: 16,
+      sm: 16,
+      md: 2,
+      lg: 2,
+    },
+    align: "right" as const,
+  },
+  {
+    header: "Blank",
+    span: {
+      xs: 16,
+      sm: 16,
       md: 1,
       lg: 1,
     },
-    align: "right" as const,
+    align: "left" as const,
+  },
+  {
+    header: "Report",
+    span: {
+      xs: 16,
+      sm: 16,
+      md: 15,
+      lg: 15,
+    },
+    align: "left" as const,
   },
 ];
 
@@ -349,12 +360,14 @@ const InskickadeRapporter = () => {
                     isFirst={first}
                     isLast={last}
                     title={cell.title}
-                    description={cell.description}
+                    description={cell.description || cell.date}
                     imageType={cell.imageType}
                     thumbnail={cell.thumbnail}
                     badge={cell.badge}
                     chip={cell.chip}
                     iconButton={cell.iconButton}
+                    icon={cell.icon as any}
+                    NotificationsCard={cell.NotificationsCard}
                   />
                 );
               })}

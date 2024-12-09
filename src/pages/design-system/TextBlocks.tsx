@@ -1,5 +1,4 @@
-import React from "react";
-import { SectionCard, PageTitle, TextBlock } from "../../components/atoms";
+import { SectionCard, PageTitle } from "../../components/atoms";
 import { DesignSystemContentContainerSlots } from "../../components/atoms/ContentContainerSlots/DesignSystemContentContainerSlots";
 import { MainContentHead } from "../../components/molecules/MainContentHead/MainContentHead";
 import { useDrawerControl } from "../../components/templates";
@@ -48,7 +47,7 @@ const TextBlocks = () => {
               <PageTitle 
                 title="Smaller Page Title" 
                 description="Alternative page title style" 
-                size="small" 
+                // size="small" 
               />
             </div>
           </SectionCard>

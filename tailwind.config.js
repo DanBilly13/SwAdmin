@@ -56,6 +56,9 @@ export default {
         },
         border: {
           DEFAULT: "#E2E2E2", // color-border
+          caution: "#FFE7C6", // color-border-caution
+          error: "#F9DEDC", // color-border-error
+          success: "#C0EECC", // color-border-success
         },
         bg: "#F5F5F5", // color-bg
       },

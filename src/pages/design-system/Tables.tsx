@@ -11,6 +11,7 @@ import { Card } from "../../components/atoms/Card/Card";
 import { classNames } from "../../utils/classNames";
 import { getColumnSpanClasses } from "../../utils/tableUtils";
 import { CodeBlock } from "../../components/atoms/CodeBlock/CodeBlock";
+import { CellContent } from "../../components/atoms/TableCell/components/CellContent";
 
 const Tables = () => {
   const { toggleDrawer } = useDrawerControl();
@@ -343,6 +344,46 @@ const Tables = () => {
                 />
               </GridTableRow>
             </Card>
+          </SectionCard>
+
+          {/* Inline Notifications Cell Example */}
+          <SectionCard title="Inline Notifications Cell">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Card variant="table">
+                <GridTableRow>
+                  <TableCell
+                    className={classNames(
+                      getColumnSpanClasses(fullWidthSpan),
+                      "flex items-center gap-4"
+                    )}
+                    isFirst
+                    isLast
+                  >
+                    <CellContent NotificationsCard={{
+                        title: "Team Details",
+                        description: "Lag Fotboll, Herr, Senior",
+                        icon: "info",
+                        date: "Yesterday",
+                        variant: "inline"
+                      }} />
+                  </TableCell>
+                </GridTableRow>
+              </Card>
+
+              {/* Code Block for Inline Notifications Cell */}
+              <CodeBlock 
+                language="typescript" 
+                code={`<TableCell>
+  <CellContent NotificationsCard={{
+    title: "Team Details",
+    description: "Lag Fotboll, Herr, Senior",
+    icon: "info",
+    date: "Yesterday",
+    variant: "inline"
+  }} />
+</TableCell>`} 
+              />
+            </div>
           </SectionCard>
         </div>
       }

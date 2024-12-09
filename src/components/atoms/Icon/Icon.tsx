@@ -1,13 +1,14 @@
 import React from "react";
 import classNames from "classnames";
 
-export type IconSize = "lg" | "md" | "sm" | "xsm";
+export type IconSize = "lg" | "md" | "sm" | "xsm" | "xxsm";
 
 const sizeClasses: Record<IconSize, string> = {
   lg: "!w-[60px] !h-[60px] !text-[60px] !font-size-[60px]",
   md: "!w-[48px] !h-[48px] !text-[48px] !font-size-[48px]",
   sm: "!w-[36px] !h-[36px] !text-[36px] !font-size-[36px]",
   xsm: "!w-[24px] !h-[24px] !text-[24px] !font-size-[24px]",
+  xxsm: "!w-[16px] !h-[16px] !text-[16px] !font-size-[16px]",
 };
 
 export interface IconProps {
@@ -54,10 +55,17 @@ export const Icon: React.FC<IconProps> = ({
         className
       )}
       style={{
-        fontSize: size === 'lg' ? '60px' : 
-                 size === 'md' ? '48px' : 
-                 size === 'sm' ? '36px' : '24px',
-        fontVariationSettings: `'FILL' ${fill}, 'wght' ${weight}`
+        fontSize:
+          size === "lg"
+            ? "60px"
+            : size === "md"
+            ? "48px"
+            : size === "sm"
+            ? "36px"
+            : size === "xsm"
+            ? "24px"
+            : "16px",
+        fontVariationSettings: `'FILL' ${fill}, 'wght' ${weight}`,
       }}
     >
       {name}

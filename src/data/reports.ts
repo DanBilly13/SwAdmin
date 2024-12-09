@@ -8,8 +8,12 @@ export interface Report {
   thumbnailSrc: string;
   postAuthor: string;
   postText: string;
-  reportedBy: string[];
-  reasons: string[];
+  firstReporter?: string;
+  firstReason?: string;
+  firstReportDate?: string;
+  secondReporter?: string;
+  secondReason?: string;
+  secondReportDate?: string;
   date: string;
   status: "Anmälan avfärdad" | "Inlägg Borttaget";
   statusDate: string;
@@ -22,8 +26,12 @@ export const reports: Report[] = [
     thumbnailSrc: getAssetPath("avatars/TheRock.jpg"),
     postAuthor: "Sixten Eklöf",
     postText: "William Svefors kan ju ta sig i röven",
-    reportedBy: ["Alexander Sebastian", "Isabella Charlotta"],
-    reasons: ["Olämpliga kommentarer", "Vidrigt beteende"],
+    firstReporter: "Alexander Sebastian",
+    firstReason: "Olämpliga kommentarer",
+    firstReportDate: "Nov 10, 16:58",
+    secondReporter: "Isabella Charlotta",
+    secondReason: "Vidrigt beteende",
+    secondReportDate: "Nov 10, 16:58",
     date: "Nov 10, 16:58",
     status: "Anmälan avfärdad",
     statusDate: "Nov 12 2024",
@@ -35,8 +43,9 @@ export const reports: Report[] = [
     postAuthor: "Theo Nott",
     postText:
       "Olle Oldaeus är väldigt nervös och bränner sin straff i SEF trophy.",
-    reportedBy: ["Alexander Sebastian"],
-    reasons: ["Vad fan gir han mobbning"],
+    firstReporter: "Alexander Sebastian",
+    firstReason: "Vad fan gir han mobbning",
+    firstReportDate: "Nov 5, 12:33",
     date: "Nov 5, 12:33",
     status: "Anmälan avfärdad",
     statusDate: "Nov 12 2024",
@@ -47,8 +56,9 @@ export const reports: Report[] = [
     thumbnailSrc: getAssetPath("avatars/TheRock.jpg"),
     postAuthor: "Sixten Eklöf",
     postText: "2-3 Varberg",
-    reportedBy: ["Alexander Sebastian"],
-    reasons: ["felaktiga uppgifter angående"],
+    firstReporter: "Alexander Sebastian",
+    firstReason: "felaktiga uppgifter angående",
+    firstReportDate: "Nov 11, 11:28",
     date: "Nov 11, 11:28",
     status: "Anmälan avfärdad",
     statusDate: "Nov 12 2024",
@@ -59,8 +69,9 @@ export const reports: Report[] = [
     thumbnailSrc: getAssetPath("avatars/TheRock.jpg"),
     postAuthor: "Sixten Eklöf",
     postText: "Nej men 2-3 står det nu",
-    reportedBy: ["Alexander Sebastian"],
-    reasons: ["Vidrigt beteende"],
+    firstReporter: "Alexander Sebastian",
+    firstReason: "Vidrigt beteende",
+    firstReportDate: "Oct 30, 18:02",
     date: "Oct 30, 18:02",
     status: "Anmälan avfärdad",
     statusDate: "Nov 12 2024",
@@ -71,8 +82,9 @@ export const reports: Report[] = [
     thumbnailSrc: getAssetPath("avatars/TheRock.jpg"),
     postAuthor: "Levis Lendgrin",
     postText: "Den var dälig",
-    reportedBy: ["Alexander Sebastian"],
-    reasons: ["Inte fin dom kan ej up föra"],
+    firstReporter: "Alexander Sebastian",
+    firstReason: "Inte fin dom kan ej up föra",
+    firstReportDate: "Oct 22, 13:33",
     date: "Oct 22, 13:33",
     status: "Anmälan avfärdad",
     statusDate: "Nov 12 2024",
@@ -84,8 +96,9 @@ export const reports: Report[] = [
     postAuthor: "Jasmine Benjelloun",
     postText:
       "Gå in i dom GBG dom e asss ät up dom dom suger period speciellt deras p/tränare period 😏",
-    reportedBy: ["Alexander Sebastian"],
-    reasons: ["Sådanna kommentarer vill"],
+    firstReporter: "Alexander Sebastian",
+    firstReason: "Sådanna kommentarer vill",
+    firstReportDate: "Oct 13, 11:16",
     date: "Oct 13, 11:16",
     status: "Inlägg Borttaget",
     statusDate: "Nov 12 2024",

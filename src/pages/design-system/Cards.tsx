@@ -1,23 +1,18 @@
 import React from "react";
-import {
-  Button,
-  Card,
-  SectionCard,
-  PageTitle,
-} from "../../components/atoms";
-import { 
-  DesignSystemContentContainerSlots 
-} from "../../components/atoms/ContentContainerSlots/DesignSystemContentContainerSlots";
+import { Button, Card, SectionCard, PageTitle } from "../../components/atoms";
+import { DesignSystemContentContainerSlots } from "../../components/atoms/ContentContainerSlots/DesignSystemContentContainerSlots";
 import { MainContentHead } from "../../components/molecules/MainContentHead/MainContentHead";
 import { useDrawerControl } from "../../components/templates";
 import { LinkCard } from "../../components/molecules/LinkCard";
 import { IconButton } from "../../components/atoms";
 import { Modal } from "../../components/atoms";
+import { NotificationsCard } from "../../components/molecules/NotificationsCard";
 
 const Cards = () => {
   const { toggleDrawer } = useDrawerControl();
   const [basicModalOpen, setBasicModalOpen] = React.useState(false);
-  const [customHeaderModalOpen, setCustomHeaderModalOpen] = React.useState(false);
+  const [customHeaderModalOpen, setCustomHeaderModalOpen] =
+    React.useState(false);
   const [actionsModalOpen, setActionsModalOpen] = React.useState(false);
   const [sizeModalOpen, setSizeModalOpen] = React.useState(false);
 
@@ -170,9 +165,9 @@ const Cards = () => {
               </h3>
               <SectionCard title="Example Section">
                 <p className="text-body-m text-content-secondary">
-                  Section cards are used to group related content under a section
-                  title. They're commonly used in documentation and settings
-                  pages.
+                  Section cards are used to group related content under a
+                  section title. They're commonly used in documentation and
+                  settings pages.
                 </p>
               </SectionCard>
             </div>
@@ -212,9 +207,9 @@ const Cards = () => {
                   description="Hantera åtkomstnivåer och behörigheter för denna roll i Min Fotboll."
                 >
                   <p className="text-body-m text-content-secondary">
-                    This is a basic modal with a simple title and content. It can
-                    be closed using the close button in the top-right corner or by
-                    clicking outside the modal.
+                    This is a basic modal with a simple title and content. It
+                    can be closed using the close button in the top-right corner
+                    or by clicking outside the modal.
                   </p>
                 </Modal>
               </div>
@@ -265,7 +260,10 @@ const Cards = () => {
                   title="Confirm Action"
                   actions={{
                     right: [
-                      <div className="flex justify-end gap-2" key="modal-actions">
+                      <div
+                        className="flex justify-end gap-2"
+                        key="modal-actions"
+                      >
                         <Button
                           variant="secondary"
                           onClick={() => setActionsModalOpen(false)}
@@ -291,6 +289,88 @@ const Cards = () => {
                     user actions.
                   </p>
                 </Modal>
+              </div>
+            </div>
+          </SectionCard>
+
+          <SectionCard title="Notifications Card">
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-title-s text-content-secondary mb-4">
+                  Stacked Notifications Card
+                </h3>
+                <div className="space-y-4">
+                  <NotificationsCard
+                    icon="warning"
+                    title="Default Border"
+                    description="Standard notification with default border"
+                    date="2 hours ago"
+                    variant="stacked"
+                  />
+                  <NotificationsCard
+                    icon="warning"
+                    title="Caution Border"
+                    description="Notification with caution border"
+                    date="2 hours ago"
+                    variant="stacked"
+                    borderVariant="caution"
+                  />
+                  <NotificationsCard
+                    icon="error"
+                    title="Error Border"
+                    description="Notification with error border"
+                    date="2 hours ago"
+                    variant="stacked"
+                    borderVariant="error"
+                  />
+                  <NotificationsCard
+                    icon="check_circle"
+                    title="Success Border"
+                    description="Notification with success border"
+                    date="2 hours ago"
+                    variant="stacked"
+                    borderVariant="success"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-title-s text-content-secondary mb-4">
+                  Inline Notifications Card
+                </h3>
+                <div className="space-y-4">
+                  <NotificationsCard
+                    icon="warning"
+                    title="Default Border"
+                    description="Standard notification with default border"
+                    date="2 hours ago"
+                    variant="inline"
+                  />
+                  <NotificationsCard
+                    icon="warning"
+                    title="Caution Border"
+                    description="Notification with caution border"
+                    date="2 hours ago"
+                    variant="inline"
+                    borderVariant="caution"
+                  />
+                  <NotificationsCard
+                    icon="error"
+                    title="Error Border"
+                    description="Notification with error border"
+                    date="2 hours ago"
+                    variant="inline"
+                    borderVariant="error"
+                  />
+                  <NotificationsCard
+                    icon="check_circle"
+                    title="Success Border"
+                    description="Notification with success border"
+                    date="2 hours ago"
+                    variant="inline"
+                    borderVariant="success"
+                  />
+                </div>
               </div>
             </div>
           </SectionCard>

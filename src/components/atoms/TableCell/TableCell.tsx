@@ -6,6 +6,7 @@ import { Avatar, AvatarProps } from "../Avatar/Avatar";
 import { BadgeProps } from "../Badge/Badge";
 import { IconButton } from "../IconButton/IconButton";
 import { Dropdown, DropdownProps } from "../Dropdown/Dropdown";
+import { CellContent } from "./components/CellContent";
 
 /**
  * Type definitions for TableCell configuration
@@ -35,8 +36,9 @@ interface TableCellBaseProps {
   padding?: TableCellPadding;
   variant?: TableCellVariant;
   sortDirection?: TableSortDirection;
-  isFirst?: boolean | ResponsiveBoolean; // Is this the first cell in its row?
-  isLast?: boolean | ResponsiveBoolean; // Is this the last cell in its row?
+  isFirst?: boolean | ResponsiveBoolean; // Is this the first cell in its wrapped row?
+  isLast?: boolean | ResponsiveBoolean; // Is this the last cell in its wrapped row?
+  isTopRow?: boolean; // Is this cell in the first row of the table?
 }
 
 /**
@@ -67,6 +69,14 @@ interface TableCellStructuredProps extends TableCellBaseProps {
     menuPosition?: "left" | "center" | "right";
     menuType?: "action" | "select";
   };
+  icon?: string;
+  NotificationsCard?: {
+    icon: string;
+    title?: string;
+    description?: string;
+    date: string;
+    variant?: "inline" | "stacked";
+  };
 }
 
 // Union type for all possible table cell props
@@ -82,13 +92,15 @@ const getTableCellClasses = (
   variant: TableCellVariant = "body",
   isFirst: boolean | ResponsiveBoolean = false,
   isLast: boolean | ResponsiveBoolean = false,
+  isTopRow: boolean = false,
   className?: string
 ) => {
   // Handle isFirst/isLast values for mobile-first approach
   // If the value is a boolean, use it directly
   // If it's a ResponsiveBoolean object, use the sm breakpoint value
   // This ensures mobile layout uses sm breakpoint values for first/last detection
-  const isFirstBool = typeof isFirst === "boolean" ? isFirst : isFirst?.sm || false;
+  const isFirstBool =
+    typeof isFirst === "boolean" ? isFirst : isFirst?.sm || false;
   const isLastBool = typeof isLast === "boolean" ? isLast : isLast?.sm || false;
 
   // For md/lg breakpoints, if the value is a ResponsiveBoolean object, use it
@@ -105,27 +117,11 @@ const getTableCellClasses = (
       "justify-end text-right": align === "right",
 
       // Mobile-First Base Padding
-      // All cells get bottom padding
+      // All cells get bottom padding only
       "pb-4": padding === "normal",
-      // Only header cells and first cells in a row get top padding on mobile
-      "pt-4": padding === "normal" && (variant === "header" || isFirstBool),
       // Horizontal padding - no left padding, right padding except for last cell
       "pl-0 pr-4": padding === "normal" && !isLastBool,
       "px-0": padding === "normal" && isLastBool,
-
-      // Medium Screens (md) Padding
-      // All cells get vertical padding on md and up
-      "md:py-4": padding === "normal",
-      // Horizontal padding at md
-      "md:pl-0 md:pr-4": padding === "normal" && !isLastResponsive.md,
-      "md:px-0": padding === "normal" && isLastResponsive.md,
-
-      // Large Screens (lg) Padding
-      // All cells get vertical padding on lg
-      "lg:py-4": padding === "normal",
-      // Horizontal padding at lg
-      "lg:pl-0 lg:pr-4": padding === "normal" && !isLastResponsive.lg,
-      "lg:px-0": padding === "normal" && isLastResponsive.lg,
 
       // Variant-specific styles
       "text-label-s bg-surface-secondary": variant === "header",
@@ -156,20 +152,16 @@ const getAdjustedAvatarProps = (avatar: Omit<AvatarProps, "className">) => {
   };
 };
 
-// Component for rendering cell content with title and description
-const ContentText: React.FC<{ title?: string; description?: string }> = ({
-  title,
-  description,
-}) => {
+/**
+ * Renders text content with proper styling
+ * @internal
+ */
+const ContentText: React.FC<{
+  title?: string;
+  description?: string;
+}> = ({ title, description }) => {
   if (!title && !description) return null;
-  return (
-    <div className="flex flex-col min-h-[32px] justify-center">
-      {title && <div className="text-body-s text-content">{title}</div>}
-      {description && (
-        <div className="text-body-s text-content-secondary">{description}</div>
-      )}
-    </div>
-  );
+  return <CellContent title={title} description={description} />;
 };
 
 // Component for rendering action buttons (IconButton or Dropdown)
@@ -198,19 +190,33 @@ const StructuredContent: React.FC<TableCellStructuredProps> = ({
   badge,
   iconButton,
   dropdown,
+  icon,
+  NotificationsCard,
 }) => {
   // If only chip is present, render it alone
-  if (
-    chip &&
-    !title &&
-    !description &&
-    !thumbnail &&
-    !iconButton &&
-    !dropdown
-  ) {
+  if (chip && !title && !description && !thumbnail && !avatar) {
     return <Chip {...chip} />;
   }
 
+  // If NotificationsCard is present, use CellContent
+  if (NotificationsCard) {
+    return (
+      <CellContent
+        title={title}
+        description={description}
+        chip={chip}
+        badge={badge}
+        thumbnail={thumbnail}
+        avatar={avatar}
+        iconButton={iconButton}
+        dropdown={dropdown}
+        icon={icon}
+        NotificationsCard={NotificationsCard}
+      />
+    );
+  }
+
+  // Otherwise, use the original detailed rendering
   return (
     <div className="flex items-center gap-4">
       {/* Image (Avatar or Thumbnail) */}
@@ -226,7 +232,7 @@ const StructuredContent: React.FC<TableCellStructuredProps> = ({
         <Thumbnail {...thumbnail} className="flex-shrink-0" />
       )}
 
-      {/* Content (Title, Description, and optional Chip) */}
+      {/* Content (Title, Description and optional Chip) */}
       <div className="flex flex-col flex-grow">
         <ContentText title={title} description={description} />
         {chip && (
@@ -260,6 +266,7 @@ const TableCell: React.FC<TableCellProps> = (props) => {
     sortDirection,
     isFirst = false,
     isLast = false,
+    isTopRow = false,
     ...rest
   } = props;
 
@@ -270,6 +277,7 @@ const TableCell: React.FC<TableCellProps> = (props) => {
     variant,
     isFirst,
     isLast,
+    isTopRow,
     className
   );
 
