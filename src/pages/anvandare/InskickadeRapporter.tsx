@@ -35,7 +35,7 @@ interface TableCellData {
   };
   chip?: {
     children: string;
-    variant: "success" | "error";
+    variant: "success" | "error" | "warning" | "info";
     className?: string;
   };
   iconButton?: {
@@ -87,20 +87,15 @@ const getStatusConfig = (
   text: string;
 } => {
   switch (status) {
-    case "Publicerad":
+    case "Auto Borttaget":
       return {
-        variant: "success",
-        text: "Publicerad",
+        variant: "error",
+        text: "Auto Borttaget",
       };
     case "Inlägg Borttaget":
       return {
         variant: "error",
         text: "Inlägg Borttaget",
-      };
-    case "Auto Borttaget":
-      return {
-        variant: "error",
-        text: "Auto Borttaget",
       };
     case "Inlägg återställt":
       return {
@@ -142,7 +137,7 @@ const tableData: TableRowData[] = reports.map((report) => ({
       title: "",
       chip: {
         children: report.status,
-        variant: report.status === "Anmälan avfärdad" ? "success" : "error",
+        variant: getStatusConfig(report.status).variant,
         className: "whitespace-nowrap",
       },
     },
@@ -170,7 +165,8 @@ const tableData: TableRowData[] = reports.map((report) => ({
     {
       type: "text",
       NotificationsCard: {
-        icon: "warning",
+        icon: "flag_2",
+        iconColor: "text-content-caution",
         title: report.firstReporter,
         description: report.firstReason,
         date: report.firstReportDate || "", // Add a fallback empty string
