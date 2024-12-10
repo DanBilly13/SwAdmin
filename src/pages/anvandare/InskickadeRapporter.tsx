@@ -5,7 +5,6 @@ import { useDrawerControl } from "../../components/templates";
 import { PageTitle } from "../../components/atoms/PageTitle/PageTitle";
 import { Card, TableCell, TableHead } from "../../components/atoms";
 import { GridTableRow } from "../../components/molecules/GridTableRow/GridTableRow";
-import { teams } from "../../data/teams";
 import { reports } from "../../data/reports";
 import { classNames } from "../../utils/classNames";
 import { FilterAndSearch } from "../../components/molecules/FilterAndSearch/FilterAndSearch";
@@ -14,10 +13,7 @@ import {
   isFirstInRow,
   isLastInRow,
 } from "../../utils/tableUtils";
-import {
-  Thumbnail,
-  ThumbnailType,
-} from "../../components/atoms/Thumbnail/Thumbnail";
+import { ThumbnailType } from "../../components/atoms/Thumbnail/Thumbnail";
 
 interface TableCellData {
   type: "text" | "image";
@@ -28,6 +24,7 @@ interface TableCellData {
     src: string;
     size: "sm" | "md" | "lg";
     type?: ThumbnailType;
+    isVideo?: boolean;
   };
   badge?: {
     variant: "success" | "error";
@@ -129,6 +126,22 @@ const tableData: TableRowData[] = reports.map((report) => ({
       thumbnail: {
         src: report.thumbnailSrc,
         size: "lg",
+        isVideo: report.isVideo,
+      },
+    },
+
+    {
+      type: "text",
+      NotificationsCard: {
+        icon: "flag_2",
+        iconColor: "text-content-caution",
+        title: report.firstReporter,
+        description: report.firstReason,
+        date: report.firstReportDate || "", // Add a fallback empty string
+        variant: "inline",
+        secondReporter: report.secondReporter,
+        secondReason: report.secondReason,
+        secondReportDate: report.secondReportDate,
       },
     },
 
@@ -141,6 +154,7 @@ const tableData: TableRowData[] = reports.map((report) => ({
         className: "whitespace-nowrap",
       },
     },
+
     {
       type: "text",
       title: "",
@@ -161,20 +175,7 @@ const tableData: TableRowData[] = reports.map((report) => ({
     {
       type: "text",
       title: "",
-    },
-    {
-      type: "text",
-      NotificationsCard: {
-        icon: "flag_2",
-        iconColor: "text-content-caution",
-        title: report.firstReporter,
-        description: report.firstReason,
-        date: report.firstReportDate || "", // Add a fallback empty string
-        variant: "inline",
-        secondReporter: report.secondReporter,
-        secondReason: report.secondReason,
-        secondReportDate: report.secondReportDate,
-      },
+      className: "hidden sm:block",
     },
   ],
 }));
@@ -200,21 +201,34 @@ const columns: ColumnDefinition[] = [
     },
     align: "left" as const,
   },
+
   {
-    header: "Status",
+    header: "Report",
     span: {
       xs: 16,
       sm: 16,
+      md: 15,
+      lg: 15,
+    },
+    align: "left" as const,
+    className: "md:order-last",
+  },
+  {
+    header: "Status",
+    span: {
+      xs: 8,
+      sm: 8,
       md: 2,
       lg: 2,
     },
     align: "left" as const,
   },
+
   {
     header: "Action",
     span: {
-      xs: 16,
-      sm: 16,
+      xs: 8,
+      sm: 8,
       md: 2,
       lg: 2,
     },
@@ -229,16 +243,7 @@ const columns: ColumnDefinition[] = [
       lg: 1,
     },
     align: "left" as const,
-  },
-  {
-    header: "Report",
-    span: {
-      xs: 16,
-      sm: 16,
-      md: 15,
-      lg: 15,
-    },
-    align: "left" as const,
+    className: "hidden md:block",
   },
 ];
 

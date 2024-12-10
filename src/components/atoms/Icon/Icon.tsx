@@ -8,7 +8,7 @@ const sizeClasses: Record<IconSize, string> = {
   md: "!w-[48px] !h-[48px] !text-[48px] !font-size-[48px]",
   sm: "!w-[36px] !h-[36px] !text-[36px] !font-size-[36px]",
   xsm: "!w-[24px] !h-[24px] !text-[24px] !font-size-[24px]",
-  xxsm: "!w-[16px] !h-[16px] !text-[16px] !font-size-[16px]",
+  xxsm: "!w-[20px] !h-[20px] !text-[20px] !font-size-[20px]",
 };
 
 export interface IconProps {

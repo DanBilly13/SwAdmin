@@ -4,7 +4,7 @@ import { Badge, BadgeProps } from "../../Badge/Badge";
 import { Avatar, AvatarProps } from "../../Avatar/Avatar";
 import { Dropdown, DropdownProps } from "../../Dropdown/Dropdown";
 import { IconButton } from "../../IconButton/IconButton";
-import { NotificationsCard } from "../../../molecules/NotificationsCard/NotificationsCard";
+import { NotificationsCardBasic } from "../../../molecules/NotificationsCard/NotificationsCardBasic";
 import { Thumbnail, ThumbnailProps } from "../../../atoms/Thumbnail/Thumbnail";
 
 /**
@@ -22,22 +22,36 @@ interface CellTitleProps {
  * @property {string} icon - Icon for the NotificationsCard
  * @property {string} [title] - Title for the NotificationsCard
  * @property {string} [description] - Description for the NotificationsCard
- * @property {string} date - Date for the NotificationsCard
+ * @property {string} [date] - Date for the NotificationsCard
  * @property {string[]} [inlineContent] - Inline content for the NotificationsCard
  * @property {"inline" | "stacked"} [variant] - Variant for the NotificationsCard
  * @property {string} [secondReporter] - Second reporter for the NotificationsCard
  * @property {string} [secondReason] - Second reason for the NotificationsCard
  * @property {string} [secondReportDate] - Second report date for the NotificationsCard
+ * @property {boolean} [showBorder] - Show border for the NotificationsCard
  */
 export interface NotificationsCardProps {
+  /** Leading icon name from the icon set */
   icon: string;
+  /** Main title of the notification */
   title?: string;
+  /** Descriptive text for the notification */
   description?: string;
-  date: string;
-  inlineContent?: string[];
-  variant?: "inline" | "stacked";
+  /** Date or timestamp of the notification */
+  date?: string;
+  /** Optional onClick handler for the entire card */
+  onClick?: () => void;
+  /** Border variant for the card */
+  borderVariant?: "default" | "caution" | "error" | "success";
+  /** Whether to show the border */
+  showBorder?: boolean;
+  /** Optional className for styling */
+  className?: string;
+  /** Second reporter for additional report */
   secondReporter?: string;
+  /** Second reason for additional report */
   secondReason?: string;
+  /** Second report date */
   secondReportDate?: string;
 }
 
@@ -52,7 +66,6 @@ export interface NotificationsCardProps {
  * @property {string[]} [inlineContent] - Content for inline notifications card variant
  * @property {string} [date] - Date for inline notifications card variant
  * @property {string} [icon] - Icon for inline notifications card variant
- * @property {boolean} [useNotificationsCard] - Explicitly control NotificationsCard rendering
  * @property {NotificationsCardProps} [NotificationsCard] - Props for the NotificationsCard component
  * @property {ThumbnailProps} [thumbnail] - Props for the Thumbnail component
  */
@@ -68,11 +81,17 @@ export interface CellContentProps extends CellTitleProps {
     menuPosition?: "left" | "center" | "right";
     menuType?: "action" | "select";
   };
-  inlineContent?: string[];
-  date?: string;
   icon?: string;
-  useNotificationsCard?: boolean;
-  NotificationsCard?: NotificationsCardProps;
+  onClick?: () => void;
+  menuOptions?: Array<{ value: string; label: string }>;
+  value?: string;
+  label?: string;
+  menuPosition?: "left" | "center" | "right";
+  menuType?: "action" | "select";
+  NotificationsCard?: NotificationsCardProps & {
+    /** Optional custom icon color for NotificationsCard */
+    iconColor?: string;
+  };
   thumbnail?: Omit<ThumbnailProps, "className">;
 }
 
@@ -117,27 +136,30 @@ const getNotificationsCardProps = (
     secondReporter,
     secondReason,
     secondReportDate,
+    showBorder = true,
+    ...restProps
   } = baseProps;
 
   if (isSecondReport && (secondReporter || secondReason)) {
     return {
+      ...restProps,
       icon,
-      title: title || "",
-      description: `Second Report by ${secondReporter || "Unknown"}`,
+      title: secondReporter || "",
+      description: secondReason || "",
       date: secondReportDate || date || "",
-      variant: "inline" as const,
-      inlineContent: [`Reason: ${secondReason || "Not specified"}`],
       borderVariant: "error" as const,
+      showBorder,
     };
   }
 
   return {
+    ...restProps,
     icon,
     title: title || "",
     description: description || "",
     date: date || "",
-    variant: "inline" as const,
     borderVariant: "error" as const,
+    showBorder,
   };
 };
 
@@ -160,51 +182,43 @@ export const CellContent: React.FC<CellContentProps> = ({
   chip,
   badge,
   avatar,
-  inlineContent,
-  date,
+  thumbnail,
+  iconButton,
   icon,
-  useNotificationsCard,
-  NotificationsCard: NotificationsCardProps,
+  NotificationsCard,
 }) => {
-  if (NotificationsCardProps) {
+  if (NotificationsCard) {
     return (
-      <div className="flex flex-col gap-2 w-full">
-        <NotificationsCard
-          {...getNotificationsCardProps(NotificationsCardProps)}
-          className="w-full"
+      <div className="flex flex-col gap-0 w-full border border-surface-caution rounded-sm">
+        {/* <div className="text-label-s text-content">Reports</div> */}
+        <NotificationsCardBasic
+          {...getNotificationsCardProps(NotificationsCard)}
+          className="w-auto"
+          showBorder={false}
+          iconColor={NotificationsCard.iconColor}
         />
-        {(NotificationsCardProps.secondReporter ||
-          NotificationsCardProps.secondReason) && (
-          <NotificationsCard
-            {...getNotificationsCardProps(NotificationsCardProps, true)}
-            className="w-full"
+        {(NotificationsCard.secondReporter ||
+          NotificationsCard.secondReason) && (
+          <NotificationsCardBasic
+            {...getNotificationsCardProps(NotificationsCard, true)}
+            className="w-auto"
+            showBorder={false}
+            iconColor={NotificationsCard.iconColor}
           />
         )}
       </div>
     );
   }
 
-  // If useNotificationsCard is true, use NotificationsCard inline variant
-  if (useNotificationsCard && inlineContent && date && icon) {
-    return (
-      <NotificationsCard
-        title={title || ""}
-        icon={icon}
-        inlineContent={inlineContent}
-        date={date}
-        variant="inline"
-        description=""
-        borderVariant="error"
-      />
-    );
-  }
-
   return (
     <div className="flex flex-col gap-0">
       {avatar !== null && avatar && <Avatar {...avatar} />}
+      {thumbnail && <Thumbnail {...thumbnail} />}
       <CellTitle title={title} description={description} />
       {chip && <CellChip chip={chip} />}
       {badge && <Badge {...badge} />}
+      {iconButton && <IconButton {...iconButton} />}
+      {icon && <div className="text-body-s text-content">{icon}</div>}
     </div>
   );
 };

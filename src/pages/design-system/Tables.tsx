@@ -359,20 +359,22 @@ const Tables = () => {
                     isFirst
                     isLast
                   >
-                    <CellContent NotificationsCard={{
+                    <CellContent
+                      NotificationsCard={{
                         title: "Team Details",
                         description: "Lag Fotboll, Herr, Senior",
                         icon: "info",
                         date: "Yesterday",
-                        variant: "inline"
-                      }} />
+                        // variant: "inline"
+                      }}
+                    />
                   </TableCell>
                 </GridTableRow>
               </Card>
 
               {/* Code Block for Inline Notifications Cell */}
-              <CodeBlock 
-                language="typescript" 
+              <CodeBlock
+                language="typescript"
                 code={`<TableCell>
   <CellContent NotificationsCard={{
     title: "Team Details",
@@ -381,7 +383,7 @@ const Tables = () => {
     date: "Yesterday",
     variant: "inline"
   }} />
-</TableCell>`} 
+</TableCell>`}
               />
             </div>
           </SectionCard>

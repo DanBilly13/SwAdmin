@@ -1,5 +1,10 @@
 import React from "react";
-import { Avatar, Thumbnail, SectionCard, PageTitle } from "../../components/atoms";
+import {
+  Avatar,
+  Thumbnail,
+  SectionCard,
+  PageTitle,
+} from "../../components/atoms";
 import Icon from "../../components/atoms/Icon";
 import { DesignSystemContentContainerSlots } from "../../components/atoms/ContentContainerSlots/DesignSystemContentContainerSlots";
 import { MainContentHead } from "../../components/molecules/MainContentHead/MainContentHead";
@@ -43,7 +48,9 @@ const Images = () => {
           <SectionCard title="Avatars">
             {/* Basic */}
             <div>
-              <h3 className="text-title-s text-content-secondary mb-4">Basic</h3>
+              <h3 className="text-title-s text-content-secondary mb-4">
+                Basic
+              </h3>
               <div className="flex flex-wrap gap-4 items-center">
                 <Avatar size="xsm" />
                 <Avatar size="sm" />
@@ -54,7 +61,9 @@ const Images = () => {
 
             {/* With Initials */}
             <div className="mt-8">
-              <h3 className="text-title-s text-content-secondary mb-4">With Initials</h3>
+              <h3 className="text-title-s text-content-secondary mb-4">
+                With Initials
+              </h3>
               <div className="flex flex-wrap gap-4 items-center">
                 <Avatar size="xsm" name="John Doe" />
                 <Avatar size="sm" name="Jane Smith" />
@@ -65,7 +74,9 @@ const Images = () => {
 
             {/* With Badge */}
             <div className="mt-8">
-              <h3 className="text-title-s text-content-secondary mb-4">With Badge</h3>
+              <h3 className="text-title-s text-content-secondary mb-4">
+                With Badge
+              </h3>
               <div className="flex flex-wrap gap-4 items-center">
                 <Avatar size="xsm" badge={{ variant: "success", icon: true }} />
                 <Avatar size="sm" badge={{ variant: "warning", icon: true }} />
@@ -79,7 +90,9 @@ const Images = () => {
           <SectionCard title="Thumbnails">
             {/* Basic */}
             <div>
-              <h3 className="text-title-s text-content-secondary mb-4">Basic</h3>
+              <h3 className="text-title-s text-content-secondary mb-4">
+                Basic
+              </h3>
               <div className="flex items-center gap-4">
                 <Thumbnail size="xsm" />
                 <Thumbnail size="sm" />
@@ -90,7 +103,9 @@ const Images = () => {
 
             {/* With Video Indicator */}
             <div className="mt-8">
-              <h3 className="text-title-s text-content-secondary mb-4">With Video Indicator</h3>
+              <h3 className="text-title-s text-content-secondary mb-4">
+                With Video Indicator
+              </h3>
               <div className="flex items-center gap-4">
                 <Thumbnail size="xsm" isVideo />
                 <Thumbnail size="sm" isVideo />
@@ -101,7 +116,9 @@ const Images = () => {
 
             {/* With Icon */}
             <div className="mt-8">
-              <h3 className="text-title-s text-content-secondary mb-4">With Icon</h3>
+              <h3 className="text-title-s text-content-secondary mb-4">
+                With Icon
+              </h3>
               <div className="flex items-center gap-4">
                 <Thumbnail size="xsm" type="icon" icon="image" />
                 <Thumbnail size="sm" type="icon" icon="video_library" />
@@ -115,7 +132,9 @@ const Images = () => {
           <SectionCard title="Team Badges">
             {/* Basic */}
             <div>
-              <h3 className="text-title-s text-content-secondary mb-4">Basic</h3>
+              <h3 className="text-title-s text-content-secondary mb-4">
+                Basic
+              </h3>
               <div className="flex items-center gap-4">
                 <Thumbnail size="xsm" type="teamBadge" />
                 <Thumbnail size="sm" type="teamBadge" />
@@ -126,7 +145,9 @@ const Images = () => {
 
             {/* Disabled */}
             <div className="mt-8">
-              <h3 className="text-title-s text-content-secondary mb-4">Disabled</h3>
+              <h3 className="text-title-s text-content-secondary mb-4">
+                Disabled
+              </h3>
               <div className="flex items-center gap-4">
                 <Thumbnail size="xsm" type="teamBadge" disabled />
                 <Thumbnail size="sm" type="teamBadge" disabled />
@@ -140,7 +161,9 @@ const Images = () => {
           <SectionCard title="Icons">
             {/* Basic */}
             <div>
-              <h3 className="text-title-s text-content-secondary mb-4">Basic</h3>
+              <h3 className="text-title-s text-content-secondary mb-4">
+                Basic
+              </h3>
               <div className="flex flex-wrap gap-4 items-center">
                 <Icon name="home" size="xsm" />
                 <Icon name="home" size="sm" />
@@ -151,19 +174,23 @@ const Images = () => {
 
             {/* Different Icons */}
             <div className="mt-8">
-              <h3 className="text-title-s text-content-secondary mb-4">Different Icons</h3>
+              <h3 className="text-title-s text-content-secondary mb-4">
+                Different Icons
+              </h3>
               <div className="flex flex-wrap gap-4 items-center">
-                <Icon name="home" />
-                <Icon name="settings" />
-                <Icon name="person" />
-                <Icon name="mail" />
-                <Icon name="favorite" />
+                <Icon name="home" color="text-content-success" />
+                <Icon name="settings" color="text-content-secondary" />
+                <Icon name="person" color="text-content-tertiary" />
+                <Icon name="mail" color="text-primary" />
+                <Icon name="favorite" color="text-error" />
               </div>
             </div>
 
             {/* Fill Variations */}
             <div className="mt-8">
-              <h3 className="text-title-s text-content-secondary mb-4">Fill Variations</h3>
+              <h3 className="text-title-s text-content-secondary mb-4">
+                Fill Variations
+              </h3>
               <div className="flex flex-wrap gap-4 items-center">
                 <Icon name="favorite" fill={0} color="text-content" />
                 <Icon name="favorite" fill={1} color="text-content" />
@@ -176,7 +203,9 @@ const Images = () => {
 
             {/* Weight Variations */}
             <div className="mt-8">
-              <h3 className="text-title-s text-content-secondary mb-4">Weight Variations</h3>
+              <h3 className="text-title-s text-content-secondary mb-4">
+                Weight Variations
+              </h3>
               <div className="flex flex-wrap gap-4 items-center">
                 <Icon name="home" weight={100} color="text-content" />
                 <Icon name="home" weight={300} color="text-content" />
@@ -187,7 +216,9 @@ const Images = () => {
 
             {/* Colors */}
             <div className="mt-8">
-              <h3 className="text-title-s text-content-secondary mb-4">Colors</h3>
+              <h3 className="text-title-s text-content-secondary mb-4">
+                Colors
+              </h3>
               <div className="flex flex-wrap gap-4 items-center">
                 <Icon name="star" fill={1} color="text-content" />
                 <Icon name="star" fill={1} color="text-content-secondary" />

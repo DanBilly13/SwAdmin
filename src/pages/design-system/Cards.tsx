@@ -7,6 +7,7 @@ import { LinkCard } from "../../components/molecules/LinkCard";
 import { IconButton } from "../../components/atoms";
 import { Modal } from "../../components/atoms";
 import { NotificationsCard } from "../../components/molecules/NotificationsCard";
+import { NotificationsCardBasic } from "../../components/molecules/NotificationsCard/NotificationsCardBasic";
 
 const Cards = () => {
   const { toggleDrawer } = useDrawerControl();
@@ -369,6 +370,48 @@ const Cards = () => {
                     date="2 hours ago"
                     variant="inline"
                     borderVariant="success"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-title-s text-content-secondary mb-4">
+                  Basic Notifications Card
+                </h3>
+                <div className="space-y-4">
+                  <NotificationsCardBasic
+                    icon="warning"
+                    title="Default Border"
+                    description="Standard notification with default border"
+                    date="2 hours ago"
+                  />
+                  <NotificationsCardBasic
+                    icon="warning"
+                    title="Caution Border"
+                    description="Notification with caution border"
+                    date="2 hours ago"
+                    borderVariant="caution"
+                  />
+                  <NotificationsCardBasic
+                    icon="error"
+                    title="Error Border"
+                    description="Notification with error border"
+                    date="2 hours ago"
+                    borderVariant="error"
+                  />
+                  <NotificationsCardBasic
+                    icon="check_circle"
+                    title="Success Border"
+                    description="Notification with success border"
+                    date="2 hours ago"
+                    borderVariant="success"
+                  />
+                  <NotificationsCardBasic
+                    icon="info"
+                    title="No Border"
+                    description="Notification without border"
+                    date="2 hours ago"
+                    showBorder={false}
                   />
                 </div>
               </div>

@@ -16,6 +16,8 @@ export interface NotificationsCardProps {
   variant?: "stacked" | "inline";
   /** Border variant for the card */
   borderVariant?: "default" | "caution" | "error" | "success";
+  /** Whether to show the border */
+  showBorder?: boolean;
   /** Additional inline content for inline variant */
   inlineContent?: string[];
   /** Optional className for styling */
@@ -34,13 +36,25 @@ export const NotificationsCard: React.FC<NotificationsCardProps> = ({
   onClick,
   variant = "stacked",
   borderVariant = "default",
+  showBorder = true,
   className,
 }) => {
+  console.log('NotificationsCard Props:', {
+    icon,
+    title,
+    description,
+    date,
+    variant,
+    borderVariant,
+    showBorder,
+    className
+  });
+
   const borderVariantClasses = {
     default: "border-border",
     caution: "border-border-caution",
-    error: "border-border-error", 
-    success: "border-border-success"
+    error: "border-border-error",
+    success: "border-border-success",
   };
 
   const containerClasses = {
@@ -52,21 +66,21 @@ export const NotificationsCard: React.FC<NotificationsCardProps> = ({
       hover:bg-gray-50 
       transition-colors 
       cursor-pointer
-      border
-      ${borderVariantClasses[borderVariant]}
+      ${showBorder ? "border" : ""}
+      ${showBorder ? borderVariantClasses[borderVariant] : ""}
       w-full      
     `,
     inline: `
       flex sm:items-center
-      px-2 
-      py-2
-      bg-white 
+      px-1 
+      py-1
+      bg-surface
       rounded-lg 
       hover:bg-gray-50 
       transition-colors 
       cursor-pointer
-      border
-      ${borderVariantClasses[borderVariant]}
+      ${showBorder ? "border" : ""}
+      ${showBorder ? borderVariantClasses[borderVariant] : ""}
       w-full
       h-full
     `,
@@ -74,12 +88,12 @@ export const NotificationsCard: React.FC<NotificationsCardProps> = ({
 
   const contentClasses = {
     stacked: "flex-col gap-2",
-    inline: "flex-col sm:flex-row sm:items-center gap-2",
+    inline: "flex-col sm:flex-row sm:items-center gap-x-1",
   };
 
   const iconContainerClasses = {
     stacked: "mr-4 flex items-center",
-    inline: "mr-2 flex items-center",
+    inline: "mr-1 flex items-center",
   };
 
   const iconSizeClasses = {
@@ -107,7 +121,7 @@ export const NotificationsCard: React.FC<NotificationsCardProps> = ({
       <div className={`flex-1 flex ${contentClasses[variant]}`}>
         <div className="text-label-m text-content">{title}</div>
         <div className="text-body-s text-content-secondary">{description}</div>
-        <div className="text-body-s text-content-tertiary ">{date}</div>
+        <div className="text-body-s text-content-secondary">{date}</div>
       </div>
     </div>
   );
