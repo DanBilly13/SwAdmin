@@ -19,7 +19,7 @@ export const GridTableRow: React.FC<GridTableRowProps> = ({
         "grid grid-cols-16",
         // "grid gap-0 md:gap-4", // No gap on mobile, 16px gap on md and up
         // "grid-cols-16", // Default 16 columns for all breakpoints
-        hasBorder && "border-b border-border",
+        hasBorder && "border-b border-content-tertiary",
         className
       )}
     >

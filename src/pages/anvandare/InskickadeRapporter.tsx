@@ -251,9 +251,9 @@ const columns: ColumnDefinition[] = [
 const InskickadeRapporter = () => {
   const { toggleDrawer } = useDrawerControl();
   const [searchValue, setSearchValue] = React.useState("");
-  const [roleFilter, setRoleFilter] = React.useState("all");
-  const [seasonFilter, setSeasonFilter] = React.useState("all");
-  const [sourceFilter, setSourceFilter] = React.useState("all");
+  const [roleFilter, setRoleFilter] = React.useState("alla");
+  const [seasonFilter, setSeasonFilter] = React.useState("alla");
+  const [sourceFilter, setSourceFilter] = React.useState("alla");
 
   return (
     <ContentContainerSlots
@@ -277,32 +277,40 @@ const InskickadeRapporter = () => {
         <FilterAndSearch
           filters={[
             {
-              label: "Roll",
+              label: "Date",
               value: roleFilter,
               onChange: setRoleFilter,
               options: [
-                { value: "all", label: "All" },
-                { value: "staff", label: "Staff" },
-                { value: "spelare", label: "Spelare" },
-                { value: "guardian", label: "Guardian" },
+                { value: "alla", label: "All" },
+                { value: "last 24 hrs", label: "Last 24 hrs" },
+                { value: "last 7 days", label: "Last 7 days" },
+                { value: "last 4 weeks", label: "Last 4 weeks" },
+                { value: "last 3 months", label: "Last 3 months" },
+                { value: "custom", label: "Custom" },
               ],
             },
             {
-              label: "Säsong",
+              label: "Type",
               value: seasonFilter,
               onChange: setSeasonFilter,
               options: [
-                { value: "all", label: "All" },
-                { value: "2023-2024", label: "2023-2024" },
+                { value: "alla", label: "All" },
+                { value: "video", label: "Video" },
+                { value: "image", label: "Image" },
+                { value: "Comment", label: "Comment" },
               ],
             },
             {
-              label: "Källa",
+              label: "Status",
               value: sourceFilter,
               onChange: setSourceFilter,
               options: [
-                { value: "all", label: "All" },
-                { value: "fogis", label: "Fogis" },
+                { value: "alla", label: "Alla" },
+                { value: "auto borttaget", label: "Auto borttaget" },
+                { value: "borttagna", label: "Borttagna" },
+                { value: "publicerade", label: "Publicerade" },
+                { value: "anmälan avfärdad", label: "Anmälan avfärdad" },
+                { value: "återställda", label: "Återställda" },
               ],
             },
           ]}
@@ -323,9 +331,9 @@ const InskickadeRapporter = () => {
                   className={classNames(
                     getColumnSpanClasses(column.span),
                     column.className,
-                    "flex items-center gap-4",
+                    "hidden md:flex items-center gap-4",
                     (column.header === "Blank" || column.header === "Report") &&
-                      "text-transparent md:select-none h-0 pb-0"
+                      "text-transparent md:select-none h-0 !pb-0"
                   )}
                   isLast={index === columns.length - 1}
                 >

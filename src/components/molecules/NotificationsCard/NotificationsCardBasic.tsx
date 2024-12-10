@@ -46,10 +46,10 @@ export const NotificationsCardBasic: React.FC<NotificationsCardBasicProps> = ({
 
   const containerClasses = `
     flex flex-row items-start sm:items-center
-    px-1 
-    py-1
+    px-1 sm: px-0.5
+    py-1 sm: px-0.5
     bg-surface
-    rounded-lg 
+    rounded-sm 
 
     ${showBorder ? "border" : ""}
     ${showBorder ? borderVariantClasses[borderVariant] : ""}
@@ -74,16 +74,16 @@ export const NotificationsCardBasic: React.FC<NotificationsCardBasicProps> = ({
       </div>
       <div className={`flex ${contentClasses}`}>
         <div className="flex flex-col sm:flex-row sm:items-center gap-x-2 w-full">
-          <span className="text-body-s text-content font-medium text-left sm:text-left whitespace-nowrap truncate">
+          <span className="text-body-s text-content font-medium text-left">
             {title}
           </span>
           {description && (
-            <span className="text-body-s text-content-secondary text-left sm:text-left whitespace-nowrap truncate">
+            <span className="text-body-s italic text-content-secondary text-left">
               {description}
             </span>
           )}
           {date && (
-            <span className="text-body-s text-content-tertiary text-left sm:text-left whitespace-nowrap truncate">
+            <span className="text-body-s text-content-tertiary text-left">
               {date}
             </span>
           )}

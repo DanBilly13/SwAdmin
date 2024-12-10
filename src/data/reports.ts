@@ -15,7 +15,7 @@ export interface Report {
   secondReason?: string;
   secondReportDate?: string;
   date: string;
-  status: "Anmälan avfärdad" | "Inlägg Borttaget";
+  status: "Anmälan avfärdad" | "Inlägg Borttaget" | "Auto Borttaget";
   statusDate: string;
   isVideo?: boolean;
 }
@@ -34,7 +34,7 @@ export const reports: Report[] = [
     secondReason: "Vidrigt beteende",
     secondReportDate: "Nov 10, 16:58",
     date: "Nov 10, 16:58",
-    status: "Anmälan avfärdad",
+    status: "Auto Borttaget",
     statusDate: "Nov 12 2024",
     isVideo: false,
   },

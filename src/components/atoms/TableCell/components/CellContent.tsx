@@ -189,7 +189,7 @@ export const CellContent: React.FC<CellContentProps> = ({
 }) => {
   if (NotificationsCard) {
     return (
-      <div className="flex flex-col gap-0 w-full border border-surface-caution rounded-sm">
+      <div className="flex flex-col gap-0 w-full border border-border rounded-sm">
         {/* <div className="text-label-s text-content">Reports</div> */}
         <NotificationsCardBasic
           {...getNotificationsCardProps(NotificationsCard)}
