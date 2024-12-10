@@ -109,7 +109,7 @@ const getTableCellClasses = (
   const isLastResponsive = typeof isLast === "object" ? isLast : {};
 
   return classNames(
-    "flex items-center min-h-[40px]",
+    "flex items-center",
     {
       // Alignment classes
       "justify-start text-left": align === "left",

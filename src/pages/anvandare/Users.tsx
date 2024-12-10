@@ -194,6 +194,7 @@ const Users = () => {
                 <TableCell
                   key={index}
                   align={column.align}
+                  variant="header"
                   className={classNames(
                     getColumnSpanClasses(column.span),
                     column.className,

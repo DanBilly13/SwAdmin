@@ -322,7 +322,9 @@ const InskickadeRapporter = () => {
                   className={classNames(
                     getColumnSpanClasses(column.span),
                     column.className,
-                    "flex items-center gap-4"
+                    "flex items-center gap-4",
+                    (column.header === "Blank" || column.header === "Report") &&
+                      "md:text-transparent md:select-none h-0 pb-0"
                   )}
                   isFirst={index === 0}
                   isLast={index === columns.length - 1}
