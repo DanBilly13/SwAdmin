@@ -142,7 +142,6 @@ const Tables = () => {
                       getColumnSpanClasses(fullWidthSpan),
                       "flex items-center gap-4"
                     )}
-                    isFirst
                     isLast
                   />
                 </GridTableRow>
@@ -171,7 +170,6 @@ const Tables = () => {
                       getColumnSpanClasses(fullWidthSpan),
                       "flex items-center gap-4"
                     )}
-                    isFirst
                     isLast
                   />
                 </GridTableRow>
@@ -201,7 +199,6 @@ const Tables = () => {
                       getColumnSpanClasses(fullWidthSpan),
                       "flex items-center gap-4"
                     )}
-                    isFirst
                     isLast
                   />
                 </GridTableRow>
@@ -224,7 +221,6 @@ const Tables = () => {
                       getColumnSpanClasses(fullWidthSpan),
                       "flex items-center gap-4"
                     )}
-                    isFirst
                     isLast
                   />
                 </GridTableRow>
@@ -248,7 +244,6 @@ const Tables = () => {
                       getColumnSpanClasses(fullWidthSpan),
                       "flex items-center gap-4"
                     )}
-                    isFirst
                     isLast
                   />
                 </GridTableRow>
@@ -272,7 +267,6 @@ const Tables = () => {
                       getColumnSpanClasses(fullWidthSpan),
                       "flex items-center gap-4"
                     )}
-                    isFirst
                     isLast
                   />
                 </GridTableRow>
@@ -356,7 +350,6 @@ const Tables = () => {
                       getColumnSpanClasses(fullWidthSpan),
                       "flex items-center gap-4"
                     )}
-                    isFirst
                     isLast
                   >
                     <CellContent

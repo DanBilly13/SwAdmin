@@ -233,6 +233,7 @@ const columns: ColumnDefinition[] = [
       lg: 2,
     },
     align: "right" as const,
+    className: "pr-0",
   },
   {
     header: "Blank",
@@ -324,9 +325,8 @@ const InskickadeRapporter = () => {
                     column.className,
                     "flex items-center gap-4",
                     (column.header === "Blank" || column.header === "Report") &&
-                      "md:text-transparent md:select-none h-0 pb-0"
+                      "text-transparent md:select-none h-0 pb-0"
                   )}
-                  isFirst={index === 0}
                   isLast={index === columns.length - 1}
                 >
                   {column.header}
@@ -360,7 +360,6 @@ const InskickadeRapporter = () => {
                         "justify-end": columns[cellIndex].align === "right",
                       }
                     )}
-                    isFirst={first}
                     isLast={last}
                     title={cell.title}
                     description={cell.description || cell.date}

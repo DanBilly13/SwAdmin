@@ -35,7 +35,7 @@ interface TableRowData {
 
 // Filter users to only show those being followed (you might want to adjust this logic)
 const tableData: TableRowData[] = users
-  .filter(user => user.account === "Active")
+  .filter((user) => user.account === "Active")
   .map((user) => ({
     id: user.id,
     content: [
@@ -110,8 +110,8 @@ const Foljande = () => {
         onMenuClick={toggleDrawer}
       />
 
-      <PageTitle 
-        title="Följande" 
+      <PageTitle
+        title="Följande"
         description="Hantera dina följande användare"
       />
 
@@ -128,7 +128,6 @@ const Foljande = () => {
                     column.className,
                     "flex items-center gap-4"
                   )}
-                  isFirst={index === 0}
                   isLast={index === columns.length - 1}
                 >
                   {column.header}
@@ -159,10 +158,9 @@ const Foljande = () => {
                       columns[cellIndex].className,
                       "flex items-center gap-4",
                       {
-                        "justify-end": columns[cellIndex].align === "right"
+                        "justify-end": columns[cellIndex].align === "right",
                       }
                     )}
-                    isFirst={first}
                     isLast={last}
                     title={cell.value}
                     description={cell.description}

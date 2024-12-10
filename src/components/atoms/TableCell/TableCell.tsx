@@ -13,7 +13,6 @@ import { CellContent } from "./components/CellContent";
  * These types control the appearance and behavior of table cells
  */
 type TableCellAlign = "left" | "center" | "right"; // Controls text and content alignment
-type TableCellPadding = "normal"; // Controls cell padding
 type TableCellVariant = "body" | "header" | "footer"; // Different cell styles based on position
 type TableSortDirection = "ascending" | "descending" | "none" | false; // For sortable columns
 
@@ -33,10 +32,8 @@ interface ResponsiveBoolean {
 interface TableCellBaseProps {
   className?: string;
   align?: TableCellAlign;
-  padding?: TableCellPadding;
   variant?: TableCellVariant;
   sortDirection?: TableSortDirection;
-  isFirst?: boolean | ResponsiveBoolean; // Is this the first cell in its wrapped row?
   isLast?: boolean | ResponsiveBoolean; // Is this the last cell in its wrapped row?
   isTopRow?: boolean; // Is this cell in the first row of the table?
 }
@@ -88,42 +85,27 @@ type TableCellProps = TableCellSimpleProps | TableCellStructuredProps;
  */
 const getTableCellClasses = (
   align: TableCellAlign = "left",
-  padding: TableCellPadding = "normal",
   variant: TableCellVariant = "body",
-  isFirst: boolean | ResponsiveBoolean = false,
   isLast: boolean | ResponsiveBoolean = false,
   isTopRow: boolean = false,
   className?: string
 ) => {
-  // Handle isFirst/isLast values for mobile-first approach
-  // If the value is a boolean, use it directly
-  // If it's a ResponsiveBoolean object, use the sm breakpoint value
-  // This ensures mobile layout uses sm breakpoint values for first/last detection
-  const isFirstBool =
-    typeof isFirst === "boolean" ? isFirst : isFirst?.sm || false;
-  const isLastBool = typeof isLast === "boolean" ? isLast : isLast?.sm || false;
-
-  // For md/lg breakpoints, if the value is a ResponsiveBoolean object, use it
-  // Otherwise create an empty object (no responsive overrides)
-  const isFirstResponsive = typeof isFirst === "object" ? isFirst : {};
-  const isLastResponsive = typeof isLast === "object" ? isLast : {};
+  const isLastBool = typeof isLast === 'object' ? true : isLast === true;
 
   return classNames(
     "flex items-center",
     {
-      // Alignment classes
       "justify-start text-left": align === "left",
       "justify-center text-center": align === "center",
       "justify-end text-right": align === "right",
 
-      // Mobile-First Base Padding
-      // All cells get bottom padding only
-      "pb-4": padding === "normal",
-      // Horizontal padding - no left padding, right padding except for last cell
-      "pl-0 pr-4": padding === "normal" && !isLastBool,
-      "px-0": padding === "normal" && isLastBool,
+      "pb-4": true,
+      "pl-0": true, // All cells have no left padding
+      
+      // Right padding - only apply if not last
+      "pr-4": !isLastBool,
+      "pr-0": isLastBool,
 
-      // Variant-specific styles
       "text-label-s bg-surface-secondary": variant === "header",
       "border-t border-border": variant === "footer",
     },
@@ -260,22 +242,17 @@ const StructuredContent: React.FC<TableCellStructuredProps> = ({
 const TableCell: React.FC<TableCellProps> = (props) => {
   const {
     align = "left",
-    padding = "normal",
     variant = "body",
     className,
     sortDirection,
-    isFirst = false,
     isLast = false,
     isTopRow = false,
-    ...rest
   } = props;
 
   // Get base classes for the cell
   const cellClasses = getTableCellClasses(
     align,
-    padding,
     variant,
-    isFirst,
     isLast,
     isTopRow,
     className
@@ -288,10 +265,10 @@ const TableCell: React.FC<TableCellProps> = (props) => {
   // Render either simple content (children) or structured content
   return (
     <div className={cellClasses} {...ariaSort}>
-      {"children" in rest ? (
-        rest.children
+      {"children" in props ? (
+        props.children
       ) : (
-        <StructuredContent {...(rest as TableCellStructuredProps)} />
+        <StructuredContent {...(props as TableCellStructuredProps)} />
       )}
     </div>
   );

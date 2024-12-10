@@ -200,7 +200,6 @@ const Users = () => {
                     column.className,
                     "flex items-center gap-4"
                   )}
-                  isFirst={index === 0}
                   isLast={index === columns.length - 1}
                 >
                   {column.header}
@@ -234,7 +233,6 @@ const Users = () => {
                         "justify-end": columns[cellIndex].align === "right",
                       }
                     )}
-                    isFirst={first}
                     isLast={last}
                     title={cell.title}
                     description={cell.description}
