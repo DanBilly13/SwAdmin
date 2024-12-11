@@ -53,7 +53,7 @@ export const GridWithNav: React.FC<GridWithNavProps> = ({
         <nav
           className={classNames(
             "fixed xl:relative h-screen z-[100] xl:z-auto",
-            "w-64 xl:w-auto",
+            "w-80 xl:w-auto",
             "transition-transform duration-300 ease-in-out",
             "top-0 right-0 xl:right-auto",
             "col-span-12 xl:col-span-2 bg-surface",

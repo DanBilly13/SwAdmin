@@ -5,7 +5,8 @@ import { useDrawerControl } from "../../components/templates";
 import { PageTitle } from "../../components/atoms/PageTitle/PageTitle";
 import { Card, TableCell, TableHead } from "../../components/atoms";
 import { GridTableRow } from "../../components/molecules/GridTableRow/GridTableRow";
-import { teams } from "../../data/teams";
+
+import { uploads } from "../../data/uploads";
 import { classNames } from "../../utils/classNames";
 import { FilterAndSearch } from "../../components/molecules/FilterAndSearch/FilterAndSearch";
 import {
@@ -13,24 +14,27 @@ import {
   isFirstInRow,
   isLastInRow,
 } from "../../utils/tableUtils";
-import {
-  Thumbnail,
-  ThumbnailType,
-} from "../../components/atoms/Thumbnail/Thumbnail";
+import { ThumbnailType } from "../../components/atoms/Thumbnail/Thumbnail";
 
 interface TableCellData {
   type: "text" | "image";
   imageType?: "avatar" | "thumbnail";
-  value: string;
+  title?: string;
   description?: string;
   thumbnail?: {
     src: string;
     size: "sm" | "md" | "lg";
     type?: ThumbnailType;
+    isVideo?: boolean;
   };
   badge?: {
     variant: "success" | "error";
     icon: string;
+  };
+  chip?: {
+    children: string;
+    variant: "success" | "error" | "warning" | "info";
+    className?: string;
   };
   iconButton?: {
     icon: string;
@@ -38,6 +42,22 @@ interface TableCellData {
     menuOptions?: { value: string; label: string }[];
     menuPosition?: "left" | "right" | "center";
     menuType?: "action" | "select";
+  };
+  icon?: string;
+  inlineContent?: string[];
+  date?: string;
+  NotificationsCard?: {
+    icon: string;
+    title?: string;
+    description?: string;
+    date: string;
+    variant?: "inline" | "stacked";
+    secondReporter?: string;
+    secondReason?: string;
+    secondReportDate?: string;
+    thirdReporter?: string;
+    thirdReason?: string;
+    thirdReportDate?: string;
   };
 }
 
@@ -58,35 +78,72 @@ interface ColumnDefinition {
   className?: string;
 }
 
-const tableData: TableRowData[] = teams.map((team) => ({
-  id: team.id,
+const getStatusConfig = (
+  status: string
+): {
+  variant: "success" | "error" | "warning" | "info";
+  text: string;
+} => {
+  switch (status) {
+    case "Auto Borttaget":
+      return {
+        variant: "error",
+        text: "Auto Borttaget",
+      };
+    case "Inlägg Borttaget":
+      return {
+        variant: "error",
+        text: "Inlägg Borttaget",
+      };
+    case "Inlägg återställt":
+      return {
+        variant: "warning",
+        text: "Inlägg återställt",
+      };
+    case "Anmälan avfärdad":
+      return {
+        variant: "info",
+        text: "Anmälan avfärdad",
+      };
+    default:
+      return {
+        variant: "info",
+        text: status,
+      };
+  }
+};
+
+const tableData: TableRowData[] = uploads.map((upload) => ({
+  id: upload.id,
   content: [
     {
-      type: "image",
-      imageType: "thumbnail",
-      value: team.klubName,
-      description: `${team.lag} - ${team.kon} - ${team.sport}`,
+      type: "text",
+      title: upload.id.toString(),
+    },
+    {
+      type: "text",
+      title: upload.postAuthor,
+      description: upload.postText,
       thumbnail: {
-        src: team.klubBadge,
-        size: "md",
-        type: "teamBadge",
+        src: upload.thumbnailSrc,
+        size: "lg",
+        isVideo: upload.isVideo,
       },
     },
+
     {
       type: "text",
-      value: team.roll,
+      title: "",
+      chip: {
+        children: upload.status,
+        variant: getStatusConfig(upload.status).variant,
+        className: "whitespace-nowrap",
+      },
     },
+
     {
       type: "text",
-      value: team.sasong,
-    },
-    {
-      type: "text",
-      value: team.kalla,
-    },
-    {
-      type: "text",
-      value: "",
+      title: "",
       iconButton: {
         icon: "more_vert",
         menuOptions: [
@@ -106,63 +163,56 @@ const tableData: TableRowData[] = teams.map((team) => ({
 
 const columns: ColumnDefinition[] = [
   {
-    header: "Klub",
+    header: "id",
     span: {
       xs: 16,
       sm: 16,
-      md: 7,
-      lg: 7,
+      md: 1,
+      lg: 1,
     },
     align: "left" as const,
   },
   {
-    header: "Roll",
+    header: "Post",
     span: {
-      xs: 5,
-      sm: 10,
-      md: 3,
-      lg: 3,
+      xs: 16,
+      sm: 16,
+      md: 11,
+      lg: 11,
     },
     align: "left" as const,
   },
+
   {
-    header: "Säsong",
+    header: "Status",
     span: {
-      xs: 5,
-      sm: 6,
-      md: 3,
-      lg: 3,
-    },
-    align: "left" as const,
-  },
-  {
-    header: "Källa",
-    span: {
-      xs: 5,
-      sm: 10,
+      xs: 8,
+      sm: 8,
       md: 2,
       lg: 2,
     },
     align: "left" as const,
   },
+
   {
-    header: "",
+    header: "Action",
     span: {
-      xs: 1,
-      sm: 6,
-      md: 1,
-      lg: 1,
+      xs: 8,
+      sm: 8,
+      md: 2,
+      lg: 2,
     },
     align: "right" as const,
+    className: "pr-0",
   },
 ];
 
-const Lagroller = () => {
+const InlaggOchKommentarer = () => {
   const { toggleDrawer } = useDrawerControl();
   const [searchValue, setSearchValue] = React.useState("");
-  const [roleFilter, setRoleFilter] = React.useState("all");
-  const [seasonFilter, setSeasonFilter] = React.useState("all");
-  const [sourceFilter, setSourceFilter] = React.useState("all");
+  const [roleFilter, setRoleFilter] = React.useState("alla");
+  const [seasonFilter, setSeasonFilter] = React.useState("alla");
+  const [sourceFilter, setSourceFilter] = React.useState("alla");
 
   return (
     <ContentContainerSlots
@@ -177,7 +227,7 @@ const Lagroller = () => {
             onMenuClick={toggleDrawer}
           />
           <PageTitle
-            title="Inlägg & Kommentarer"
+            title="Inlagg Och Kommentarer"
             description="Hantera användarroller och team"
           />
         </>
@@ -186,32 +236,40 @@ const Lagroller = () => {
         <FilterAndSearch
           filters={[
             {
-              label: "Roll",
+              label: "Date",
               value: roleFilter,
               onChange: setRoleFilter,
               options: [
-                { value: "all", label: "All" },
-                { value: "staff", label: "Staff" },
-                { value: "spelare", label: "Spelare" },
-                { value: "guardian", label: "Guardian" },
+                { value: "alla", label: "All" },
+                { value: "last 24 hrs", label: "Last 24 hrs" },
+                { value: "last 7 days", label: "Last 7 days" },
+                { value: "last 4 weeks", label: "Last 4 weeks" },
+                { value: "last 3 months", label: "Last 3 months" },
+                { value: "custom", label: "Custom" },
               ],
             },
             {
-              label: "Säsong",
+              label: "Type",
               value: seasonFilter,
               onChange: setSeasonFilter,
               options: [
-                { value: "all", label: "All" },
-                { value: "2023-2024", label: "2023-2024" },
+                { value: "alla", label: "All" },
+                { value: "video", label: "Video" },
+                { value: "image", label: "Image" },
+                { value: "Comment", label: "Comment" },
               ],
             },
             {
-              label: "Källa",
+              label: "Status",
               value: sourceFilter,
               onChange: setSourceFilter,
               options: [
-                { value: "all", label: "All" },
-                { value: "fogis", label: "Fogis" },
+                { value: "alla", label: "Alla" },
+                { value: "auto borttaget", label: "Auto borttaget" },
+                { value: "borttagna", label: "Borttagna" },
+                { value: "publicerade", label: "Publicerade" },
+                { value: "anmälan avfärdad", label: "Anmälan avfärdad" },
+                { value: "återställda", label: "Återställda" },
               ],
             },
           ]}
@@ -232,7 +290,9 @@ const Lagroller = () => {
                   className={classNames(
                     getColumnSpanClasses(column.span),
                     column.className,
-                    "flex items-center gap-4"
+                    "hidden md:flex items-center gap-4",
+                    (column.header === "Blank" || column.header === "Report") &&
+                      "text-transparent md:select-none h-0 !pb-0"
                   )}
                   isLast={index === columns.length - 1}
                 >
@@ -268,12 +328,15 @@ const Lagroller = () => {
                       }
                     )}
                     isLast={last}
-                    title={cell.value}
-                    description={cell.description}
+                    title={cell.title}
+                    description={cell.description || cell.date}
                     imageType={cell.imageType}
                     thumbnail={cell.thumbnail}
                     badge={cell.badge}
+                    chip={cell.chip}
                     iconButton={cell.iconButton}
+                    icon={cell.icon as any}
+                    NotificationsCard={cell.NotificationsCard}
                   />
                 );
               })}
@@ -285,4 +348,4 @@ const Lagroller = () => {
   );
 };
 
-export default Lagroller;
+export default InlaggOchKommentarer;
