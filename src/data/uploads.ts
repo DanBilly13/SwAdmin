@@ -27,9 +27,10 @@ export const uploads: Upload[] = [
   {
     id: 78498,
     postType: "video",
-    thumbnailSrc: getAssetPath("avatars/TheRock.jpg"),
+    thumbnailSrc: getAssetPath("thumbnails/Goal.png"),
     postAuthor: "Theo Nott",
-    postText: "Olle Oldaeus är väldigt nervös och bränner sin straff i SEF trophy.",
+    postText:
+      "Olle Oldaeus är väldigt nervös och bränner sin straff i SEF trophy.",
     date: "Nov 5, 12:33",
     status: "Anmälan avfärdad",
     statusDate: "Nov 12 2024",
@@ -73,5 +74,5 @@ export const uploads: Upload[] = [
     date: "Oct 15, 09:45",
     status: "Inlägg Borttaget",
     statusDate: "Nov 12 2024",
-  }
+  },
 ];
