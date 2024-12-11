@@ -46,6 +46,13 @@ interface TableRowData {
   content: TableCellData[];
 }
 
+interface ResponsiveAlign {
+  xs?: "left" | "right" | "center";
+  sm?: "left" | "right" | "center";
+  md?: "left" | "right" | "center";
+  lg?: "left" | "right" | "center";
+}
+
 interface ColumnDefinition {
   header: string;
   span: {
@@ -54,7 +61,7 @@ interface ColumnDefinition {
     md: number;
     lg: number;
   };
-  align: "left" | "right";
+  align: "left" | "right" | "center" | ResponsiveAlign;
   className?: string;
 }
 
@@ -118,28 +125,36 @@ const columns: ColumnDefinition[] = [
   {
     header: "Roll",
     span: {
-      xs: 5,
-      sm: 10,
+      xs: 12,
+      sm: 12,
       md: 3,
       lg: 3,
     },
-    align: "left" as const,
+    align: {
+      xs: "right",
+      md: "left",
+    },
   },
   {
     header: "Säsong",
     span: {
-      xs: 5,
-      sm: 6,
+      xs: 4,
+      sm: 4,
       md: 3,
       lg: 3,
     },
-    align: "left" as const,
+    align: {
+      xs: "right",
+      sm: "right",
+      md: "left",
+    },
+    className: "bg-bg",
   },
   {
     header: "Källa",
     span: {
-      xs: 5,
-      sm: 10,
+      xs: 14,
+      sm: 14,
       md: 2,
       lg: 2,
     },
@@ -148,12 +163,15 @@ const columns: ColumnDefinition[] = [
   {
     header: "",
     span: {
-      xs: 1,
-      sm: 6,
+      xs: 2,
+      sm: 2,
       md: 1,
       lg: 1,
     },
-    align: "right" as const,
+    align: {
+      xs: "right",
+      md: "right",
+    },
   },
 ];
 
@@ -262,10 +280,7 @@ const Lagroller = () => {
                     className={classNames(
                       getColumnSpanClasses(columns[cellIndex].span),
                       columns[cellIndex].className,
-                      "flex items-center gap-4",
-                      {
-                        "justify-end": columns[cellIndex].align === "right",
-                      }
+                      "flex items-center gap-4"
                     )}
                     isLast={last}
                     title={cell.title}

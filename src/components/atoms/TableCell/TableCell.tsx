@@ -27,11 +27,22 @@ interface ResponsiveBoolean {
 }
 
 /**
+ * Responsive alignment interface for properties that can change based on screen size
+ * Example: A cell might be left-aligned on mobile but right-aligned on desktop
+ */
+interface ResponsiveAlign {
+  xs?: TableCellAlign;
+  sm?: TableCellAlign;
+  md?: TableCellAlign;
+  lg?: TableCellAlign;
+}
+
+/**
  * Base props that all table cells share regardless of content type
  */
 interface TableCellBaseProps {
   className?: string;
-  align?: TableCellAlign;
+  align?: TableCellAlign | ResponsiveAlign;
   variant?: TableCellVariant;
   sortDirection?: TableSortDirection;
   isLast?: boolean | ResponsiveBoolean; // Is this the last cell in its wrapped row?
@@ -84,7 +95,7 @@ type TableCellProps = TableCellSimpleProps | TableCellStructuredProps;
  * Handles responsive design, alignment, padding, and variants
  */
 const getTableCellClasses = (
-  align: TableCellAlign = "left",
+  align: TableCellAlign | ResponsiveAlign = "left",
   variant: TableCellVariant = "body",
   isLast: boolean | ResponsiveBoolean = false,
   isTopRow: boolean = false,
@@ -92,13 +103,31 @@ const getTableCellClasses = (
 ) => {
   const isLastBool = typeof isLast === 'object' ? true : isLast === true;
 
+  // Handle responsive alignment
+  const alignClasses = typeof align === 'object' ? {
+    'justify-start text-left': !align.xs && !align.sm && !align.md && !align.lg,
+    'xs:justify-start xs:text-left': align.xs === 'left',
+    'xs:justify-center xs:text-center': align.xs === 'center',
+    'xs:justify-end xs:text-right': align.xs === 'right',
+    'sm:justify-start sm:text-left': align.sm === 'left',
+    'sm:justify-center sm:text-center': align.sm === 'center',
+    'sm:justify-end sm:text-right': align.sm === 'right',
+    'md:justify-start md:text-left': align.md === 'left',
+    'md:justify-center md:text-center': align.md === 'center',
+    'md:justify-end md:text-right': align.md === 'right',
+    'lg:justify-start lg:text-left': align.lg === 'left',
+    'lg:justify-center lg:text-center': align.lg === 'center',
+    'lg:justify-end lg:text-right': align.lg === 'right',
+  } : {
+    'justify-start text-left': align === 'left',
+    'justify-center text-center': align === 'center',
+    'justify-end text-right': align === 'right',
+  };
+
   return classNames(
     "flex items-center",
+    alignClasses,
     {
-      "justify-start text-left": align === "left",
-      "justify-center text-center": align === "center",
-      "justify-end text-right": align === "right",
-
       "pb-4": true,
       "pl-0": true, // All cells have no left padding
       
