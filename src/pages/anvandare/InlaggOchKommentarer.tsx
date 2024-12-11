@@ -127,7 +127,8 @@ const tableData: TableRowData[] = uploads.map((upload) => ({
       thumbnail: {
         src: upload.thumbnailSrc,
         size: "lg",
-        isVideo: upload.isVideo,
+        type: upload.postType === "comment" ? "comment" : "image",
+        isVideo: upload.postType === "video",
       },
     },
 

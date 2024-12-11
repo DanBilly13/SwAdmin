@@ -126,6 +126,19 @@ const Images = () => {
                 <Thumbnail size="lg" type="icon" icon="collections" />
               </div>
             </div>
+
+            {/* Comment Type */}
+            <div className="mt-8">
+              <h3 className="text-title-s text-content-secondary mb-4">
+                Comment Type
+              </h3>
+              <div className="flex items-center gap-4">
+                <Thumbnail size="xsm" type="comment" />
+                <Thumbnail size="sm" type="comment" />
+                <Thumbnail size="md" type="comment" />
+                <Thumbnail size="lg" type="comment" />
+              </div>
+            </div>
           </SectionCard>
 
           {/* Team Badges */}

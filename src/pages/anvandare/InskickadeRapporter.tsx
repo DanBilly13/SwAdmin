@@ -126,7 +126,8 @@ const tableData: TableRowData[] = reports.map((report) => ({
       thumbnail: {
         src: report.thumbnailSrc,
         size: "lg",
-        isVideo: report.isVideo,
+        type: report.postType === "comment" ? "comment" : "image",
+        isVideo: report.postType === "video",
       },
     },
 
