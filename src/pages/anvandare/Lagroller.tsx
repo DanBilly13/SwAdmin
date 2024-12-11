@@ -131,7 +131,7 @@ const columns: ColumnDefinition[] = [
       lg: 3,
     },
     align: {
-      xs: "right",
+      xs: "left",
       md: "left",
     },
   },
@@ -145,7 +145,6 @@ const columns: ColumnDefinition[] = [
     },
     align: {
       xs: "right",
-      sm: "right",
       md: "left",
     },
     className: "bg-bg",

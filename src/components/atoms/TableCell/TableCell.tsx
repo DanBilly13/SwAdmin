@@ -105,10 +105,12 @@ const getTableCellClasses = (
 
   // Handle responsive alignment
   const alignClasses = typeof align === 'object' ? {
-    'justify-start text-left': !align.xs && !align.sm && !align.md && !align.lg,
-    'xs:justify-start xs:text-left': align.xs === 'left',
-    'xs:justify-center xs:text-center': align.xs === 'center',
-    'xs:justify-end xs:text-right': align.xs === 'right',
+    // Base styles (xs breakpoint)
+    'justify-start text-left': align.xs === 'left' || (!align.xs && !align.sm && !align.md && !align.lg),
+    'justify-center text-center': align.xs === 'center',
+    'justify-end text-right': align.xs === 'right',
+    
+    // Responsive styles
     'sm:justify-start sm:text-left': align.sm === 'left',
     'sm:justify-center sm:text-center': align.sm === 'center',
     'sm:justify-end sm:text-right': align.sm === 'right',
