@@ -1,6 +1,6 @@
 import { getAssetPath } from "../utils/paths";
 
-export type PostType = "comment" | "video" | "image";
+export type PostType = "comment" | "video" | "image" | "matchEvent";
 
 export interface Report {
   id: number;
@@ -20,6 +20,18 @@ export interface Report {
 }
 
 export const reports: Report[] = [
+  {
+    id: 78500,
+    postType: "matchEvent",
+    postAuthor: "System",
+    postText: "Matchen avslutad: IFK Göteborg 2 - 1 Malmö FF",
+    firstReporter: "Alexander Sebastian",
+    firstReason: "Felaktigt resultat",
+    firstReportDate: "Nov 10, 17:30",
+    date: "Nov 10, 17:30",
+    status: "Anmälan avfärdad",
+    statusDate: "Nov 12 2024",
+  },
   {
     id: 78499,
     postType: "comment",

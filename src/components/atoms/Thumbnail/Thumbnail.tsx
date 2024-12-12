@@ -4,7 +4,12 @@ import { getAssetPath } from "../../../utils/paths";
 import { Icon } from "../Icon/Icon";
 
 export type ThumbnailSize = "lg" | "md" | "sm" | "xsm";
-export type ThumbnailType = "image" | "teamBadge" | "icon" | "comment";
+export type ThumbnailType =
+  | "image"
+  | "teamBadge"
+  | "icon"
+  | "comment"
+  | "matchEvent";
 
 const sizeClasses: Record<ThumbnailSize, string> = {
   lg: "w-[60px] h-[60px]",
@@ -81,6 +86,15 @@ export const Thumbnail = ({
         <div className="w-full h-full rounded bg-content-tertiary flex items-center justify-center">
           <Icon name="chat" size={iconSize[size]} color="text-white" fill={1} />
         </div>
+      ) : type === "matchEvent" ? (
+        <div className="w-full h-full rounded bg-content-tertiary flex items-center justify-center">
+          <Icon
+            name="scoreboard"
+            size={iconSize[size]}
+            color="text-white"
+            fill={1}
+          />
+        </div>
       ) : type === "icon" ? (
         <div
           className={classNames(
@@ -100,7 +114,7 @@ export const Thumbnail = ({
             src={imgSrc}
             alt={alt}
             onError={handleError}
-            className={classNames("w-full h-full object-cover rounded", {
+            className={classNames("w-full h-full rounded object-cover", {
               "opacity-50": disabled,
             })}
           />

@@ -124,13 +124,16 @@ const tableData: TableRowData[] = reports.map((report) => ({
       title: report.postAuthor,
       description: report.postText,
       thumbnail: {
-        src: report.thumbnailSrc,
+        src: report.thumbnailSrc || "",
         size: "lg",
-        type: report.postType === "comment" ? "comment" : "image",
-        isVideo: report.postType === "video",
+        type: report.postType === "comment" 
+          ? "comment" 
+          : report.postType === "matchEvent"
+          ? "matchEvent"
+          : "image",
+        isVideo: report.postType === "video"
       },
     },
-
     {
       type: "text",
       NotificationsCard: {
