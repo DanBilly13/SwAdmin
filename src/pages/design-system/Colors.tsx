@@ -180,6 +180,12 @@ const Colors = () => {
                 hexCode="#FFFFFF"
               />
               <ColorBlock
+                colorClass="bg-surface-secondary"
+                label="Surface Secondary"
+                tokenName="color-surface-secondary"
+                hexCode="#E2E2E2"
+              />
+              <ColorBlock
                 colorClass="bg-surface-error"
                 label="Surface Error"
                 tokenName="color-surface-error"
