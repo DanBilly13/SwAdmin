@@ -49,6 +49,7 @@ export default {
         },
         surface: {
           DEFAULT: "#FFFFFF", // color-surface
+          secondary: "#E2E2E2", // color-surface-secondary
           error: "#F9DEDC", // color-surface-error
           success: "#C0EECC", // color-surface-success
           caution: "#FFE7C6", // color-surface-caution
