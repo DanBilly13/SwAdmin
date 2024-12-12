@@ -6,6 +6,7 @@ This document tracks the Git commit history of the SwAdmin project, providing in
 ## Recent Changes (December 2024)
 
 ### December 12, 2024
+- `7dd3db4` - feat: add color-surface-secondary to color palette
 - `ea0b18f` - fix: thumbnail type error and display for all post types
 
 ### December 11, 2024
