@@ -5,6 +5,9 @@ This document tracks the Git commit history of the SwAdmin project, providing in
 
 ## Recent Changes (December 2024)
 
+### December 12, 2024
+- `ea0b18f` - fix: thumbnail type error and display for all post types
+
 ### December 11, 2024
 - `538d5a2` - chore: update video thumbnail to use Goal.png
 - `b93dc25` - refactor: update thumbnail types and post type handling
@@ -100,3 +103,4 @@ The most recent changes focus on:
 - Table structure refinements
 - Responsive layout improvements
 - TypeScript type compatibility fixes
+- Thumbnail type error fixes
