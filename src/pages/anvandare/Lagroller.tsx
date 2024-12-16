@@ -41,58 +41,20 @@ interface TableCellData {
     menuPosition?: "left" | "right" | "center";
     menuType?: "action" | "select";
   };
+  accordion?: {
+    label: string;
+    labelTrailing?: string;
+    children?: React.ReactNode;
+    defaultOpen?: boolean;
+    onToggle?: (isOpen: boolean) => void;
+  };
+  className?: string;
 }
 
 interface TableRowData {
   id: string | number;
   content: TableCellData[];
 }
-
-const tableData: TableRowData[] = teams.map((team) => ({
-  id: team.id,
-  content: [
-    {
-      type: "image",
-      imageType: "thumbnail",
-      title: team.klubName,
-      description2: `${team.lag} - ${team.kon} - ${team.sport}`,
-      thumbnail: {
-        src: team.klubBadge,
-        size: "md",
-        type: "teamBadge",
-      },
-    },
-    {
-      type: "text",
-      description2: team.roll,
-    },
-    {
-      type: "text",
-      description2: team.sasong,
-    },
-    {
-      type: "text",
-      description2: team.kalla,
-    },
-    {
-      type: "text",
-      title: "",
-      iconButton: {
-        icon: "more_vert",
-        menuOptions: [
-          { value: "edit", label: "Redigera" },
-          { value: "delete", label: "Ta bort" },
-        ],
-        menuPosition: "right",
-        menuType: "action",
-        onClick: () => {
-          // Add your click handling logic here
-          console.log("Button clicked");
-        },
-      },
-    },
-  ],
-}));
 
 const columns: ColumnDefinition[] = [
   {
@@ -154,14 +116,133 @@ const columns: ColumnDefinition[] = [
       md: "right",
     },
   },
+  {
+    header: "",
+    span: {
+      xs: 16,
+      sm: 16,
+      md: 8,
+      lg: 8,
+    },
+    align: {
+      xs: "left",
+      md: "left",
+    },
+  },
+  {
+    header: "",
+    span: {
+      xs: 16,
+      sm: 16,
+      md: 8,
+      lg: 8,
+    },
+    align: {
+      xs: "left",
+      md: "left",
+    },
+  },
 ];
 
-const Lagroller = () => {
+const Lagroller: React.FC = () => {
   const { toggleDrawer } = useDrawerControl();
   const [searchValue, setSearchValue] = React.useState("");
   const [roleFilter, setRoleFilter] = React.useState("all");
   const [seasonFilter, setSeasonFilter] = React.useState("all");
   const [sourceFilter, setSourceFilter] = React.useState("all");
+  const [expandedRows, setExpandedRows] = React.useState<
+    Record<string | number, boolean>
+  >({});
+
+  const handleAccordionToggle =
+    (rowId: string | number) =>
+    (isOpen: boolean): void => {
+      setExpandedRows((prev) => ({
+        ...prev,
+        [rowId]: isOpen,
+      }));
+      console.log("Accordion toggled for row:", rowId, "isOpen:", isOpen);
+    };
+
+  const createTableData = (): TableRowData[] =>
+    teams.map((team) => ({
+      id: team.id,
+      content: [
+        {
+          type: "image",
+          imageType: "thumbnail",
+          title: team.klubName,
+          description2: `${team.lag} - ${team.kon} - ${team.sport}`,
+          thumbnail: {
+            src: team.klubBadge,
+            size: "md",
+            type: "teamBadge",
+          },
+        },
+        {
+          type: "text",
+          description2: team.roll,
+        },
+        {
+          type: "text",
+          description2: team.sasong,
+        },
+        {
+          type: "text",
+          description2: team.kalla,
+        },
+        {
+          type: "text",
+          title: "",
+          iconButton: {
+            icon: "more_vert",
+            menuOptions: [
+              { value: "edit", label: "Redigera" },
+              { value: "delete", label: "Ta bort" },
+            ],
+            menuPosition: "right",
+            menuType: "action",
+            onClick: () => {
+              console.log("Button clicked");
+            },
+          },
+        },
+        {
+          type: "text",
+          accordion: {
+            label: "Expandable Content",
+            labelTrailing: "2 items",
+            children: (
+              <div className="space-y-2">
+                <div className="text-body-s">First item details</div>
+                <div className="text-body-s">Second item details</div>
+              </div>
+            ),
+            defaultOpen: expandedRows[team.id] || false,
+            onToggle: handleAccordionToggle(team.id),
+          },
+          className: "w-full",
+        },
+        {
+          type: "text",
+          accordion: {
+            label: "Expandable Content",
+            labelTrailing: "2 items",
+            children: (
+              <div className="space-y-2">
+                <div className="text-body-s">First item details</div>
+                <div className="text-body-s">Second item details</div>
+              </div>
+            ),
+            defaultOpen: expandedRows[team.id] || false,
+            onToggle: handleAccordionToggle(team.id),
+          },
+          className: "w-full",
+        },
+      ],
+    }));
+
+  const tableData = createTableData();
 
   return (
     <ContentContainerSlots
@@ -261,7 +342,8 @@ const Lagroller = () => {
                     className={classNames(
                       getColumnSpanClasses(columns[cellIndex].span),
                       columns[cellIndex].className,
-                      "flex items-center gap-4"
+                      "flex items-center gap-4",
+                      cell.accordion ? "w-full" : ""
                     )}
                     isLast={last}
                     title={cell.title}
@@ -271,6 +353,7 @@ const Lagroller = () => {
                     thumbnail={cell.thumbnail}
                     badge={cell.badge}
                     iconButton={cell.iconButton}
+                    accordion={cell.accordion}
                   />
                 );
               })}

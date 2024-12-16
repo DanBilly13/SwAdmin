@@ -109,9 +109,7 @@ export const Accordion: React.FC<AccordionProps> = ({
         </div>
       </div>
       {isOpen && children && (
-        <div className="mt-2 p-3.5 bg-surface-secondary rounded-lg">
-          {children}
-        </div>
+        <div className="mt-2 p-3.5 bg-surface rounded-lg">{children}</div>
       )}
     </div>
   );

@@ -103,6 +103,20 @@ const Tables = () => {
   className="flex items-center gap-4"
 />`;
 
+  const accordionCellCode = `<TableCell
+  accordion={{
+    label: "Expandable Content",
+    labelTrailing: "2 items",
+    children: (
+      <div className="space-y-2">
+        <div className="text-body-s">First item details</div>
+        <div className="text-body-s">Second item details</div>
+      </div>
+    )
+  }}
+  className="flex items-center gap-4"
+/>`;
+
   return (
     <DesignSystemContentContainerSlots
       header={
@@ -409,6 +423,36 @@ const Tables = () => {
                 />
               </GridTableRow>
             </Card>
+          </SectionCard>
+
+          {/* Accordion Cell Example */}
+          <SectionCard title="Accordion Cell">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Card variant="table">
+                <GridTableRow>
+                  <TableCell
+                    accordion={{
+                      label: "Expandable Content",
+                      labelTrailing: "2 items",
+                      children: (
+                        <div className="space-y-2">
+                          <div className="text-body-s">First item details</div>
+                          <div className="text-body-s">Second item details</div>
+                        </div>
+                      )
+                    }}
+                    className={classNames(
+                      getColumnSpanClasses(fullWidthSpan),
+                      "flex items-center gap-4"
+                    )}
+                    isLast
+                  />
+                </GridTableRow>
+              </Card>
+
+              {/* Code Block for Accordion Cell */}
+              <CodeBlock language="typescript" code={accordionCellCode} />
+            </div>
           </SectionCard>
 
           {/* Inline Notifications Cell Example */}

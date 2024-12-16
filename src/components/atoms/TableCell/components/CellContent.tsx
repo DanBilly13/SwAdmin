@@ -6,6 +6,7 @@ import { Dropdown, DropdownProps } from "../../Dropdown/Dropdown";
 import { IconButton } from "../../IconButton/IconButton";
 import { NotificationsCardBasic } from "../../../molecules/NotificationsCard/NotificationsCardBasic";
 import { Thumbnail, ThumbnailProps } from "../../../atoms/Thumbnail/Thumbnail";
+import { Accordion } from "../../Accordion/Accordion";
 
 /**
  * Props for the cell title section
@@ -70,6 +71,7 @@ export interface NotificationsCardProps {
  * @property {React.ReactNode} [icon] - Icon for inline notifications card variant
  * @property {NotificationsCardProps} [NotificationsCard] - Props for the NotificationsCard component
  * @property {ThumbnailProps} [thumbnail] - Props for the Thumbnail component
+ * @property {accordion} [accordion] - Props for the Accordion component
  */
 export interface CellContentProps extends CellTitleProps {
   chip?: Omit<ChipProps, "className">;
@@ -95,6 +97,13 @@ export interface CellContentProps extends CellTitleProps {
     iconColor?: string;
   };
   thumbnail?: Omit<ThumbnailProps, "className">;
+  accordion?: {
+    label: string;
+    labelTrailing?: string;
+    defaultOpen?: boolean;
+    onToggle?: (isOpen: boolean) => void;
+    content?: React.ReactNode;
+  };
 }
 
 /**
@@ -196,43 +205,55 @@ export const CellContent: React.FC<CellContentProps> = ({
   icon,
   NotificationsCard,
   description2,
+  accordion,
 }) => {
   if (NotificationsCard) {
     return (
-      <div className="flex flex-col gap-0 w-full  rounded-sm">
-        {/* <div className="text-label-s text-content">Reports</div> */}
-        <NotificationsCardBasic
-          {...getNotificationsCardProps(NotificationsCard)}
-          className="w-auto"
-          showBorder={false}
-          iconColor={NotificationsCard.iconColor}
-        />
-        {(NotificationsCard.secondReporter ||
-          NotificationsCard.secondReason) && (
-          <NotificationsCardBasic
-            {...getNotificationsCardProps(NotificationsCard, true)}
-            className="w-auto"
-            showBorder={false}
-            iconColor={NotificationsCard.iconColor}
-          />
-        )}
-      </div>
+      <NotificationsCardBasic
+        {...getNotificationsCardProps(NotificationsCard)}
+        className="w-full"
+      />
+    );
+  }
+
+  if (accordion) {
+    return (
+      <Accordion
+        size="sm"
+        variant="primary"
+        label={accordion.label}
+        labelTrailing={accordion.labelTrailing}
+        defaultOpen={accordion.defaultOpen}
+        onToggle={accordion.onToggle}
+      >
+        {accordion.content}
+      </Accordion>
     );
   }
 
   return (
-    <div className="flex flex-col gap-0">
-      {avatar !== null && avatar && <Avatar {...avatar} />}
+    <div className="flex items-center gap-2">
+      {avatar && <Avatar {...avatar} />}
       {thumbnail && <Thumbnail {...thumbnail} />}
-      <CellTitle
-        title={title}
-        description={description}
-        description2={description2}
-      />
-      {chip && <CellChip chip={chip} />}
-      {badge && <Badge {...badge} />}
-      {iconButton && <IconButton {...iconButton} />}
-      {icon && <div className="text-body-s text-content">{icon}</div>}
+      <div className="flex-1 min-w-0">
+        <CellTitle
+          title={title}
+          description={description}
+          description2={description2}
+        />
+        {chip && <CellChip chip={chip} />}
+        {badge && <Badge {...badge} />}
+      </div>
+      {iconButton && (
+        <IconButton
+          icon={iconButton.icon}
+          onClick={iconButton.onClick}
+          menuOptions={iconButton.menuOptions}
+          menuPosition={iconButton.menuPosition}
+          menuType={iconButton.menuType}
+        />
+      )}
+      {icon && icon}
     </div>
   );
 };

@@ -82,6 +82,13 @@ export interface TableCellStructuredProps extends TableCellBaseProps {
     date: string;
     variant?: "inline" | "stacked";
   };
+  accordion?: {
+    label: string;
+    labelTrailing?: string;
+    defaultOpen?: boolean;
+    onToggle?: (isOpen: boolean) => void;
+    content?: React.ReactNode;
+  };
 }
 
 /**

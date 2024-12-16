@@ -7,6 +7,7 @@ import { BadgeProps } from "../Badge/Badge";
 import { IconButton } from "../IconButton/IconButton";
 import { Dropdown, DropdownProps } from "../Dropdown/Dropdown";
 import { CellContent } from "./components/CellContent";
+import { Accordion } from "../Accordion/Accordion";
 
 /**
  * Type definitions for TableCell configuration
@@ -86,6 +87,13 @@ interface TableCellStructuredProps extends TableCellBaseProps {
     date: string;
     variant?: "inline" | "stacked";
   }; // Notifications card config
+  accordion?: {
+    label: string;
+    labelTrailing?: string;
+    children?: React.ReactNode;
+    defaultOpen?: boolean;
+    onToggle?: (isOpen: boolean) => void;
+  }; // Accordion config
 }
 
 // Union type for all possible table cell props
@@ -220,6 +228,7 @@ const StructuredContent: React.FC<TableCellStructuredProps> = ({
   dropdown,
   icon,
   NotificationsCard,
+  accordion,
 }) => {
   // If only chip is present, render it alone
   if (chip && !title && !description && !thumbnail && !avatar) {
@@ -242,6 +251,24 @@ const StructuredContent: React.FC<TableCellStructuredProps> = ({
         icon={icon}
         NotificationsCard={NotificationsCard}
       />
+    );
+  }
+
+  // If accordion is present, use Accordion
+  if (accordion) {
+    return (
+      <div className="w-full">
+        <Accordion
+          size="sm"
+          variant="primary"
+          label={accordion.label}
+          labelTrailing={accordion.labelTrailing}
+          defaultOpen={accordion.defaultOpen}
+          onToggle={accordion.onToggle}
+        >
+          {accordion.children}
+        </Accordion>
+      </div>
     );
   }
 
@@ -290,17 +317,15 @@ const StructuredContent: React.FC<TableCellStructuredProps> = ({
  * - Different content layouts (avatar, thumbnail, simple text)
  * - Accessibility roles
  */
-const TableCell: React.FC<TableCellProps> = (props) => {
-  const {
-    align = "left",
-    variant = "body",
-    className,
-    sortDirection,
-    isLast = false,
-    isTopRow = false,
-  } = props;
-
-  // Get base classes for the cell
+const TableCell: React.FC<TableCellProps> = ({
+  className,
+  align = "left",
+  variant = "body",
+  sortDirection,
+  isLast = false,
+  isTopRow = false,
+  ...props
+}) => {
   const cellClasses = getTableCellClasses(
     align,
     variant,
@@ -309,18 +334,25 @@ const TableCell: React.FC<TableCellProps> = (props) => {
     className
   );
 
-  // Get ARIA attributes for sorting
-  const ariaSortValue = getAriaSortValue(sortDirection);
-  const ariaSort = ariaSortValue ? { "aria-sort": ariaSortValue } : {};
+  if ("children" in props) {
+    return (
+      <div className={classNames(cellClasses, "py-4 px-6")} role="cell">
+        {props.children}
+      </div>
+    );
+  }
 
-  // Render either simple content (children) or structured content
   return (
-    <div className={cellClasses} {...ariaSort}>
-      {"children" in props ? (
-        props.children
-      ) : (
-        <StructuredContent {...(props as TableCellStructuredProps)} />
+    <div
+      className={classNames(
+        cellClasses,
+        "py-4 px-6",
+        props.accordion ? "w-full" : ""
       )}
+      role={variant === "header" ? "columnheader" : "cell"}
+      aria-sort={variant === "header" ? getAriaSortValue(sortDirection) : undefined}
+    >
+      <StructuredContent {...(props as TableCellStructuredProps)} />
     </div>
   );
 };
