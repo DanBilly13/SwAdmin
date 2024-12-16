@@ -5,6 +5,12 @@ This document tracks the Git commit history of the SwAdmin project, providing in
 
 ## Recent Changes (December 2024)
 
+### December 16, 2024
+- `commit-hash` - fix: maintain consistent icon type (string) in TableCell and CellContent components
+  - Fixed type inconsistency between TableCell and CellContent components
+  - Ensured icon property remains as string type throughout the component hierarchy
+  - Resolved type errors in InlaggOchKommentarer component by maintaining consistent typing
+
 ### December 12, 2024
 - `cb0f35d` - docs: add surface-secondary color to design system
 - `7dd3db4` - feat: add color-surface-secondary to color palette
@@ -106,3 +112,4 @@ The most recent changes focus on:
 - Responsive layout improvements
 - TypeScript type compatibility fixes
 - Thumbnail type error fixes
+- Icon type consistency in TableCell and CellContent components
