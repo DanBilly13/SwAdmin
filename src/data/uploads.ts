@@ -9,7 +9,12 @@ export interface Upload {
   postAuthor: string;
   postText: string;
   date: string;
-  status: "Anmälan avfärdad" | "Inlägg Borttaget" | "Auto Borttaget";
+  status:
+    | "Anmälan avfärdad"
+    | "Inlägg Borttaget"
+    | "Auto Borttaget"
+    | "Publicerad"
+    | "none";
   statusDate: string;
 }
 
@@ -18,59 +23,59 @@ export const uploads: Upload[] = [
     id: 78499,
     postType: "comment",
     thumbnailSrc: getAssetPath("avatars/TheRock.jpg"),
-    postAuthor: "Sixten Eklöf",
-    postText: "William Svefors kan ju ta sig i röven",
+    postAuthor: "Alexander Sebastian",
+    postText: "Frisparken för Johannes Nilsson",
     date: "Dec 13, 08:45",
-    status: "Auto Borttaget",
+    status: "Publicerad",
     statusDate: "Dec 13 2024",
   },
   {
     id: 78498,
     postType: "video",
     thumbnailSrc: getAssetPath("thumbnails/Goal.png"),
-    postAuthor: "Theo Nott",
-    postText:
-      "Olle Oldaeus är väldigt nervös och bränner sin straff i SEF trophy.",
+    postAuthor: "Alexander Sebastian",
+    postText: "Vilken match! 🤯 Så spännande!",
     date: "Dec 12, 12:33",
-    status: "Anmälan avfärdad",
+    status: "Publicerad",
     statusDate: "Dec 12 2024",
   },
   {
     id: 78497,
     postType: "comment",
     thumbnailSrc: getAssetPath("avatars/TheRock.jpg"),
-    postAuthor: "Sixten Eklöf",
-    postText: "2-3 Varberg",
+    postAuthor: "Alexander Sebastian",
+    postText: "Så pinsamt dåliga, sluta spela fotboll om ni inte kan bättre",
     date: "Dec 11, 11:28",
-    status: "Anmälan avfärdad",
+    status: "Inlägg Borttaget",
     statusDate: "Dec 11 2024",
   },
   {
     id: 78496,
     postType: "comment",
     thumbnailSrc: getAssetPath("avatars/TheRock.jpg"),
-    postAuthor: "Sixten Eklöf",
+    postAuthor: "Alexander Sebastian",
     postText: "Nej men 2-3 står det nu",
     date: "Dec 10, 18:02",
-    status: "Anmälan avfärdad",
+    status: "Publicerad",
     statusDate: "Dec 10 2024",
   },
   {
     id: 78495,
     postType: "image",
     thumbnailSrc: getAssetPath("avatars/TheRock.jpg"),
-    postAuthor: "Levis Lendgrin",
-    postText: "Den var dälig",
+    postAuthor: "Alexander Sebastian",
+    postText:
+      "Det är viktigt att vi fortsätter stötta laget, oavsett resultat. Det är så vi bygger upp den där vinnarkulturen. Vi är ett lag, både på och utanför planen! 🙏💪",
     date: "Dec 9, 13:33",
-    status: "Anmälan avfärdad",
+    status: "Publicerad",
     statusDate: "Dec 9 2024",
   },
   {
     id: 78494,
     postType: "comment",
     thumbnailSrc: getAssetPath("avatars/TheRock.jpg"),
-    postAuthor: "Sixten Eklöf",
-    postText: "Vad fan är det för fel på dig",
+    postAuthor: "Alexander Sebastian",
+    postText: "Domaren verkar vara köpt, katastrof!",
     date: "Dec 8, 09:45",
     status: "Inlägg Borttaget",
     statusDate: "Dec 8 2024",

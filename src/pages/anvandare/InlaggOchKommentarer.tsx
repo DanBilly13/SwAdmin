@@ -8,6 +8,7 @@ import { GridTableRow } from "../../components/molecules/GridTableRow/GridTableR
 
 import { uploads } from "../../data/uploads";
 import { classNames } from "../../utils/classNames";
+import { getStatusConfig } from "../../utils/statusUtils";
 import { FilterAndSearch } from "../../components/molecules/FilterAndSearch/FilterAndSearch";
 import {
   getColumnSpanClasses,
@@ -79,41 +80,6 @@ interface ColumnDefinition {
   className?: string;
 }
 
-const getStatusConfig = (
-  status: string
-): {
-  variant: "success" | "error" | "warning" | "info";
-  text: string;
-} => {
-  switch (status) {
-    case "Auto Borttaget":
-      return {
-        variant: "error",
-        text: "Auto Borttaget",
-      };
-    case "Inlägg Borttaget":
-      return {
-        variant: "error",
-        text: "Inlägg Borttaget",
-      };
-    case "Inlägg återställt":
-      return {
-        variant: "warning",
-        text: "Inlägg återställt",
-      };
-    case "Anmälan avfärdad":
-      return {
-        variant: "info",
-        text: "Anmälan avfärdad",
-      };
-    default:
-      return {
-        variant: "info",
-        text: status,
-      };
-  }
-};
-
 const tableData: TableRowData[] = uploads.map((upload) => ({
   id: upload.id,
   content: [
@@ -143,7 +109,7 @@ const tableData: TableRowData[] = uploads.map((upload) => ({
       title: "",
       chip: {
         children: upload.status,
-        variant: getStatusConfig(upload.status).variant,
+        variant: getStatusConfig(upload.status)!.variant,
         className: "whitespace-nowrap",
       },
     },
@@ -183,7 +149,7 @@ const columns: ColumnDefinition[] = [
     span: {
       xs: 16,
       sm: 16,
-      md: 10,
+      md: 11,
       lg: 9,
     },
     align: "left" as const,

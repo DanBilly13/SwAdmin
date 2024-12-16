@@ -5,14 +5,6 @@ This document tracks the Git commit history of the SwAdmin project, providing in
 
 ## Recent Changes (December 2024)
 
-### December 17, 2024
-- `commit-hash` - feat: update table layouts and descriptions
-  - Added description2 field to Lagroller table cells for better content organization
-  - Updated InlaggOchKommentarer layout with blank column for improved spacing
-  - Adjusted font weight in TableCell description for better readability
-  - Moved column types to central location for better code organization
-  - Updated responsive grid spans for better mobile layout
-
 ### December 16, 2024
 - `commit-hash` - fix: maintain consistent icon type (string) in TableCell and CellContent components
   - Fixed type inconsistency between TableCell and CellContent components
@@ -121,4 +113,3 @@ The most recent changes focus on:
 - TypeScript type compatibility fixes
 - Thumbnail type error fixes
 - Icon type consistency in TableCell and CellContent components
-- Table layout and description updates

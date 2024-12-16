@@ -7,6 +7,7 @@ import { Card, TableCell, TableHead } from "../../components/atoms";
 import { GridTableRow } from "../../components/molecules/GridTableRow/GridTableRow";
 import { reports } from "../../data/reports";
 import { classNames } from "../../utils/classNames";
+import { getStatusConfig } from "../../utils/statusUtils";
 import { FilterAndSearch } from "../../components/molecules/FilterAndSearch/FilterAndSearch";
 import {
   getColumnSpanClasses,
@@ -78,41 +79,6 @@ interface ColumnDefinition {
   className?: string;
 }
 
-const getStatusConfig = (
-  status: string
-): {
-  variant: "success" | "error" | "warning" | "info";
-  text: string;
-} => {
-  switch (status) {
-    case "Auto Borttaget":
-      return {
-        variant: "error",
-        text: "Auto Borttaget",
-      };
-    case "Inlägg Borttaget":
-      return {
-        variant: "error",
-        text: "Inlägg Borttaget",
-      };
-    case "Inlägg återställt":
-      return {
-        variant: "warning",
-        text: "Inlägg återställt",
-      };
-    case "Anmälan avfärdad":
-      return {
-        variant: "info",
-        text: "Anmälan avfärdad",
-      };
-    default:
-      return {
-        variant: "info",
-        text: status,
-      };
-  }
-};
-
 const tableData: TableRowData[] = reports.map((report) => ({
   id: report.id,
   content: [
@@ -161,11 +127,13 @@ const tableData: TableRowData[] = reports.map((report) => ({
     {
       type: "text",
       title: "",
-      chip: {
-        children: report.status,
-        variant: getStatusConfig(report.status).variant,
-        className: "whitespace-nowrap",
-      },
+      chip: getStatusConfig(report.status)
+        ? {
+            children: report.status,
+            variant: getStatusConfig(report.status)!.variant,
+            className: "whitespace-nowrap",
+          }
+        : undefined,
     },
 
     {

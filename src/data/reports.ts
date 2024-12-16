@@ -15,7 +15,12 @@ export interface Report {
   secondReason?: string;
   secondReportDate?: string;
   date: string;
-  status: "Anmälan avfärdad" | "Inlägg Borttaget" | "Auto Borttaget";
+  status:
+    | "Anmälan avfärdad"
+    | "Inlägg Borttaget"
+    | "Auto Borttaget"
+    | "Publicerad"
+    | "none";
   statusDate: string;
 }
 
@@ -29,7 +34,7 @@ export const reports: Report[] = [
     firstReason: "Felaktigt resultat",
     firstReportDate: "Nov 10, 17:30",
     date: "Nov 10, 17:30",
-    status: "Anmälan avfärdad",
+    status: "Publicerad",
     statusDate: "Nov 12 2024",
   },
   {
@@ -58,7 +63,7 @@ export const reports: Report[] = [
     firstReason: "Vad fan gir han mobbning",
     firstReportDate: "Nov 5, 12:33",
     date: "Nov 5, 12:33",
-    status: "Anmälan avfärdad",
+    status: "Publicerad",
     statusDate: "Nov 12 2024",
   },
   {
@@ -70,7 +75,7 @@ export const reports: Report[] = [
     firstReason: "felaktiga uppgifter angående",
     firstReportDate: "Nov 11, 11:28",
     date: "Nov 11, 11:28",
-    status: "Anmälan avfärdad",
+    status: "Publicerad",
     statusDate: "Nov 12 2024",
   },
   {
@@ -82,7 +87,7 @@ export const reports: Report[] = [
     firstReason: "Vidrigt beteende",
     firstReportDate: "Oct 30, 18:02",
     date: "Oct 30, 18:02",
-    status: "Anmälan avfärdad",
+    status: "Publicerad",
     statusDate: "Nov 12 2024",
   },
   {
@@ -95,7 +100,7 @@ export const reports: Report[] = [
     firstReason: "Inte fin dom kan ej up föra",
     firstReportDate: "Oct 22, 13:33",
     date: "Oct 22, 13:33",
-    status: "Anmälan avfärdad",
+    status: "Publicerad",
     statusDate: "Nov 12 2024",
   },
   {
