@@ -11,10 +11,12 @@ import { Thumbnail, ThumbnailProps } from "../../../atoms/Thumbnail/Thumbnail";
  * Props for the cell title section
  * @property {string} [title] - Main text content
  * @property {string} [description] - Secondary text content
+ * @property {string} [description2] - Additional description text content
  */
 interface CellTitleProps {
   title?: string;
   description?: string;
+  description2?: string;
 }
 
 /**
@@ -65,7 +67,7 @@ export interface NotificationsCardProps {
  * @property {IconButton} [iconButton] - Props for the icon button
  * @property {string[]} [inlineContent] - Content for inline notifications card variant
  * @property {string} [date] - Date for inline notifications card variant
- * @property {string} [icon] - Icon for inline notifications card variant
+ * @property {React.ReactNode} [icon] - Icon for inline notifications card variant
  * @property {NotificationsCardProps} [NotificationsCard] - Props for the NotificationsCard component
  * @property {ThumbnailProps} [thumbnail] - Props for the Thumbnail component
  */
@@ -81,7 +83,7 @@ export interface CellContentProps extends CellTitleProps {
     menuPosition?: "left" | "center" | "right";
     menuType?: "action" | "select";
   };
-  icon?: string;
+  icon?: React.ReactNode;
   onClick?: () => void;
   menuOptions?: Array<{ value: string; label: string }>;
   value?: string;
@@ -98,14 +100,17 @@ export interface CellContentProps extends CellTitleProps {
 /**
  * Renders the title and description text
  */
-const CellTitle: React.FC<CellTitleProps> = ({ title, description }) => {
-  if (!title && !description) return null;
+const CellTitle: React.FC<CellTitleProps> = ({ title, description, description2 }) => {
+  if (!title && !description && !description2) return null;
 
   return (
     <>
       {title && <div className="text-body-s text-content">{title}</div>}
       {description && (
         <div className="text-body-s text-content-secondary">{description}</div>
+      )}
+      {description2 && (
+        <div className="text-body-s text-content-secondary">{description2}</div>
       )}
     </>
   );
@@ -186,6 +191,7 @@ export const CellContent: React.FC<CellContentProps> = ({
   iconButton,
   icon,
   NotificationsCard,
+  description2,
 }) => {
   if (NotificationsCard) {
     return (
@@ -214,7 +220,7 @@ export const CellContent: React.FC<CellContentProps> = ({
     <div className="flex flex-col gap-0">
       {avatar !== null && avatar && <Avatar {...avatar} />}
       {thumbnail && <Thumbnail {...thumbnail} />}
-      <CellTitle title={title} description={description} />
+      <CellTitle title={title} description={description} description2={description2} />
       {chip && <CellChip chip={chip} />}
       {badge && <Badge {...badge} />}
       {iconButton && <IconButton {...iconButton} />}

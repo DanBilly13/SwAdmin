@@ -23,7 +23,7 @@ export const reports: Report[] = [
   {
     id: 78500,
     postType: "matchEvent",
-    postAuthor: "System",
+    postAuthor: "Sixten Eklöf",
     postText: "Matchen avslutad: IFK Göteborg 2 - 1 Malmö FF",
     firstReporter: "Alexander Sebastian",
     firstReason: "Felaktigt resultat",

@@ -90,6 +90,19 @@ const Tables = () => {
   className="flex items-center gap-4"
 />`;
 
+  const textWithOneDescriptionCode = `<TableCell
+  title="One Description Example"
+  description="A single description line"
+  className="flex items-center gap-4"
+/>`;
+
+  const textWithTwoDescriptionsCode = `<TableCell
+  title="Two Descriptions Example"
+  description="Primary description text"
+  description2="Secondary description text"
+  className="flex items-center gap-4"
+/>`;
+
   return (
     <DesignSystemContentContainerSlots
       header={
@@ -121,6 +134,64 @@ const Tables = () => {
       }
       content={
         <div className="space-y-8">
+          {/* Description Cell Examples */}
+          <SectionCard title="Description Cell Examples">
+            <div className="grid grid-cols-1 gap-8">
+              {/* One Description */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <h3 className="text-body-m font-medium mb-4">One Description</h3>
+                  <Card variant="table">
+                    <GridTableRow>
+                      <TableCell
+                        title="One Description Example"
+                        description="A single description line"
+                        className={classNames(
+                          getColumnSpanClasses(fullWidthSpan),
+                          "flex items-center gap-4"
+                        )}
+                        isLast
+                      />
+                    </GridTableRow>
+                  </Card>
+                </div>
+
+                {/* Code Block for One Description */}
+                <div>
+                  <h3 className="text-body-m font-medium mb-4">Code</h3>
+                  <CodeBlock language="typescript" code={textWithOneDescriptionCode} />
+                </div>
+              </div>
+
+              {/* Two Descriptions */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <h3 className="text-body-m font-medium mb-4">Two Descriptions</h3>
+                  <Card variant="table">
+                    <GridTableRow>
+                      <TableCell
+                        title="Two Descriptions Example"
+                        description="Primary description text"
+                        description2="Secondary description text"
+                        className={classNames(
+                          getColumnSpanClasses(fullWidthSpan),
+                          "flex items-center gap-4"
+                        )}
+                        isLast
+                      />
+                    </GridTableRow>
+                  </Card>
+                </div>
+
+                {/* Code Block for Two Descriptions */}
+                <div>
+                  <h3 className="text-body-m font-medium mb-4">Code</h3>
+                  <CodeBlock language="typescript" code={textWithTwoDescriptionsCode} />
+                </div>
+              </div>
+            </div>
+          </SectionCard>
+
           {/* Avatar Cell Example */}
           <SectionCard title="Avatar Cell">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

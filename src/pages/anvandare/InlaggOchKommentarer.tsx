@@ -131,7 +131,10 @@ const tableData: TableRowData[] = uploads.map((upload) => ({
         isVideo: upload.postType === "video",
       },
     },
-
+    {
+      type: "text",
+      description: upload.date,
+    },
     {
       type: "text",
       title: "",
@@ -141,7 +144,6 @@ const tableData: TableRowData[] = uploads.map((upload) => ({
         className: "whitespace-nowrap",
       },
     },
-
     {
       type: "text",
       title: "",
@@ -178,33 +180,40 @@ const columns: ColumnDefinition[] = [
     span: {
       xs: 16,
       sm: 16,
-      md: 11,
-      lg: 11,
+      md: 8,
+      lg: 8,
     },
     align: "left" as const,
   },
-
+  {
+    header: "Created",
+    span: {
+      xs: 7,
+      sm: 7,
+      md: 3,
+      lg: 3,
+    },
+    align: "left" as const,
+  },
   {
     header: "Status",
     span: {
-      xs: 8,
-      sm: 8,
+      xs: 7,
+      sm: 7,
       md: 2,
       lg: 2,
     },
     align: "left" as const,
   },
-
   {
     header: "Action",
     span: {
-      xs: 8,
-      sm: 8,
+      xs: 2,
+      sm: 2,
       md: 2,
       lg: 2,
     },
     align: "right" as const,
-    className: "pr-0",
   },
 ];
 

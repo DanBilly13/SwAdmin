@@ -125,8 +125,8 @@ const columns: ColumnDefinition[] = [
   {
     header: "Roll",
     span: {
-      xs: 12,
-      sm: 12,
+      xs: 10,
+      sm: 10,
       md: 3,
       lg: 3,
     },
@@ -138,8 +138,8 @@ const columns: ColumnDefinition[] = [
   {
     header: "Säsong",
     span: {
-      xs: 4,
-      sm: 4,
+      xs: 6,
+      sm: 6,
       md: 3,
       lg: 3,
     },
@@ -147,7 +147,6 @@ const columns: ColumnDefinition[] = [
       xs: "right",
       md: "left",
     },
-    className: "bg-bg",
   },
   {
     header: "Källa",

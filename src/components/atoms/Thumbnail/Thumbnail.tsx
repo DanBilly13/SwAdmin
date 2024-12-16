@@ -83,11 +83,11 @@ export const Thumbnail = ({
   return (
     <div className={containerClasses}>
       {type === "comment" ? (
-        <div className="w-full h-full rounded bg-content-tertiary flex items-center justify-center">
+        <div className="w-full h-full rounded bg-surface-secondary flex items-center justify-center">
           <Icon name="chat" size={iconSize[size]} color="text-white" fill={1} />
         </div>
       ) : type === "matchEvent" ? (
-        <div className="w-full h-full rounded bg-content-tertiary flex items-center justify-center">
+        <div className="w-full h-full rounded bg-surface-secondary flex items-center justify-center">
           <Icon
             name="scoreboard"
             size={iconSize[size]}
