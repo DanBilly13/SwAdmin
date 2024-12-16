@@ -1,30 +1,45 @@
 import React from "react";
-import { ContentContainer } from "../../components/atoms/ContentContainer/ContentContainer";
+import { ContentContainerSlots } from "../../components/atoms/ContentContainerSlots/ContentContainerSlots";
 import { MainContentHead } from "../../components/molecules/MainContentHead/MainContentHead";
 import { useDrawerControl } from "../../components/templates";
 import { PageTitle } from "../../components/atoms/PageTitle/PageTitle";
 import { Card, TableCell, TableHead } from "../../components/atoms";
 import { GridTableRow } from "../../components/molecules/GridTableRow/GridTableRow";
-import { users } from "../../data/users";
+import { teams } from "../../data/teams";
 import { classNames } from "../../utils/classNames";
+import { FilterAndSearch } from "../../components/molecules/FilterAndSearch/FilterAndSearch";
 import {
   getColumnSpanClasses,
   isFirstInRow,
   isLastInRow,
 } from "../../utils/tableUtils";
+import {
+  Thumbnail,
+  ThumbnailType,
+} from "../../components/atoms/Thumbnail/Thumbnail";
+import type { ColumnDefinition } from "../../components/atoms/TableCell/types";
 
 interface TableCellData {
   type: "text" | "image";
   imageType?: "avatar" | "thumbnail";
-  value: string;
+  title?: string;
   description?: string;
-  avatar?: {
+  description2?: string;
+  thumbnail?: {
     src: string;
     size: "sm" | "md" | "lg";
+    type?: ThumbnailType;
   };
   badge?: {
     variant: "success" | "error";
     icon: string;
+  };
+  iconButton?: {
+    icon: string;
+    onClick?: () => void;
+    menuOptions?: { value: string; label: string }[];
+    menuPosition?: "left" | "right" | "center";
+    menuType?: "action" | "select";
   };
 }
 
@@ -33,38 +48,55 @@ interface TableRowData {
   content: TableCellData[];
 }
 
-// Filter users to only show those being followed (you might want to adjust this logic)
-const tableData: TableRowData[] = users
-  .filter((user) => user.account === "Active")
-  .map((user) => ({
-    id: user.id,
-    content: [
-      {
-        type: "text",
-        imageType: "avatar",
-        value: user.name,
-        description: user.email,
-        avatar: user.avatar
-          ? {
-              src: user.avatar,
-              size: "sm",
-            }
-          : undefined,
+const tableData: TableRowData[] = teams.map((team) => ({
+  id: team.id,
+  content: [
+    {
+      type: "image",
+      imageType: "thumbnail",
+      title: team.klubName,
+      description2: `${team.lag} - ${team.kon} - ${team.sport}`,
+      thumbnail: {
+        src: team.klubBadge,
+        size: "md",
+        type: "teamBadge",
       },
-      {
-        type: "text",
-        value: user.mobile,
+    },
+    // {
+    //   type: "text",
+    //   description2: team.roll,
+    // },
+    {
+      type: "text",
+      description2: team.sasong,
+    },
+    // {
+    //   type: "text",
+    //   description2: team.kalla,
+    // },
+    {
+      type: "text",
+      title: "",
+      iconButton: {
+        icon: "more_vert",
+        menuOptions: [
+          { value: "edit", label: "Redigera" },
+          { value: "delete", label: "Ta bort" },
+        ],
+        menuPosition: "right",
+        menuType: "action",
+        onClick: () => {
+          // Add your click handling logic here
+          console.log("Button clicked");
+        },
       },
-      {
-        type: "text",
-        value: "Following since: 2024-01-01", // You might want to add this data to your user model
-      },
-    ],
-  }));
+    },
+  ],
+}));
 
-const columns = [
+const columns: ColumnDefinition[] = [
   {
-    header: "User",
+    header: "Klub",
     span: {
       xs: 16,
       sm: 16,
@@ -73,56 +105,129 @@ const columns = [
     },
     align: "left" as const,
   },
+  // {
+  //   header: "Roll",
+  //   span: {
+  //     xs: 10,
+  //     sm: 10,
+  //     md: 3,
+  //     lg: 3,
+  //   },
+  //   align: {
+  //     xs: "left",
+  //     md: "left",
+  //   },
+  // },
   {
-    header: "Contact",
+    header: "Säsong",
     span: {
-      xs: 16,
-      sm: 4,
-      md: 4,
-      lg: 4,
+      xs: 6,
+      sm: 6,
+      md: 7,
+      lg: 7,
     },
-    align: "left" as const,
+    align: {
+      xs: "right",
+      md: "left",
+    },
   },
+  // {
+  //   header: "Källa",
+  //   span: {
+  //     xs: 14,
+  //     sm: 14,
+  //     md: 2,
+  //     lg: 2,
+  //   },
+  //   align: "left" as const,
+  // },
   {
-    header: "Status",
+    header: "",
     span: {
-      xs: 16,
-      sm: 5,
-      md: 3,
-      lg: 3,
+      xs: 2,
+      sm: 2,
+      md: 2,
+      lg: 2,
     },
-    align: "right" as const,
-    className: "!pr-0",
+    align: {
+      xs: "right",
+      md: "right",
+    },
   },
 ];
 
 const Foljande = () => {
   const { toggleDrawer } = useDrawerControl();
+  const [searchValue, setSearchValue] = React.useState("");
+  const [roleFilter, setRoleFilter] = React.useState("all");
+  const [seasonFilter, setSeasonFilter] = React.useState("all");
+  const [sourceFilter, setSourceFilter] = React.useState("all");
 
   return (
-    <ContentContainer>
-      <MainContentHead
-        breadcrumbs={[
-          { label: "Home", href: "/" },
-          { label: "Användare", href: "/anvandare" },
-          { label: "Följande", href: "/anvandare/foljande" },
-        ]}
-        onMenuClick={toggleDrawer}
-      />
-
-      <PageTitle
-        title="Följande"
-        description="Hantera dina följande användare"
-      />
-
-      <div className="space-y-8">
+    <ContentContainerSlots
+      header={
+        <>
+          <MainContentHead
+            breadcrumbs={[
+              { label: "Home", href: "/" },
+              { label: "Användare", href: "/anvandare" },
+              { label: "Foljande", href: "/anvandare/foljande" },
+            ]}
+            onMenuClick={toggleDrawer}
+          />
+          <PageTitle
+            title="Foljande"
+            description="Hantera användarroller och team"
+          />
+        </>
+      }
+      filters={
+        <FilterAndSearch
+          filters={[
+            {
+              label: "Roll",
+              value: roleFilter,
+              onChange: setRoleFilter,
+              options: [
+                { value: "all", label: "All" },
+                { value: "staff", label: "Staff" },
+                { value: "spelare", label: "Spelare" },
+                { value: "guardian", label: "Guardian" },
+              ],
+            },
+            {
+              label: "Säsong",
+              value: seasonFilter,
+              onChange: setSeasonFilter,
+              options: [
+                { value: "all", label: "All" },
+                { value: "2023-2024", label: "2023-2024" },
+              ],
+            },
+            {
+              label: "Källa",
+              value: sourceFilter,
+              onChange: setSourceFilter,
+              options: [
+                { value: "all", label: "All" },
+                { value: "fogis", label: "Fogis" },
+              ],
+            },
+          ]}
+          searchValue={searchValue}
+          onSearchChange={setSearchValue}
+          showSpacer={true}
+        />
+      }
+      content={
         <Card variant="table">
           <TableHead>
-            <GridTableRow>
+            <GridTableRow hasBorder={false}>
               {columns.map((column, index) => (
                 <TableCell
                   key={index}
                   align={column.align}
+                  variant="header"
                   className={classNames(
                     getColumnSpanClasses(column.span),
                     column.className,
@@ -156,25 +261,24 @@ const Foljande = () => {
                     className={classNames(
                       getColumnSpanClasses(columns[cellIndex].span),
                       columns[cellIndex].className,
-                      "flex items-center gap-4",
-                      {
-                        "justify-end": columns[cellIndex].align === "right",
-                      }
+                      "flex items-center gap-4"
                     )}
                     isLast={last}
-                    title={cell.value}
+                    title={cell.title}
                     description={cell.description}
+                    description2={cell.description2}
                     imageType={cell.imageType}
-                    avatar={cell.avatar}
+                    thumbnail={cell.thumbnail}
                     badge={cell.badge}
+                    iconButton={cell.iconButton}
                   />
                 );
               })}
             </GridTableRow>
           ))}
         </Card>
-      </div>
-    </ContentContainer>
+      }
+    />
   );
 };
 
