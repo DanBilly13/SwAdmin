@@ -74,16 +74,14 @@ export const NotificationsCardBasic: React.FC<NotificationsCardBasicProps> = ({
       </div>
       <div className={`flex ${contentClasses}`}>
         <div className="flex flex-col sm:flex-row sm:items-center gap-x-2 w-full">
-          <span className="text-body-s text-content font-medium text-left">
-            {title}
-          </span>
+          <span className="text-body-s text-content text-left">{title}</span>
           {description && (
             <span className="text-body-s italic text-content-secondary text-left">
               {description}
             </span>
           )}
           {date && (
-            <span className="text-body-s text-content-tertiary text-left">
+            <span className="text-body-s text-content-secondary text-left">
               {date}
             </span>
           )}

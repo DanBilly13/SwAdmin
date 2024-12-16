@@ -20,6 +20,7 @@ interface TableCellData {
   imageType?: "avatar" | "thumbnail";
   title?: string;
   description?: string;
+  description2?: string;
   thumbnail?: {
     src: string;
     size: "sm" | "md" | "lg";
@@ -123,17 +124,25 @@ const tableData: TableRowData[] = reports.map((report) => ({
       type: "text",
       title: report.postAuthor,
       description: report.postText,
+      description2: report.firstReportDate,
       thumbnail: {
         src: report.thumbnailSrc || "",
         size: "lg",
-        type: report.postType === "comment" 
-          ? "comment" 
-          : report.postType === "matchEvent"
-          ? "matchEvent"
-          : "image",
-        isVideo: report.postType === "video"
+        type:
+          report.postType === "comment"
+            ? "comment"
+            : report.postType === "matchEvent"
+            ? "matchEvent"
+            : "image",
+        isVideo: report.postType === "video",
       },
     },
+    {
+      type: "text",
+      title: "",
+      className: "hidden sm:block",
+    },
+
     {
       type: "text",
       NotificationsCard: {
@@ -200,10 +209,21 @@ const columns: ColumnDefinition[] = [
     span: {
       xs: 16,
       sm: 16,
-      md: 11,
-      lg: 11,
+      md: 10,
+      lg: 9,
     },
     align: "left" as const,
+  },
+  {
+    header: "Blank",
+    span: {
+      xs: 16,
+      sm: 16,
+      md: 1,
+      lg: 2,
+    },
+    align: "left" as const,
+    className: "hidden md:block",
   },
 
   {
@@ -217,6 +237,7 @@ const columns: ColumnDefinition[] = [
     align: "left" as const,
     className: "md:order-last",
   },
+
   {
     header: "Status",
     span: {
@@ -375,6 +396,7 @@ const InskickadeRapporter = () => {
                     isLast={last}
                     title={cell.title}
                     description={cell.description || cell.date}
+                    description2={cell.description2}
                     imageType={cell.imageType}
                     thumbnail={cell.thumbnail}
                     badge={cell.badge}

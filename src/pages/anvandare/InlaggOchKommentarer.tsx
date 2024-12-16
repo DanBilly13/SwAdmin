@@ -21,6 +21,7 @@ interface TableCellData {
   imageType?: "avatar" | "thumbnail";
   title?: string;
   description?: string;
+  description2?: string;
   thumbnail?: {
     src: string;
     size: "sm" | "md" | "lg";
@@ -124,6 +125,7 @@ const tableData: TableRowData[] = uploads.map((upload) => ({
       type: "text",
       title: upload.postAuthor,
       description: upload.postText,
+      description2: upload.date,
       thumbnail: {
         src: upload.thumbnailSrc,
         size: "lg",
@@ -133,7 +135,8 @@ const tableData: TableRowData[] = uploads.map((upload) => ({
     },
     {
       type: "text",
-      description: upload.date,
+      title: "",
+      className: "hidden sm:block",
     },
     {
       type: "text",
@@ -180,26 +183,27 @@ const columns: ColumnDefinition[] = [
     span: {
       xs: 16,
       sm: 16,
-      md: 8,
-      lg: 8,
+      md: 10,
+      lg: 9,
     },
     align: "left" as const,
   },
   {
-    header: "Created",
+    header: "Blank",
     span: {
-      xs: 7,
-      sm: 7,
-      md: 3,
-      lg: 3,
+      xs: 16,
+      sm: 16,
+      md: 1,
+      lg: 2,
     },
     align: "left" as const,
+    className: "hidden md:block",
   },
   {
     header: "Status",
     span: {
-      xs: 7,
-      sm: 7,
+      xs: 10,
+      sm: 10,
       md: 2,
       lg: 2,
     },
@@ -208,8 +212,8 @@ const columns: ColumnDefinition[] = [
   {
     header: "Action",
     span: {
-      xs: 2,
-      sm: 2,
+      xs: 6,
+      sm: 6,
       md: 2,
       lg: 2,
     },
@@ -340,6 +344,7 @@ const InlaggOchKommentarer = () => {
                     isLast={last}
                     title={cell.title}
                     description={cell.description || cell.date}
+                    description2={cell.description2}
                     imageType={cell.imageType}
                     thumbnail={cell.thumbnail}
                     badge={cell.badge}

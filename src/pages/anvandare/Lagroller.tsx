@@ -17,12 +17,14 @@ import {
   Thumbnail,
   ThumbnailType,
 } from "../../components/atoms/Thumbnail/Thumbnail";
+import type { ColumnDefinition } from "../../components/atoms/TableCell/types";
 
 interface TableCellData {
   type: "text" | "image";
   imageType?: "avatar" | "thumbnail";
   title?: string;
   description?: string;
+  description2?: string;
   thumbnail?: {
     src: string;
     size: "sm" | "md" | "lg";
@@ -46,25 +48,6 @@ interface TableRowData {
   content: TableCellData[];
 }
 
-interface ResponsiveAlign {
-  xs?: "left" | "right" | "center";
-  sm?: "left" | "right" | "center";
-  md?: "left" | "right" | "center";
-  lg?: "left" | "right" | "center";
-}
-
-interface ColumnDefinition {
-  header: string;
-  span: {
-    xs: number;
-    sm: number;
-    md: number;
-    lg: number;
-  };
-  align: "left" | "right" | "center" | ResponsiveAlign;
-  className?: string;
-}
-
 const tableData: TableRowData[] = teams.map((team) => ({
   id: team.id,
   content: [
@@ -72,7 +55,7 @@ const tableData: TableRowData[] = teams.map((team) => ({
       type: "image",
       imageType: "thumbnail",
       title: team.klubName,
-      description: `${team.lag} - ${team.kon} - ${team.sport}`,
+      description2: `${team.lag} - ${team.kon} - ${team.sport}`,
       thumbnail: {
         src: team.klubBadge,
         size: "md",
@@ -81,15 +64,15 @@ const tableData: TableRowData[] = teams.map((team) => ({
     },
     {
       type: "text",
-      description: team.roll,
+      description2: team.roll,
     },
     {
       type: "text",
-      description: team.sasong,
+      description2: team.sasong,
     },
     {
       type: "text",
-      description: team.kalla,
+      description2: team.kalla,
     },
     {
       type: "text",
@@ -283,6 +266,7 @@ const Lagroller = () => {
                     isLast={last}
                     title={cell.title}
                     description={cell.description}
+                    description2={cell.description2}
                     imageType={cell.imageType}
                     thumbnail={cell.thumbnail}
                     badge={cell.badge}

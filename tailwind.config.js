@@ -167,7 +167,7 @@ export default {
           {
             lineHeight: "16px",
             letterSpacing: "0.25px",
-            fontWeight: "600", // Semibold
+            fontWeight: "500", // Semibold
           },
         ],
 

@@ -84,5 +84,26 @@ export interface TableCellStructuredProps extends TableCellBaseProps {
   };
 }
 
+/**
+ * Interface for responsive grid spans in table columns
+ */
+export interface ResponsiveSpan {
+  xs: number;
+  sm: number;
+  md: number;
+  lg: number;
+}
+
+/**
+ * Interface for table column definitions
+ * Used to define the structure and behavior of table columns
+ */
+export interface ColumnDefinition {
+  header: string;
+  span: ResponsiveSpan;
+  align: TableCellAlign | ResponsiveAlign;
+  className?: string;
+}
+
 // Union type for all possible table cell props
-export type TableCellProps = TableCellSimpleProps | TableCellStructuredProps;
+export type TableCellProps = TableCellBaseProps & (TableCellSimpleProps | TableCellStructuredProps);

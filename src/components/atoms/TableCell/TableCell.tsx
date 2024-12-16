@@ -175,16 +175,14 @@ const getAdjustedAvatarProps = (avatar: Omit<AvatarProps, "className">) => {
  * Renders text content with proper styling
  * @internal
  */
-const ContentText: React.FC<Pick<TableCellStructuredProps, "title" | "description" | "description2">> = ({
-  title,
-  description,
-  description2,
-}) => {
+const ContentText: React.FC<
+  Pick<TableCellStructuredProps, "title" | "description" | "description2">
+> = ({ title, description, description2 }) => {
   return (
     <>
       {title && <div className="text-body-s text-content">{title}</div>}
       {description && (
-        <div className="text-body-s text-content-secondary">{description}</div>
+        <div className="text-body-l font-300 text-content">{description}</div>
       )}
       {description2 && (
         <div className="text-body-s text-content-secondary">{description2}</div>
@@ -265,7 +263,11 @@ const StructuredContent: React.FC<TableCellStructuredProps> = ({
 
       {/* Content (Title, Description and optional Chip) */}
       <div className="flex flex-col flex-grow">
-        <ContentText title={title} description={description} description2={description2} />
+        <ContentText
+          title={title}
+          description={description}
+          description2={description2}
+        />
         {chip && (
           <div className="mt-1">
             <Chip {...chip} />
