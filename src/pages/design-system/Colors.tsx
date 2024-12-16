@@ -186,6 +186,12 @@ const Colors = () => {
                 hexCode="#E2E2E2"
               />
               <ColorBlock
+                colorClass="bg-surface-tertiary"
+                label="Surface Tertiary"
+                tokenName="color-surface-tertiary"
+                hexCode="#F5F5F5"
+              />
+              <ColorBlock
                 colorClass="bg-surface-error"
                 label="Surface Error"
                 tokenName="color-surface-error"

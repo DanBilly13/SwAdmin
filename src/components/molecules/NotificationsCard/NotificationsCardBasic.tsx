@@ -48,7 +48,7 @@ export const NotificationsCardBasic: React.FC<NotificationsCardBasicProps> = ({
     flex flex-row items-start sm:items-center
     px-1 sm: px-0.5
     py-1 sm: px-0.5
-    bg-surface
+    bg-surface-tertiary
     rounded-sm 
 
     ${showBorder ? "border" : ""}

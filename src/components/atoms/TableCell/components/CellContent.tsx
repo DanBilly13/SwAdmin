@@ -100,7 +100,11 @@ export interface CellContentProps extends CellTitleProps {
 /**
  * Renders the title and description text
  */
-const CellTitle: React.FC<CellTitleProps> = ({ title, description, description2 }) => {
+const CellTitle: React.FC<CellTitleProps> = ({
+  title,
+  description,
+  description2,
+}) => {
   if (!title && !description && !description2) return null;
 
   return (
@@ -195,7 +199,7 @@ export const CellContent: React.FC<CellContentProps> = ({
 }) => {
   if (NotificationsCard) {
     return (
-      <div className="flex flex-col gap-0 w-full border border-border rounded-sm">
+      <div className="flex flex-col gap-0 w-full  rounded-sm">
         {/* <div className="text-label-s text-content">Reports</div> */}
         <NotificationsCardBasic
           {...getNotificationsCardProps(NotificationsCard)}
@@ -220,7 +224,11 @@ export const CellContent: React.FC<CellContentProps> = ({
     <div className="flex flex-col gap-0">
       {avatar !== null && avatar && <Avatar {...avatar} />}
       {thumbnail && <Thumbnail {...thumbnail} />}
-      <CellTitle title={title} description={description} description2={description2} />
+      <CellTitle
+        title={title}
+        description={description}
+        description2={description2}
+      />
       {chip && <CellChip chip={chip} />}
       {badge && <Badge {...badge} />}
       {iconButton && <IconButton {...iconButton} />}
