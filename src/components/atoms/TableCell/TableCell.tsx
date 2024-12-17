@@ -7,7 +7,7 @@ import { BadgeProps } from "../Badge/Badge";
 import { IconButton } from "../IconButton/IconButton";
 import { Dropdown, DropdownProps } from "../Dropdown/Dropdown";
 import { CellContent } from "./components/CellContent";
-import { Accordion } from "../Accordion/Accordion";
+import { AccordionHybrid } from "../AccordionHybrid/AccordionHybrid";
 
 /**
  * Type definitions for TableCell configuration
@@ -91,9 +91,10 @@ interface TableCellStructuredProps extends TableCellBaseProps {
     label: string;
     labelTrailing?: string;
     children?: React.ReactNode;
-    defaultOpen?: boolean;
+    isOpen?: boolean;
     onToggle?: (isOpen: boolean) => void;
-    isOpen?: boolean; // Add this line
+    removeRoundedLeft?: boolean;
+    removeRoundedRight?: boolean;
   }; // Accordion config
 }
 
@@ -145,14 +146,13 @@ const getTableCellClasses = (
     "flex items-center",
     alignClasses,
     {
-      "pb-4": true,
       "pl-0": true, // All cells have no left padding
-
-      // Right padding - only apply if not last
-      "pr-4": !isLastBool,
-      "pr-0": isLastBool,
-
-      "text-label-s ": variant === "header",
+      "pr-4": !isLastBool, // Right padding if not last
+      "pr-0": isLastBool, // No right padding if last
+      "pt-0": !isTopRow, // No top padding for wrapped rows
+      "pt-4": isTopRow, // Top padding for first row
+      "pb-4": true,
+      "text-label-s": variant === "header",
       "border-t border-border": variant === "footer",
     },
     className
@@ -255,20 +255,20 @@ const StructuredContent: React.FC<TableCellStructuredProps> = ({
     );
   }
 
-  // If accordion is present, use Accordion
+  // If accordion is present, use AccordionHybrid
   if (accordion) {
     return (
       <div className="w-full">
-        <Accordion
-          size="sm"
-          variant="primary"
+        <AccordionHybrid
           label={accordion.label}
           labelTrailing={accordion.labelTrailing}
+          children={accordion.children}
           isOpen={accordion.isOpen}
           onToggle={accordion.onToggle}
-        >
-          {accordion.children}
-        </Accordion>
+          removeRoundedLeft={accordion.removeRoundedLeft}
+          removeRoundedRight={accordion.removeRoundedRight}
+          className="w-full"
+        />
       </div>
     );
   }

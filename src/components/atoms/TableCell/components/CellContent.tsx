@@ -6,7 +6,7 @@ import { Dropdown, DropdownProps } from "../../Dropdown/Dropdown";
 import { IconButton } from "../../IconButton/IconButton";
 import { NotificationsCardBasic } from "../../../molecules/NotificationsCard/NotificationsCardBasic";
 import { Thumbnail, ThumbnailProps } from "../../../atoms/Thumbnail/Thumbnail";
-import { Accordion } from "../../Accordion/Accordion";
+import { AccordionHybrid } from "../../AccordionHybrid/AccordionHybrid";
 
 /**
  * Props for the cell title section
@@ -100,9 +100,11 @@ export interface CellContentProps extends CellTitleProps {
   accordion?: {
     label: string;
     labelTrailing?: string;
-    defaultOpen?: boolean;
+    children?: React.ReactNode;
+    isOpen?: boolean;
     onToggle?: (isOpen: boolean) => void;
-    content?: React.ReactNode;
+    removeRoundedLeft?: boolean;
+    removeRoundedRight?: boolean;
   };
 }
 
@@ -218,16 +220,16 @@ export const CellContent: React.FC<CellContentProps> = ({
 
   if (accordion) {
     return (
-      <Accordion
-        size="sm"
-        variant="primary"
+      <AccordionHybrid
         label={accordion.label}
         labelTrailing={accordion.labelTrailing}
-        defaultOpen={accordion.defaultOpen}
+        children={accordion.children}
+        isOpen={accordion.isOpen}
         onToggle={accordion.onToggle}
-      >
-        {accordion.content}
-      </Accordion>
+        removeRoundedLeft={accordion.removeRoundedLeft}
+        removeRoundedRight={accordion.removeRoundedRight}
+        className="w-full"
+      />
     );
   }
 

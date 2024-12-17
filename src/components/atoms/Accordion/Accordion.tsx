@@ -25,6 +25,7 @@ export const Accordion: React.FC<AccordionProps> = ({
   onToggle,
   variant = "secondary",
   isOpen: controlledIsOpen,
+  containerClasses,
 }) => {
   const [internalIsOpen, setInternalIsOpen] = useState(defaultOpen);
   const isOpen =
@@ -44,8 +45,8 @@ export const Accordion: React.FC<AccordionProps> = ({
     lg: "h-12 text-label-l rounded-lg px-3.5",
   };
 
-  const containerClasses = {
-    sm: "mt-2 p-2 bg-surface rounded-lg",
+  const containerSizeClasses = {
+    sm: "mt-2 p-2 bg-surface rounded",
     md: "mt-2 p-2 bg-surface rounded-lg",
     lg: "mt-2 p-2 bg-surface rounded-lg",
   };
@@ -73,19 +74,17 @@ export const Accordion: React.FC<AccordionProps> = ({
   }[size];
 
   return (
-    <div>
+    <div className={className}>
       <div
         className={classNames(
           "flex items-center justify-between",
           "w-full",
-          // "px-3.5",
           "hover:bg-surface-hover",
           "cursor-pointer",
           "rounded-lg",
           "transition-colors",
           sizeClasses[size],
-          variantClasses[variant],
-          className
+          variantClasses[variant]
         )}
         onClick={toggleAccordion}
       >
@@ -123,7 +122,7 @@ export const Accordion: React.FC<AccordionProps> = ({
         </div>
       </div>
       {isOpen && children && (
-        <div className={classNames(containerClasses[size], containerClasses)}>
+        <div className={classNames(containerSizeClasses[size], containerClasses)}>
           {children}
         </div>
       )}

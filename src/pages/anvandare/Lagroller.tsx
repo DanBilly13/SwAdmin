@@ -20,6 +20,7 @@ import {
   ThumbnailType,
 } from "../../components/atoms/Thumbnail/Thumbnail";
 import type { ColumnDefinition } from "../../components/atoms/TableCell/types";
+import { AccordionHybrid } from "../../components/atoms/AccordionHybrid/AccordionHybrid";
 import { DivisionsAccordion } from "../../components/molecules/DivisionsAccordion/DivisionsAccordion";
 import { TeamStaffAccordion } from "../../components/molecules/TeamStaffAccordion/TeamStaffAccordion";
 
@@ -51,14 +52,20 @@ interface TableCellData {
     children?: React.ReactNode;
     isOpen?: boolean;
     onToggle?: (isOpen: boolean) => void;
+    removeRoundedRight?: boolean;
+    removeRoundedLeft?: boolean;
   };
   className?: string;
-  align?: "left" | "center" | "right" | {
-    xs?: "left" | "center" | "right";
-    sm?: "left" | "center" | "right";
-    md?: "left" | "center" | "right";
-    lg?: "left" | "center" | "right";
-  };
+  align?:
+    | "left"
+    | "center"
+    | "right"
+    | {
+        xs?: "left" | "center" | "right";
+        sm?: "left" | "center" | "right";
+        md?: "left" | "center" | "right";
+        lg?: "left" | "center" | "right";
+      };
 }
 
 interface TableRowData {
@@ -89,6 +96,7 @@ const columns: ColumnDefinition[] = [
       xs: "left",
       md: "left",
     },
+    className: "md:pl-2",
   },
   {
     header: "Säsong",
@@ -131,8 +139,8 @@ const columns: ColumnDefinition[] = [
     span: {
       xs: 16,
       sm: 16,
-      md: 8,
-      lg: 8,
+      md: 7,
+      lg: 7,
     },
     align: {
       xs: "left",
@@ -144,8 +152,8 @@ const columns: ColumnDefinition[] = [
     span: {
       xs: 16,
       sm: 16,
-      md: 8,
-      lg: 8,
+      md: 9,
+      lg: 9,
     },
     align: {
       xs: "left",
@@ -164,22 +172,24 @@ const Lagroller: React.FC = () => {
     Record<string | number, { one: boolean; two: boolean }>
   >({});
 
-  const [isMdScreen, setIsMdScreen] = React.useState(window.matchMedia('(min-width: 768px)').matches);
+  const [isMdScreen, setIsMdScreen] = React.useState(
+    window.matchMedia("(min-width: 768px)").matches
+  );
 
   React.useEffect(() => {
-    const mediaQuery = window.matchMedia('(min-width: 768px)');
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
     const handler = (e: MediaQueryListEvent) => setIsMdScreen(e.matches);
-    
-    mediaQuery.addEventListener('change', handler);
-    return () => mediaQuery.removeEventListener('change', handler);
+
+    mediaQuery.addEventListener("change", handler);
+    return () => mediaQuery.removeEventListener("change", handler);
   }, []);
 
   const handleAccordionToggle =
-    (rowId: string | number, accordionType: 'one' | 'two') =>
+    (rowId: string | number, accordionType: "one" | "two") =>
     (isOpen: boolean): void => {
       setExpandedRows((prev) => {
         const currentRow = prev[rowId] || { one: false, two: false };
-        
+
         if (isMdScreen) {
           // On md and up, both accordions sync
           return {
@@ -200,7 +210,16 @@ const Lagroller: React.FC = () => {
           };
         }
       });
-      console.log("Accordion toggled for row:", rowId, "type:", accordionType, "isOpen:", isOpen, "isMdScreen:", isMdScreen);
+      console.log(
+        "Accordion toggled for row:",
+        rowId,
+        "type:",
+        accordionType,
+        "isOpen:",
+        isOpen,
+        "isMdScreen:",
+        isMdScreen
+      );
     };
 
   const createTableData = (): TableRowData[] =>
@@ -249,22 +268,24 @@ const Lagroller: React.FC = () => {
         {
           type: "text",
           accordion: {
-            label: "Divisions",
-            labelTrailing: `${divisions.length} items`,
+            label: `Divisions (${divisions.length})`,
+            labelTrailing: isMdScreen ? "" : "Visa alla",
             children: <DivisionsAccordion />,
             isOpen: expandedRows[team.id]?.one,
-            onToggle: handleAccordionToggle(team.id, 'one'),
+            onToggle: handleAccordionToggle(team.id, "one"),
+            removeRoundedRight: true,
           },
           className: "w-full self-start",
         },
         {
           type: "text",
           accordion: {
-            label: "Team Staff",
-            labelTrailing: `${teamStaff.length} items`,
+            label: `Team Staff (${teamStaff.length})`,
+            labelTrailing: "Visa alla",
             children: <TeamStaffAccordion />,
             isOpen: expandedRows[team.id]?.two,
-            onToggle: handleAccordionToggle(team.id, 'two'),
+            onToggle: handleAccordionToggle(team.id, "two"),
+            removeRoundedLeft: true,
           },
           className: "w-full self-start",
         },
@@ -375,6 +396,7 @@ const Lagroller: React.FC = () => {
                       cell.accordion ? "w-full" : "",
                       cell.className
                     )}
+                    accordion={cell.accordion}
                     isLast={last}
                     title={cell.title}
                     description={cell.description}
@@ -383,7 +405,6 @@ const Lagroller: React.FC = () => {
                     thumbnail={cell.thumbnail}
                     badge={cell.badge}
                     iconButton={cell.iconButton}
-                    accordion={cell.accordion}
                   />
                 );
               })}

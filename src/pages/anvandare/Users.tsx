@@ -19,6 +19,7 @@ interface TableCellData {
   imageType?: "avatar" | "thumbnail";
   title?: string;
   description?: string;
+  description2?: string;
   avatar?: {
     src: string;
     size: "sm" | "md" | "lg";
@@ -41,7 +42,7 @@ const tableData: TableRowData[] = users.map((user) => ({
       type: "text",
       imageType: "avatar",
       title: user.name,
-      description: user.email,
+      description2: user.email,
       avatar: user.avatar
         ? {
             src: user.avatar,
@@ -57,15 +58,15 @@ const tableData: TableRowData[] = users.map((user) => ({
     },
     {
       type: "text",
-      description: user.mobile,
+      description2: user.mobile,
     },
     {
       type: "text",
-      description: user.personnr,
+      description2: user.personnr,
     },
     {
       type: "text",
-      description: user.source,
+      description2: user.source,
     },
   ],
 }));
@@ -236,6 +237,7 @@ const Users = () => {
                     isLast={last}
                     title={cell.title}
                     description={cell.description}
+                    description2={cell.description2}
                     imageType={cell.imageType}
                     avatar={cell.avatar}
                     badge={cell.badge}

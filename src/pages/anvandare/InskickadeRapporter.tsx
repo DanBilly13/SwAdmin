@@ -114,6 +114,7 @@ const tableData: TableRowData[] = reports.map((report) => ({
       NotificationsCard: {
         icon: "flag_2",
         iconColor: "text-content-caution",
+        showBorder: false,
         title: report.firstReporter,
         description: report.firstReason,
         date: report.firstReportDate || "", // Add a fallback empty string
