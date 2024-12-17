@@ -6,6 +6,7 @@ export interface AccordionProps {
   labelTrailing?: string;
   children?: React.ReactNode;
   size?: "sm" | "md" | "lg";
+  containerClasses?: string;
   className?: string;
   defaultOpen?: boolean;
   onToggle?: (isOpen: boolean) => void;
@@ -19,13 +20,15 @@ export const Accordion: React.FC<AccordionProps> = ({
   children,
   size = "md",
   className,
+
   defaultOpen = false,
   onToggle,
   variant = "secondary",
   isOpen: controlledIsOpen,
 }) => {
   const [internalIsOpen, setInternalIsOpen] = useState(defaultOpen);
-  const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
+  const isOpen =
+    controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
 
   const toggleAccordion = () => {
     const newOpenState = !isOpen;
@@ -36,9 +39,15 @@ export const Accordion: React.FC<AccordionProps> = ({
   };
 
   const sizeClasses = {
-    sm: "h-6 text-label-s rounded-[2px] px-1.5",
+    sm: "h-6 text-label-s rounded px-2",
     md: "h-9 text-label-m rounded-lg px-3.5",
     lg: "h-12 text-label-l rounded-lg px-3.5",
+  };
+
+  const containerClasses = {
+    sm: "mt-2 p-2 bg-surface rounded-lg",
+    md: "mt-2 p-2 bg-surface rounded-lg",
+    lg: "mt-2 p-2 bg-surface rounded-lg",
   };
 
   const variantClasses = {
@@ -114,7 +123,9 @@ export const Accordion: React.FC<AccordionProps> = ({
         </div>
       </div>
       {isOpen && children && (
-        <div className="mt-2 p-3.5 bg-surface rounded-lg">{children}</div>
+        <div className={classNames(containerClasses[size], containerClasses)}>
+          {children}
+        </div>
       )}
     </div>
   );

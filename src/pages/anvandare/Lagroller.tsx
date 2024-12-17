@@ -6,6 +6,8 @@ import { PageTitle } from "../../components/atoms/PageTitle/PageTitle";
 import { Card, TableCell, TableHead } from "../../components/atoms";
 import { GridTableRow } from "../../components/molecules/GridTableRow/GridTableRow";
 import { teams } from "../../data/teams";
+import { divisions } from "../../data/divisions";
+import { teamStaff } from "../../data/teamStaff";
 import { classNames } from "../../utils/classNames";
 import { FilterAndSearch } from "../../components/molecules/FilterAndSearch/FilterAndSearch";
 import {
@@ -18,6 +20,8 @@ import {
   ThumbnailType,
 } from "../../components/atoms/Thumbnail/Thumbnail";
 import type { ColumnDefinition } from "../../components/atoms/TableCell/types";
+import { DivisionsAccordion } from "../../components/molecules/DivisionsAccordion/DivisionsAccordion";
+import { TeamStaffAccordion } from "../../components/molecules/TeamStaffAccordion/TeamStaffAccordion";
 
 interface TableCellData {
   type: "text" | "image";
@@ -49,6 +53,12 @@ interface TableCellData {
     onToggle?: (isOpen: boolean) => void;
   };
   className?: string;
+  align?: "left" | "center" | "right" | {
+    xs?: "left" | "center" | "right";
+    sm?: "left" | "center" | "right";
+    md?: "left" | "center" | "right";
+    lg?: "left" | "center" | "right";
+  };
 }
 
 interface TableRowData {
@@ -239,34 +249,24 @@ const Lagroller: React.FC = () => {
         {
           type: "text",
           accordion: {
-            label: "Accordion One",
-            labelTrailing: "2 items",
-            children: (
-              <div className="space-y-2">
-                <div className="text-body-s">First item details</div>
-                <div className="text-body-s">Second item details</div>
-              </div>
-            ),
+            label: "Divisions",
+            labelTrailing: `${divisions.length} items`,
+            children: <DivisionsAccordion />,
             isOpen: expandedRows[team.id]?.one,
             onToggle: handleAccordionToggle(team.id, 'one'),
           },
-          className: "w-full",
+          className: "w-full self-start",
         },
         {
           type: "text",
           accordion: {
-            label: "Accordion Two",
-            labelTrailing: "2 items",
-            children: (
-              <div className="space-y-2">
-                <div className="text-body-s">First item details</div>
-                <div className="text-body-s">Second item details</div>
-              </div>
-            ),
+            label: "Team Staff",
+            labelTrailing: `${teamStaff.length} items`,
+            children: <TeamStaffAccordion />,
             isOpen: expandedRows[team.id]?.two,
             onToggle: handleAccordionToggle(team.id, 'two'),
           },
-          className: "w-full",
+          className: "w-full self-start",
         },
       ],
     }));
@@ -372,7 +372,8 @@ const Lagroller: React.FC = () => {
                       getColumnSpanClasses(columns[cellIndex].span),
                       columns[cellIndex].className,
                       "flex items-center gap-4",
-                      cell.accordion ? "w-full" : ""
+                      cell.accordion ? "w-full" : "",
+                      cell.className
                     )}
                     isLast={last}
                     title={cell.title}
