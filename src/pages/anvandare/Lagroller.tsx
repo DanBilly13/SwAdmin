@@ -45,7 +45,7 @@ interface TableCellData {
     label: string;
     labelTrailing?: string;
     children?: React.ReactNode;
-    defaultOpen?: boolean;
+    isOpen?: boolean;
     onToggle?: (isOpen: boolean) => void;
   };
   className?: string;
@@ -151,17 +151,46 @@ const Lagroller: React.FC = () => {
   const [seasonFilter, setSeasonFilter] = React.useState("all");
   const [sourceFilter, setSourceFilter] = React.useState("all");
   const [expandedRows, setExpandedRows] = React.useState<
-    Record<string | number, boolean>
+    Record<string | number, { one: boolean; two: boolean }>
   >({});
 
+  const [isMdScreen, setIsMdScreen] = React.useState(window.matchMedia('(min-width: 768px)').matches);
+
+  React.useEffect(() => {
+    const mediaQuery = window.matchMedia('(min-width: 768px)');
+    const handler = (e: MediaQueryListEvent) => setIsMdScreen(e.matches);
+    
+    mediaQuery.addEventListener('change', handler);
+    return () => mediaQuery.removeEventListener('change', handler);
+  }, []);
+
   const handleAccordionToggle =
-    (rowId: string | number) =>
+    (rowId: string | number, accordionType: 'one' | 'two') =>
     (isOpen: boolean): void => {
-      setExpandedRows((prev) => ({
-        ...prev,
-        [rowId]: isOpen,
-      }));
-      console.log("Accordion toggled for row:", rowId, "isOpen:", isOpen);
+      setExpandedRows((prev) => {
+        const currentRow = prev[rowId] || { one: false, two: false };
+        
+        if (isMdScreen) {
+          // On md and up, both accordions sync
+          return {
+            ...prev,
+            [rowId]: {
+              one: isOpen,
+              two: isOpen,
+            },
+          };
+        } else {
+          // On smaller screens, they act independently
+          return {
+            ...prev,
+            [rowId]: {
+              ...currentRow,
+              [accordionType]: isOpen,
+            },
+          };
+        }
+      });
+      console.log("Accordion toggled for row:", rowId, "type:", accordionType, "isOpen:", isOpen, "isMdScreen:", isMdScreen);
     };
 
   const createTableData = (): TableRowData[] =>
@@ -210,7 +239,7 @@ const Lagroller: React.FC = () => {
         {
           type: "text",
           accordion: {
-            label: "Expandable Content",
+            label: "Accordion One",
             labelTrailing: "2 items",
             children: (
               <div className="space-y-2">
@@ -218,15 +247,15 @@ const Lagroller: React.FC = () => {
                 <div className="text-body-s">Second item details</div>
               </div>
             ),
-            defaultOpen: expandedRows[team.id] || false,
-            onToggle: handleAccordionToggle(team.id),
+            isOpen: expandedRows[team.id]?.one,
+            onToggle: handleAccordionToggle(team.id, 'one'),
           },
           className: "w-full",
         },
         {
           type: "text",
           accordion: {
-            label: "Expandable Content",
+            label: "Accordion Two",
             labelTrailing: "2 items",
             children: (
               <div className="space-y-2">
@@ -234,8 +263,8 @@ const Lagroller: React.FC = () => {
                 <div className="text-body-s">Second item details</div>
               </div>
             ),
-            defaultOpen: expandedRows[team.id] || false,
-            onToggle: handleAccordionToggle(team.id),
+            isOpen: expandedRows[team.id]?.two,
+            onToggle: handleAccordionToggle(team.id, 'two'),
           },
           className: "w-full",
         },

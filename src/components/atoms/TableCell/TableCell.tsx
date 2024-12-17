@@ -93,6 +93,7 @@ interface TableCellStructuredProps extends TableCellBaseProps {
     children?: React.ReactNode;
     defaultOpen?: boolean;
     onToggle?: (isOpen: boolean) => void;
+    isOpen?: boolean; // Add this line
   }; // Accordion config
 }
 
@@ -263,7 +264,7 @@ const StructuredContent: React.FC<TableCellStructuredProps> = ({
           variant="primary"
           label={accordion.label}
           labelTrailing={accordion.labelTrailing}
-          defaultOpen={accordion.defaultOpen}
+          isOpen={accordion.isOpen}
           onToggle={accordion.onToggle}
         >
           {accordion.children}

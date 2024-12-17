@@ -10,6 +10,7 @@ export interface AccordionProps {
   defaultOpen?: boolean;
   onToggle?: (isOpen: boolean) => void;
   variant?: "primary" | "secondary";
+  isOpen?: boolean;
 }
 
 export const Accordion: React.FC<AccordionProps> = ({
@@ -21,12 +22,16 @@ export const Accordion: React.FC<AccordionProps> = ({
   defaultOpen = false,
   onToggle,
   variant = "secondary",
+  isOpen: controlledIsOpen,
 }) => {
-  const [isOpen, setIsOpen] = useState(defaultOpen);
+  const [internalIsOpen, setInternalIsOpen] = useState(defaultOpen);
+  const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
 
   const toggleAccordion = () => {
     const newOpenState = !isOpen;
-    setIsOpen(newOpenState);
+    if (controlledIsOpen === undefined) {
+      setInternalIsOpen(newOpenState);
+    }
     onToggle?.(newOpenState);
   };
 
