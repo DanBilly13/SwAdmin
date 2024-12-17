@@ -14,3 +14,11 @@
 - Updated table cell layout and styling for better accordion integration
 - Improved responsive column spans in Lagroller table
 - Added support for multiple accordions per row
+
+## December 16, 2023
+
+### a3aab52 - feat: implement synchronized accordions on larger screens
+- Added isOpen prop to TableCell and Accordion components
+- Implemented screen-size-dependent accordion behavior
+- Synchronized accordion states on md+ screens
+- Maintained independent accordion states on smaller screens
