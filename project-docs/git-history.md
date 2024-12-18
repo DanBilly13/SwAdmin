@@ -6,7 +6,7 @@ This document tracks the Git commit history of the SwAdmin project, providing in
 ## Recent Changes (December 2024)
 
 ### December 18, 2024
-- `commit-hash` - feat: show accordion preview content when collapsed
+- `3518deb` - feat: show accordion preview content when collapsed
   - Modified AccordionHybrid to always show content
   - Updated DivisionsAccordion and TeamStaffAccordion to show first 2 items
   - Added showPreview prop to accordion components
