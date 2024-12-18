@@ -10,6 +10,7 @@ export interface AccordionHybridProps {
   onToggle?: (isOpen: boolean) => void;
   removeRoundedLeft?: boolean;
   removeRoundedRight?: boolean;
+  showPreview?: boolean;
 }
 
 export const AccordionHybrid: React.FC<AccordionHybridProps> = ({
@@ -21,6 +22,7 @@ export const AccordionHybrid: React.FC<AccordionHybridProps> = ({
   onToggle,
   removeRoundedLeft,
   removeRoundedRight,
+  showPreview = false,
 }) => {
   const [internalIsOpen, setInternalIsOpen] = useState(false);
   const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
@@ -83,7 +85,7 @@ export const AccordionHybrid: React.FC<AccordionHybridProps> = ({
           </div>
         </div>
       </div>
-      {isOpen && children && (
+      {children && (
         <div className={containerClasses}>
           {children}
         </div>

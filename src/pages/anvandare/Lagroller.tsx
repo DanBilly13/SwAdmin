@@ -54,6 +54,7 @@ interface TableCellData {
     onToggle?: (isOpen: boolean) => void;
     removeRoundedRight?: boolean;
     removeRoundedLeft?: boolean;
+    showPreview?: boolean;
   };
   className?: string;
   align?:
@@ -270,10 +271,11 @@ const Lagroller: React.FC = () => {
           accordion: {
             label: `Divisions (${divisions.length})`,
             labelTrailing: isMdScreen ? "" : "Visa alla",
-            children: <DivisionsAccordion />,
+            children: <DivisionsAccordion isExpanded={expandedRows[team.id]?.one} />,
             isOpen: expandedRows[team.id]?.one,
             onToggle: handleAccordionToggle(team.id, "one"),
             removeRoundedRight: true,
+            showPreview: true,
           },
           className: "w-full self-start",
         },
@@ -282,10 +284,11 @@ const Lagroller: React.FC = () => {
           accordion: {
             label: `Team Staff (${teamStaff.length})`,
             labelTrailing: "Visa alla",
-            children: <TeamStaffAccordion />,
+            children: <TeamStaffAccordion isExpanded={expandedRows[team.id]?.two} />,
             isOpen: expandedRows[team.id]?.two,
             onToggle: handleAccordionToggle(team.id, "two"),
             removeRoundedLeft: true,
+            showPreview: true,
           },
           className: "w-full self-start",
         },

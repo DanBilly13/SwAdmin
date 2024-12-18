@@ -5,6 +5,13 @@ This document tracks the Git commit history of the SwAdmin project, providing in
 
 ## Recent Changes (December 2024)
 
+### December 18, 2024
+- `commit-hash` - feat: show accordion preview content when collapsed
+  - Modified AccordionHybrid to always show content
+  - Updated DivisionsAccordion and TeamStaffAccordion to show first 2 items
+  - Added showPreview prop to accordion components
+  - Improved UX by showing preview of content before expansion
+
 ### December 16, 2024
 - `commit-hash` - fix: maintain consistent icon type (string) in TableCell and CellContent components
   - Fixed type inconsistency between TableCell and CellContent components
@@ -113,3 +120,4 @@ The most recent changes focus on:
 - TypeScript type compatibility fixes
 - Thumbnail type error fixes
 - Icon type consistency in TableCell and CellContent components
+- Accordion preview content display when collapsed
