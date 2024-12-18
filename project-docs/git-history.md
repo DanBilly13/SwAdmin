@@ -6,6 +6,21 @@ This document tracks the Git commit history of the SwAdmin project, providing in
 ## Recent Changes (December 2024)
 
 ### December 18, 2024
+- `54f1b65` - refactor: code formatting and structural improvements
+  - Format AccordionHybrid component for better readability
+  - Update Lagroller table headers and styling
+  - Restore git-history.md to correct date format
+  - Clean up code structure and spacing
+- `825c07a` - refactor: update Users page to use ContentContainerSlots and add user management actions
+  - Replace ContentContainer with ContentContainerSlots
+  - Add user management actions to MainContentHead
+  - Add showSpacer to FilterAndSearch
+  - Maintain existing functionality and responsive design
+- `4e21a44` - refactor: update table components and page implementations
+  - Update TableCell component and related types
+  - Improve CellContent and ContentText components
+  - Update table implementations across user pages
+  - Enhance table structure in design system
 - `3518deb` - feat: show accordion preview content when collapsed
   - Modified AccordionHybrid to always show content
   - Updated DivisionsAccordion and TeamStaffAccordion to show first 2 items
