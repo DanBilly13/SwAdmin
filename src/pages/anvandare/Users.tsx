@@ -1,5 +1,5 @@
 import React from "react";
-import { ContentContainer } from "../../components/atoms/ContentContainer/ContentContainer";
+import { ContentContainerSlots } from "../../components/atoms/ContentContainerSlots/ContentContainerSlots";
 import { MainContentHead } from "../../components/molecules/MainContentHead/MainContentHead";
 import { useDrawerControl } from "../../components/templates";
 import { PageTitle } from "../../components/atoms/PageTitle/PageTitle";
@@ -147,21 +147,44 @@ const Users = () => {
   });
 
   return (
-    <ContentContainer>
-      <MainContentHead
-        breadcrumbs={[
-          { label: "Home", href: "/" },
-          { label: "Användare", href: "/anvandare" },
-          { label: "Användare", href: "/anvandare/users" },
-        ]}
-        onMenuClick={toggleDrawer}
-      />
-      <PageTitle
-        title="Användare"
-        description="Hantera och övervaka alla användare i systemet"
-      />
-
-      <div className="space-y-8">
+    <ContentContainerSlots
+      header={
+        <>
+          <MainContentHead
+            breadcrumbs={[
+              { label: "Home", href: "/" },
+              { label: "Användare", href: "/anvandare" },
+              { label: "Användare", href: "/anvandare/users" },
+            ]}
+            onMenuClick={toggleDrawer}
+            actions={[
+              {
+                label: "Tabort användare",
+                onClick: () =>
+                  window.open(
+                    "https://github.com/yourusername/SwAdmin/tree/main/src/components/molecules/Table",
+                    "_blank"
+                  ),
+                leadingIcon: "delete_forever",
+              },
+              {
+                label: "Stäng av användare",
+                onClick: () =>
+                  window.open(
+                    "https://github.com/yourusername/SwAdmin/tree/main/src/components/molecules/Table",
+                    "_blank"
+                  ),
+                leadingIcon: "block",
+              },
+            ]}
+          />
+          <PageTitle
+            title="Användare"
+            description="Hantera och övervaka alla användare i systemet"
+          />
+        </>
+      }
+      filters={
         <FilterAndSearch
           filters={[
             {
@@ -187,10 +210,13 @@ const Users = () => {
           ]}
           searchValue={searchValue}
           onSearchChange={setSearchValue}
+          showSpacer={true}
         />
+      }
+      content={
         <Card variant="table">
           <TableHead>
-            <GridTableRow>
+            <GridTableRow hasBorder={false}>
               {columns.map((column, index) => (
                 <TableCell
                   key={index}
@@ -199,7 +225,7 @@ const Users = () => {
                   className={classNames(
                     getColumnSpanClasses(column.span),
                     column.className,
-                    "flex items-center gap-4"
+                    "hidden md:flex items-center gap-4"
                   )}
                   isLast={index === columns.length - 1}
                 >
@@ -246,8 +272,8 @@ const Users = () => {
             </GridTableRow>
           ))}
         </Card>
-      </div>
-    </ContentContainer>
+      }
+    />
   );
 };
 
