@@ -230,8 +230,8 @@ const Lagroller: React.FC = () => {
         {
           type: "image",
           imageType: "thumbnail",
-          titleSmall: team.klubName,
-          titleLarge: `${team.lag} - ${team.kon} - ${team.sport}`,
+          titleLarge: team.klubName,
+          description: `${team.lag} - ${team.kon} - ${team.sport}`,
           thumbnail: {
             src: team.klubBadge,
             size: "md",
