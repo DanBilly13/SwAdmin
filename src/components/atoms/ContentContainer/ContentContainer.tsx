@@ -1,21 +1,24 @@
-import React from 'react';
-import classNames from 'classnames';
+import React from "react";
+import classNames from "classnames";
 
 interface ContentContainerProps {
   children: React.ReactNode;
   className?: string;
 }
 
-export const ContentContainer: React.FC<ContentContainerProps> = ({ children, className = '' }) => {
+export const ContentContainer: React.FC<ContentContainerProps> = ({
+  children,
+  className = "",
+}) => {
   return (
-    <div 
+    <div
       className={classNames(
         // Base spacing - mobile first
-        'space-y-6 pt-3 px-6 pb-6',
+        "space-y-6 pt-3 px-6 pb-6",
         // Tablet (md)
-        'md:space-y-8',
+        "md:space-y-8",
         // Desktop (lg)
-        'lg:space-y-12',
+        "lg:space-y-12",
         className
       )}
     >

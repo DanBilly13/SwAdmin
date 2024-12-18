@@ -18,9 +18,9 @@ export const ContentContainerSlots: React.FC<ContentContainerSlotsProps> = ({
     <div
       className={classNames(
         // Base spacing - mobile first
-        "space-y-6 pt-3 px-6 pb-6",
+        "space-y-6 pt-3 !px-4 pb-6",
         // Tablet (md)
-        "md:space-y-8",
+        "md:space-y-8 md: px-6",
         // Desktop (lg)
         "lg:space-y-9",
         className

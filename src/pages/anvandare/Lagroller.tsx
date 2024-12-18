@@ -305,6 +305,26 @@ const Lagroller: React.FC = () => {
               { label: "Lagroller", href: "/anvandare/lagroller" },
             ]}
             onMenuClick={toggleDrawer}
+            actions={[
+              {
+                label: "Tabort användare",
+                onClick: () =>
+                  window.open(
+                    "https://github.com/yourusername/SwAdmin/tree/main/src/components/molecules/Table",
+                    "_blank"
+                  ),
+                leadingIcon: "delete_forever",
+              },
+              {
+                label: "Stäng av användare",
+                onClick: () =>
+                  window.open(
+                    "https://github.com/yourusername/SwAdmin/tree/main/src/components/molecules/Table",
+                    "_blank"
+                  ),
+                leadingIcon: "block",
+              },
+            ]}
           />
           <PageTitle
             title="Lagroller"
