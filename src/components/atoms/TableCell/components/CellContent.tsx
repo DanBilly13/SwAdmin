@@ -210,11 +210,17 @@ export const CellContent: React.FC<CellContentProps> = ({
   accordion,
 }) => {
   if (NotificationsCard) {
+    const firstCardProps = getNotificationsCardProps(NotificationsCard, false);
     return (
-      <NotificationsCardBasic
-        {...getNotificationsCardProps(NotificationsCard)}
-        className="w-full"
-      />
+      <div className="w-full flex flex-col gap-2">
+        <NotificationsCardBasic {...firstCardProps} className="w-full" />
+        {NotificationsCard.secondReporter && (
+          <NotificationsCardBasic
+            {...getNotificationsCardProps(NotificationsCard, true)}
+            className="w-full"
+          />
+        )}
+      </div>
     );
   }
 

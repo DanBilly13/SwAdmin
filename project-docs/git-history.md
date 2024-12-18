@@ -11,6 +11,11 @@ This document tracks the Git commit history of the SwAdmin project, providing in
   - Updated DivisionsAccordion and TeamStaffAccordion to show first 2 items
   - Added showPreview prop to accordion components
   - Improved UX by showing preview of content before expansion
+- `commit-hash` - fix: restore second reporter NotificationsCard display
+  - Fixed issue with second reporter card not being displayed
+  - Updated CellContent to properly handle multiple reporter cards
+  - Maintained existing functionality while adding support for second reporter
+  - Added vertical stacking with proper spacing between cards
 
 ### December 16, 2024
 - `commit-hash` - fix: maintain consistent icon type (string) in TableCell and CellContent components
@@ -121,3 +126,4 @@ The most recent changes focus on:
 - Thumbnail type error fixes
 - Icon type consistency in TableCell and CellContent components
 - Accordion preview content display when collapsed
+- Second reporter NotificationsCard display restoration
