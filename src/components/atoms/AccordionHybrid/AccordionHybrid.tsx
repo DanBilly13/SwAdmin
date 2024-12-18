@@ -25,7 +25,8 @@ export const AccordionHybrid: React.FC<AccordionHybridProps> = ({
   showPreview = false,
 }) => {
   const [internalIsOpen, setInternalIsOpen] = useState(false);
-  const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
+  const isOpen =
+    controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
 
   const toggleAccordion = () => {
     const newOpenState = !isOpen;
@@ -41,25 +42,22 @@ export const AccordionHybrid: React.FC<AccordionHybridProps> = ({
     "hover:bg-surface-hover",
     "cursor-pointer",
     "transition-colors",
-    "h-6 text-label-s px-2",
+    "h-6 text-label-s   px-2",
     "bg-surface-info text-fill-primary border-none",
     {
-      "rounded": !removeRoundedLeft && !removeRoundedRight,
+      rounded: !removeRoundedLeft && !removeRoundedRight,
       "rounded-l": !removeRoundedLeft && removeRoundedRight,
       "rounded-r": removeRoundedLeft && !removeRoundedRight,
       "rounded-none": removeRoundedLeft && removeRoundedRight,
     }
   );
 
-  const containerClasses = classNames(
-    "mt-2 p-2 bg-surface w-full",
-    {
-      "rounded": !removeRoundedLeft && !removeRoundedRight,
-      "rounded-l": !removeRoundedLeft && removeRoundedRight,
-      "rounded-r": removeRoundedLeft && !removeRoundedRight,
-      "rounded-none": removeRoundedLeft && removeRoundedRight,
-    }
-  );
+  const containerClasses = classNames("mt-2 p-2 bg-surface w-full", {
+    rounded: !removeRoundedLeft && !removeRoundedRight,
+    "rounded-l": !removeRoundedLeft && removeRoundedRight,
+    "rounded-r": removeRoundedLeft && !removeRoundedRight,
+    "rounded-none": removeRoundedLeft && removeRoundedRight,
+  });
 
   return (
     <div className={classNames("w-full", className)}>
@@ -80,16 +78,12 @@ export const AccordionHybrid: React.FC<AccordionHybridProps> = ({
                 "origin-center"
               )}
             >
-              {isOpen ? "keyboard_arrow_up" : "keyboard_arrow_down"}
+              expand_more
             </span>
           </div>
         </div>
       </div>
-      {children && (
-        <div className={containerClasses}>
-          {children}
-        </div>
-      )}
+      {children && <div className={containerClasses}>{children}</div>}
     </div>
   );
 };

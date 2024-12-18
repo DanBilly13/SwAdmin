@@ -123,7 +123,7 @@ const columns: ColumnDefinition[] = [
     align: "left" as const,
   },
   {
-    header: "",
+    header: "Blank",
     span: {
       xs: 2,
       sm: 2,
@@ -136,7 +136,7 @@ const columns: ColumnDefinition[] = [
     },
   },
   {
-    header: "",
+    header: "Blank",
     span: {
       xs: 16,
       sm: 16,
@@ -149,7 +149,7 @@ const columns: ColumnDefinition[] = [
     },
   },
   {
-    header: "",
+    header: "Blank",
     span: {
       xs: 16,
       sm: 16,
@@ -271,7 +271,9 @@ const Lagroller: React.FC = () => {
           accordion: {
             label: `Divisions (${divisions.length})`,
             labelTrailing: isMdScreen ? "" : "Visa alla",
-            children: <DivisionsAccordion isExpanded={expandedRows[team.id]?.one} />,
+            children: (
+              <DivisionsAccordion isExpanded={expandedRows[team.id]?.one} />
+            ),
             isOpen: expandedRows[team.id]?.one,
             onToggle: handleAccordionToggle(team.id, "one"),
             removeRoundedRight: true,
@@ -284,7 +286,9 @@ const Lagroller: React.FC = () => {
           accordion: {
             label: `Team Staff (${teamStaff.length})`,
             labelTrailing: "Visa alla",
-            children: <TeamStaffAccordion isExpanded={expandedRows[team.id]?.two} />,
+            children: (
+              <TeamStaffAccordion isExpanded={expandedRows[team.id]?.two} />
+            ),
             isOpen: expandedRows[team.id]?.two,
             onToggle: handleAccordionToggle(team.id, "two"),
             removeRoundedLeft: true,
@@ -385,7 +389,9 @@ const Lagroller: React.FC = () => {
                   className={classNames(
                     getColumnSpanClasses(column.span),
                     column.className,
-                    "flex items-center gap-4"
+                    "hidden md:flex items-center gap-4",
+                    (column.header === "Blank" || column.header === "Report") &&
+                      "text-transparent md:select-none h-0 !pb-0"
                   )}
                   isLast={index === columns.length - 1}
                 >

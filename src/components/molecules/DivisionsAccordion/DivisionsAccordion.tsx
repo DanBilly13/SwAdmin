@@ -5,9 +5,11 @@ interface DivisionsAccordionProps {
   isExpanded?: boolean;
 }
 
-export const DivisionsAccordion: React.FC<DivisionsAccordionProps> = ({ isExpanded = false }) => {
+export const DivisionsAccordion: React.FC<DivisionsAccordionProps> = ({
+  isExpanded = false,
+}) => {
   const displayDivisions = isExpanded ? divisions : divisions.slice(0, 2);
-  
+
   return (
     <div className="space-y-2">
       {displayDivisions.map((division) => (
