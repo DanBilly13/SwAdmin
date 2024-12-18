@@ -63,9 +63,9 @@ interface TableCellSimpleProps extends TableCellBaseProps {
  * Example: A cell with an avatar, title, description, and badge
  */
 interface TableCellStructuredProps extends TableCellBaseProps {
-  title?: string; // Main text content
-  description?: string; // Secondary text content
-  description2?: string; // Additional description text
+  titleSmall?: string; // Small title text
+  titleLarge?: string; // Large title text
+  description?: string; // Additional description text
   imageType?: "thumbnail" | "avatar"; // Type of image to display
   thumbnail?: Omit<ThumbnailProps, "className">; // Image thumbnail config
   avatar?: Omit<AvatarProps, "className"> | null; // Avatar image config
@@ -185,16 +185,16 @@ const getAdjustedAvatarProps = (avatar: Omit<AvatarProps, "className">) => {
  * @internal
  */
 const ContentText: React.FC<
-  Pick<TableCellStructuredProps, "title" | "description" | "description2">
-> = ({ title, description, description2 }) => {
+  Pick<TableCellStructuredProps, "titleSmall" | "titleLarge" | "description">
+> = ({ titleSmall, titleLarge, description }) => {
   return (
     <>
-      {title && <div className="text-body-s text-content">{title}</div>}
-      {description && (
-        <div className="text-body-l font-300 text-content">{description}</div>
+      {titleSmall && <div className="text-body-s text-content">{titleSmall}</div>}
+      {titleLarge && (
+        <div className="text-body-l font-300 text-content">{titleLarge}</div>
       )}
-      {description2 && (
-        <div className="text-body-s text-content-secondary">{description2}</div>
+      {description && (
+        <div className="text-body-s text-content-secondary">{description}</div>
       )}
     </>
   );
@@ -217,9 +217,9 @@ const ActionButtons: React.FC<
  * This component handles different layouts based on the content type
  */
 const StructuredContent: React.FC<TableCellStructuredProps> = ({
-  title,
+  titleSmall,
+  titleLarge,
   description,
-  description2,
   imageType = "thumbnail",
   thumbnail,
   avatar,
@@ -232,7 +232,7 @@ const StructuredContent: React.FC<TableCellStructuredProps> = ({
   accordion,
 }) => {
   // If only chip is present, render it alone
-  if (chip && !title && !description && !thumbnail && !avatar) {
+  if (chip && !titleSmall && !titleLarge && !thumbnail && !avatar) {
     return <Chip {...chip} />;
   }
 
@@ -240,9 +240,9 @@ const StructuredContent: React.FC<TableCellStructuredProps> = ({
   if (NotificationsCard) {
     return (
       <CellContent
-        title={title}
+        titleSmall={titleSmall}
+        titleLarge={titleLarge}
         description={description}
-        description2={description2}
         chip={chip}
         badge={badge}
         thumbnail={thumbnail}
@@ -292,9 +292,9 @@ const StructuredContent: React.FC<TableCellStructuredProps> = ({
       {/* Content (Title, Description and optional Chip) */}
       <div className="flex flex-col flex-grow">
         <ContentText
-          title={title}
+          titleSmall={titleSmall}
+          titleLarge={titleLarge}
           description={description}
-          description2={description2}
         />
         {chip && (
           <div className="mt-1">

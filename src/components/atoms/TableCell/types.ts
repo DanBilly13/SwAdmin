@@ -59,8 +59,9 @@ export interface TableCellSimpleProps extends TableCellBaseProps {
  * Example: A cell with an avatar, title, description, and badge
  */
 export interface TableCellStructuredProps extends TableCellBaseProps {
-  title?: string; // Main text content
-  description?: string; // Secondary text content
+  titleSmall?: string; // Small title text
+  titleLarge?: string; // Large title text (previously description)
+  description?: string; // Additional description text
   imageType?: "thumbnail" | "avatar"; // Type of image to display
   thumbnail?: Omit<ThumbnailProps, "className">; // Image thumbnail config
   avatar?: Omit<AvatarProps, "className"> | null; // Avatar image config

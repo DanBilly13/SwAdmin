@@ -20,9 +20,9 @@ import { ThumbnailType } from "../../components/atoms/Thumbnail/Thumbnail";
 interface TableCellData {
   type: "text" | "image";
   imageType?: "avatar" | "thumbnail";
-  title?: string;
+  titleSmall?: string;
+  titleLarge?: string;
   description?: string;
-  description2?: string;
   thumbnail?: {
     src: string;
     size: "sm" | "md" | "lg";
@@ -85,13 +85,13 @@ const tableData: TableRowData[] = uploads.map((upload) => ({
   content: [
     {
       type: "text",
-      title: upload.id.toString(),
+      titleSmall: upload.id.toString(),
     },
     {
       type: "text",
-      title: upload.postAuthor,
-      description: upload.postText,
-      description2: upload.date,
+      titleSmall: upload.postAuthor,
+      titleLarge: upload.postText,
+      description: upload.date,
       thumbnail: {
         src: upload.thumbnailSrc,
         size: "lg",
@@ -101,12 +101,12 @@ const tableData: TableRowData[] = uploads.map((upload) => ({
     },
     {
       type: "text",
-      title: "",
+      titleSmall: "",
       className: "hidden sm:block",
     },
     {
       type: "text",
-      title: "",
+      titleSmall: "",
       chip: {
         children: upload.status,
         variant: getStatusConfig(upload.status)!.variant,
@@ -115,7 +115,7 @@ const tableData: TableRowData[] = uploads.map((upload) => ({
     },
     {
       type: "text",
-      title: "",
+      titleSmall: "",
       iconButton: {
         icon: "more_vert",
         menuOptions: [
@@ -308,9 +308,9 @@ const InlaggOchKommentarer = () => {
                       }
                     )}
                     isLast={last}
-                    title={cell.title}
-                    description={cell.description || cell.date}
-                    description2={cell.description2}
+                    titleSmall={cell.titleSmall}
+                    titleLarge={cell.titleLarge || cell.date}
+                    description={cell.description}
                     imageType={cell.imageType}
                     thumbnail={cell.thumbnail}
                     badge={cell.badge}

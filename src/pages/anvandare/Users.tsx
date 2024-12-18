@@ -17,9 +17,9 @@ import { FilterAndSearch } from "../../components/molecules";
 interface TableCellData {
   type: "text" | "image";
   imageType?: "avatar" | "thumbnail";
-  title?: string;
+  titleSmall?: string;
+  titleLarge?: string;
   description?: string;
-  description2?: string;
   avatar?: {
     src: string;
     size: "sm" | "md" | "lg";
@@ -41,8 +41,8 @@ const tableData: TableRowData[] = users.map((user) => ({
     {
       type: "text",
       imageType: "avatar",
-      title: user.name,
-      description2: user.email,
+      titleLarge: user.name,
+      description: user.email,
       avatar: user.avatar
         ? {
             src: user.avatar,
@@ -58,15 +58,15 @@ const tableData: TableRowData[] = users.map((user) => ({
     },
     {
       type: "text",
-      description2: user.mobile,
+      description: user.mobile,
     },
     {
       type: "text",
-      description2: user.personnr,
+      description: user.personnr,
     },
     {
       type: "text",
-      description2: user.source,
+      description: user.source,
     },
   ],
 }));
@@ -235,9 +235,8 @@ const Users = () => {
                       }
                     )}
                     isLast={last}
-                    title={cell.title}
+                    titleLarge={cell.titleLarge}
                     description={cell.description}
-                    description2={cell.description2}
                     imageType={cell.imageType}
                     avatar={cell.avatar}
                     badge={cell.badge}

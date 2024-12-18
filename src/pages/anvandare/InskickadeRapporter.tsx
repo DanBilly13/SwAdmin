@@ -20,8 +20,9 @@ interface TableCellData {
   type: "text" | "image";
   imageType?: "avatar" | "thumbnail";
   title?: string;
+  titleSmall?: string;
+  titleLarge?: string;
   description?: string;
-  description2?: string;
   thumbnail?: {
     src: string;
     size: "sm" | "md" | "lg";
@@ -84,13 +85,13 @@ const tableData: TableRowData[] = reports.map((report) => ({
   content: [
     {
       type: "text",
-      title: report.id.toString(),
+      titleSmall: report.id.toString(),
     },
     {
       type: "text",
-      title: report.postAuthor,
-      description: report.postText,
-      description2: report.firstReportDate,
+      titleSmall: report.postAuthor,
+      titleLarge: report.postText,
+      description: report.firstReportDate,
       thumbnail: {
         src: report.thumbnailSrc || "",
         size: "lg",
@@ -105,7 +106,7 @@ const tableData: TableRowData[] = reports.map((report) => ({
     },
     {
       type: "text",
-      title: "",
+      titleSmall: "",
       className: "hidden sm:block",
     },
 
@@ -127,7 +128,7 @@ const tableData: TableRowData[] = reports.map((report) => ({
 
     {
       type: "text",
-      title: "",
+      titleSmall: "",
       chip: getStatusConfig(report.status)
         ? {
             children: report.status,
@@ -139,7 +140,7 @@ const tableData: TableRowData[] = reports.map((report) => ({
 
     {
       type: "text",
-      title: "",
+      titleSmall: "",
       iconButton: {
         icon: "more_vert",
         menuOptions: [
@@ -156,7 +157,7 @@ const tableData: TableRowData[] = reports.map((report) => ({
     },
     {
       type: "text",
-      title: "",
+      titleSmall: "",
       className: "hidden sm:block",
     },
   ],
@@ -363,9 +364,9 @@ const InskickadeRapporter = () => {
                       }
                     )}
                     isLast={last}
-                    title={cell.title}
-                    description={cell.description || cell.date}
-                    description2={cell.description2}
+                    titleSmall={cell.titleSmall}
+                    titleLarge={cell.titleLarge || cell.date}
+                    description={cell.description}
                     imageType={cell.imageType}
                     thumbnail={cell.thumbnail}
                     badge={cell.badge}

@@ -25,7 +25,7 @@ const Tables = () => {
   };
 
   const avatarCellCode = `<TableCell
-  title="Daniel Billingham"
+  titleSmall="Daniel Billingham"
   description="daniel.billingham@example.com"
   imageType="avatar"
   avatar={{
@@ -40,7 +40,7 @@ const Tables = () => {
 />`;
 
   const teamBadgeCellCode = `<TableCell
-  title="SVFF"
+  titleSmall="SVFF"
   description="Team"
   imageType="thumbnail"
   thumbnail={{
@@ -52,7 +52,7 @@ const Tables = () => {
 />`;
 
   const thumbnailCellCode = `<TableCell
-  title="Match Highlights"
+  titleSmall="Match Highlights"
   description="Final Game 2023"
   imageType="thumbnail"
   thumbnail={{
@@ -65,13 +65,13 @@ const Tables = () => {
 />`;
 
   const textCellCode = `<TableCell
-  title="Regular Text Cell"
+  titleSmall="Regular Text Cell"
   description="With optional description"
   className="flex items-center gap-4"
 />`;
 
   const textWithBadgeCode = `<TableCell
-  title="Status Cell"
+  titleSmall="Status Cell"
   description="With status badge"
   badge={{ 
     variant: "success", 
@@ -81,7 +81,7 @@ const Tables = () => {
 />`;
 
   const textWithChipCode = `<TableCell
-  title="Category Cell"
+  titleSmall="Category Cell"
   description="With category chip"
   chip={{ 
     children: "Active", 
@@ -91,13 +91,13 @@ const Tables = () => {
 />`;
 
   const textWithOneDescriptionCode = `<TableCell
-  title="One Description Example"
+  titleSmall="One Description Example"
   description="A single description line"
   className="flex items-center gap-4"
 />`;
 
   const textWithTwoDescriptionsCode = `<TableCell
-  title="Two Descriptions Example"
+  titleSmall="Two Descriptions Example"
   description="Primary description text"
   description2="Secondary description text"
   className="flex items-center gap-4"
@@ -154,11 +154,13 @@ const Tables = () => {
               {/* One Description */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <h3 className="text-body-m font-medium mb-4">One Description</h3>
+                  <h3 className="text-body-m font-medium mb-4">
+                    One Description
+                  </h3>
                   <Card variant="table">
                     <GridTableRow>
                       <TableCell
-                        title="One Description Example"
+                        titleSmall="One Description Example"
                         description="A single description line"
                         className={classNames(
                           getColumnSpanClasses(fullWidthSpan),
@@ -173,20 +175,25 @@ const Tables = () => {
                 {/* Code Block for One Description */}
                 <div>
                   <h3 className="text-body-m font-medium mb-4">Code</h3>
-                  <CodeBlock language="typescript" code={textWithOneDescriptionCode} />
+                  <CodeBlock
+                    language="typescript"
+                    code={textWithOneDescriptionCode}
+                  />
                 </div>
               </div>
 
               {/* Two Descriptions */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <h3 className="text-body-m font-medium mb-4">Two Descriptions</h3>
+                  <h3 className="text-body-m font-medium mb-4">
+                    Two Descriptions
+                  </h3>
                   <Card variant="table">
                     <GridTableRow>
                       <TableCell
-                        title="Two Descriptions Example"
-                        description="Primary description text"
-                        description2="Secondary description text"
+                        titleSmall="Title Small"
+                        titleLarge="Title Large"
+                        description="Description"
                         className={classNames(
                           getColumnSpanClasses(fullWidthSpan),
                           "flex items-center gap-4"
@@ -200,7 +207,10 @@ const Tables = () => {
                 {/* Code Block for Two Descriptions */}
                 <div>
                   <h3 className="text-body-m font-medium mb-4">Code</h3>
-                  <CodeBlock language="typescript" code={textWithTwoDescriptionsCode} />
+                  <CodeBlock
+                    language="typescript"
+                    code={textWithTwoDescriptionsCode}
+                  />
                 </div>
               </div>
             </div>
@@ -212,17 +222,14 @@ const Tables = () => {
               <Card variant="table">
                 <GridTableRow>
                   <TableCell
-                    title="Daniel Billingham"
+                    titleSmall="Daniel Billingham"
                     description="daniel.billingham@example.com"
                     imageType="avatar"
                     avatar={{
                       src: getAssetPath("avatars/TheRock.jpg"),
                       size: "sm",
                     }}
-                    badge={{
-                      variant: "success",
-                      icon: "check",
-                    }}
+                    badge={{ variant: "success", icon: "check" }}
                     className={classNames(
                       getColumnSpanClasses(fullWidthSpan),
                       "flex items-center gap-4"
@@ -243,7 +250,7 @@ const Tables = () => {
               <Card variant="table">
                 <GridTableRow>
                   <TableCell
-                    title="SVFF"
+                    titleSmall="SVFF"
                     description="Team"
                     imageType="thumbnail"
                     thumbnail={{
@@ -271,7 +278,7 @@ const Tables = () => {
               <Card variant="table">
                 <GridTableRow>
                   <TableCell
-                    title="Match Highlights"
+                    titleSmall="Match Highlights"
                     description="Final Game 2023"
                     imageType="thumbnail"
                     thumbnail={{
@@ -300,7 +307,7 @@ const Tables = () => {
               <Card variant="table">
                 <GridTableRow>
                   <TableCell
-                    title="Regular Text Cell"
+                    titleSmall="Regular Text Cell"
                     description="With optional description"
                     className={classNames(
                       getColumnSpanClasses(fullWidthSpan),
@@ -322,7 +329,7 @@ const Tables = () => {
               <Card variant="table">
                 <GridTableRow>
                   <TableCell
-                    title="Status Cell"
+                    titleSmall="Status Cell"
                     description="With status badge"
                     badge={{ variant: "success", icon: "check" }}
                     className={classNames(
@@ -345,7 +352,7 @@ const Tables = () => {
               <Card variant="table">
                 <GridTableRow>
                   <TableCell
-                    title="Category Cell"
+                    titleSmall="Category Cell"
                     description="With category chip"
                     chip={{ children: "Active", variant: "success" }}
                     className={classNames(
@@ -439,7 +446,7 @@ const Tables = () => {
                           <div className="text-body-s">First item details</div>
                           <div className="text-body-s">Second item details</div>
                         </div>
-                      )
+                      ),
                     }}
                     className={classNames(
                       getColumnSpanClasses(fullWidthSpan),

@@ -2,7 +2,8 @@ import React from "react";
 import { CellContent } from "./CellContent";
 
 interface ContentTextProps {
-  title?: string;
+  titleSmall?: string;
+  titleLarge?: string;
   description?: string;
 }
 
@@ -10,7 +11,7 @@ interface ContentTextProps {
  * Renders text content with proper styling
  * @internal
  */
-export const ContentText: React.FC<ContentTextProps> = ({ title, description }) => {
-  if (!title && !description) return null;
-  return <CellContent title={title} description={description} />;
+export const ContentText: React.FC<ContentTextProps> = ({ titleSmall, titleLarge, description }) => {
+  if (!titleSmall && !titleLarge && !description) return null;
+  return <CellContent titleSmall={titleSmall} titleLarge={titleLarge} description={description} />;
 };

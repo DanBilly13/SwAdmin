@@ -24,7 +24,6 @@ interface TableCellData {
   imageType?: "avatar" | "thumbnail";
   title?: string;
   description?: string;
-  description2?: string;
   thumbnail?: {
     src: string;
     size: "sm" | "md" | "lg";
@@ -55,7 +54,7 @@ const tableData: TableRowData[] = teams.map((team) => ({
       type: "image",
       imageType: "thumbnail",
       title: team.klubName,
-      description2: `${team.lag} - ${team.kon} - ${team.sport}`,
+      description: `${team.lag} - ${team.kon} - ${team.sport}`,
       thumbnail: {
         src: team.klubBadge,
         size: "md",
@@ -64,15 +63,15 @@ const tableData: TableRowData[] = teams.map((team) => ({
     },
     // {
     //   type: "text",
-    //   description2: team.roll,
+    //   description: team.roll,
     // },
     {
       type: "text",
-      description2: team.sasong,
+      description: team.sasong,
     },
     // {
     //   type: "text",
-    //   description2: team.kalla,
+    //   description: team.kalla,
     // },
     {
       type: "text",
@@ -264,9 +263,8 @@ const Foljande = () => {
                       "flex items-center gap-4"
                     )}
                     isLast={last}
-                    title={cell.title}
+                    titleLarge={cell.title}
                     description={cell.description}
-                    description2={cell.description2}
                     imageType={cell.imageType}
                     thumbnail={cell.thumbnail}
                     badge={cell.badge}

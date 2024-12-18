@@ -71,14 +71,14 @@ export const TableRow: React.FC<TableRowProps> = ({
             size: "md",
             isVideo: thumbnail.isVideo,
           }}
-          title=""
+          titleSmall=""
         />
       )}
 
       {/* Title and Description Column */}
       {(title || description) && (
         <TableCell
-          title={title}
+          titleSmall={title}
           description={description}
           className="col-span-2"
         />
@@ -127,7 +127,7 @@ export const TableRow: React.FC<TableRowProps> = ({
             {cell.content.type === "text" && <div>{cell.content.text}</div>}
             {cell.content.type === "title-description" && (
               <TableCell
-                title={cell.content.title}
+                titleSmall={cell.content.title}
                 description={cell.content.description}
               />
             )}
@@ -138,7 +138,7 @@ export const TableRow: React.FC<TableRowProps> = ({
                   alt: cell.content.alt,
                   size: "md",
                 }}
-                title=""
+                titleSmall=""
               />
             )}
             {cell.content.type === "chip" && (
