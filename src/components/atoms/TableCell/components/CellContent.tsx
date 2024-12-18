@@ -10,13 +10,18 @@ import { AccordionHybrid } from "../../AccordionHybrid/AccordionHybrid";
 
 /**
  * Props for the cell title section
- * @property {string} [title] - Main text content
- * @property {string} [description] - Secondary text content
- * @property {string} [description2] - Additional description text content
+ * @property {string} [titleSmall] - Small title text content (previously title)
+ * @property {string} [titleLarge] - Large title text content (previously description)
+ * @property {string} [description] - Description text content (previously description2)
+ * @deprecated {string} [title] - Use titleSmall instead
+ * @deprecated {string} [description2] - Use description instead
  */
 interface CellTitleProps {
-  title?: string;
+  titleSmall?: string;
+  titleLarge?: string;
   description?: string;
+  // Backward compatibility
+  title?: string;
   description2?: string;
 }
 
@@ -112,20 +117,29 @@ export interface CellContentProps extends CellTitleProps {
  * Renders the title and description text
  */
 const CellTitle: React.FC<CellTitleProps> = ({
-  title,
+  titleSmall,
+  titleLarge,
   description,
+  title,
   description2,
 }) => {
-  if (!title && !description && !description2) return null;
+  if (!titleSmall && !titleLarge && !description && !title && !description2)
+    return null;
 
   return (
     <>
-      {title && <div className="text-body-s text-content">{title}</div>}
-      {description && (
-        <div className="text-body-s text-content-secondary">{description}</div>
+      {(titleSmall || title) && (
+        <div className="text-body-s text-content">{titleSmall || title}</div>
       )}
-      {description2 && (
-        <div className="text-body-s text-content-secondary">{description2}</div>
+      {(titleLarge || description) && (
+        <div className="text-body-s text-content-secondary">
+          {titleLarge || description}
+        </div>
+      )}
+      {(description || description2) && (
+        <div className="text-body-s text-content-secondary">
+          {description || description2}
+        </div>
       )}
     </>
   );
@@ -197,8 +211,11 @@ const getNotificationsCardProps = (
  * ```
  */
 export const CellContent: React.FC<CellContentProps> = ({
-  title,
+  titleSmall,
+  titleLarge,
   description,
+  title,
+  description2,
   chip,
   badge,
   avatar,
@@ -206,7 +223,6 @@ export const CellContent: React.FC<CellContentProps> = ({
   iconButton,
   icon,
   NotificationsCard,
-  description2,
   accordion,
 }) => {
   if (NotificationsCard) {
@@ -245,8 +261,10 @@ export const CellContent: React.FC<CellContentProps> = ({
       {thumbnail && <Thumbnail {...thumbnail} />}
       <div className="flex-1 min-w-0">
         <CellTitle
-          title={title}
+          titleSmall={titleSmall}
+          titleLarge={titleLarge}
           description={description}
+          title={title}
           description2={description2}
         />
         {chip && <CellChip chip={chip} />}
