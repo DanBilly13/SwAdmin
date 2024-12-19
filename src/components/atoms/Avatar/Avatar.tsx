@@ -1,19 +1,19 @@
-import React from 'react';
-import classNames from 'classnames';
-import { Badge, BadgeProps } from '../Badge/Badge';
-import { getAssetPath } from '../../../utils/paths';
+import React from "react";
+import classNames from "classnames";
+import { Badge, BadgeProps } from "../Badge/Badge";
+import { getAssetPath } from "../../../utils/paths";
 
-export type AvatarSize = 'lg' | 'md' | 'sm' | 'xsm';
+export type AvatarSize = "lg" | "md" | "sm" | "xsm";
 
 const sizeClasses: Record<AvatarSize, string> = {
-  'lg': 'w-[60px] h-[60px]',
-  'md': 'w-[48px] h-[48px]',
-  'sm': 'w-[36px] h-[36px]',
-  'xsm': 'w-[24px] h-[24px]'
+  lg: "w-[60px] h-[60px]",
+  md: "w-[48px] h-[48px]",
+  sm: "w-[36px] h-[36px]",
+  xsm: "w-[24px] h-[24px]",
 };
 
 const getDefaultAvatar = () => {
-  return getAssetPath('avatars/TheRock.jpg');
+  return getAssetPath("avatars/TheRock.jpg");
 };
 
 export interface AvatarProps {
@@ -22,12 +22,12 @@ export interface AvatarProps {
   alt?: string;
   name?: string;
   className?: string;
-  badge?: Omit<BadgeProps, 'className'>;
+  badge?: Omit<BadgeProps, "className">;
   initials?: string;
 }
 
 export const Avatar: React.FC<AvatarProps> = ({
-  size = 'md',
+  size = "md",
   src = getDefaultAvatar(),
   alt,
   name,
@@ -35,18 +35,20 @@ export const Avatar: React.FC<AvatarProps> = ({
   badge,
   initials,
 }) => {
-  const displayInitials = initials || (name
-    ? name
-        .split(' ')
-        .map((n) => n[0])
-        .join('')
-    : undefined);
+  const displayInitials =
+    initials ||
+    (name
+      ? name
+          .split(" ")
+          .map((n) => n[0])
+          .join("")
+      : undefined);
 
   return (
     <div className="relative inline-block">
       <div
         className={classNames(
-          'rounded-full overflow-hidden flex items-center justify-center bg-surface text-content',
+          "rounded-full overflow-hidden flex items-center justify-center bg-surface-secondary text-content",
           sizeClasses[size],
           className
         )}
@@ -54,7 +56,7 @@ export const Avatar: React.FC<AvatarProps> = ({
         {src ? (
           <img
             src={src}
-            alt={alt || name || 'Avatar'}
+            alt={alt || name || "Avatar"}
             className="w-full h-full object-cover"
           />
         ) : (

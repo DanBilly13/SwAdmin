@@ -22,7 +22,7 @@ export const Card: React.FC<CardProps> = ({
   return (
     <div
       className={classNames(
-        "rounded-lg border border-brand bg-surface-primary",
+        "rounded-lg border border-border-brand bg-surface-primary",
         variantClasses[variant],
         className
       )}

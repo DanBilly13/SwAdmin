@@ -68,7 +68,7 @@ export const Thumbnail = ({
     sizeClasses[size],
     type === "teamBadge" && [
       teamBadgePaddingClasses[size],
-      "border border-border",
+      "border border-border-secondary",
     ],
     className
   );
@@ -83,29 +83,38 @@ export const Thumbnail = ({
   return (
     <div className={containerClasses}>
       {type === "comment" ? (
-        <div className="w-full h-full rounded bg-content flex items-center justify-center">
-          <Icon name="chat" size={iconSize[size]} color="text-white" fill={1} />
+        <div className="w-full h-full rounded bg-fill-primary flex items-center justify-center">
+          <Icon
+            name="chat"
+            size={iconSize[size]}
+            color="text-on-fill-brand-primary"
+            fill={1}
+          />
         </div>
       ) : type === "matchEvent" ? (
-        <div className="w-full h-full rounded bg-content flex items-center justify-center">
+        <div className="w-full h-full rounded bg-fill-primary flex items-center justify-center">
           <Icon
             name="scoreboard"
             size={iconSize[size]}
-            color="text-white"
+            color="text-on-fill-brand-primary"
             fill={1}
           />
         </div>
       ) : type === "icon" ? (
         <div
           className={classNames(
-            "w-full h-full rounded bg-gray-100 flex items-center justify-center",
+            "w-full h-full rounded bg-fill-primary flex items-center justify-center",
             {
               "opacity-50": disabled,
             }
           )}
         >
           {icon && (
-            <Icon name={icon} size={iconSize[size]} className="text-gray-500" />
+            <Icon
+              name={icon}
+              size={iconSize[size]}
+              className="text-on-fill-brand-primary"
+            />
           )}
         </div>
       ) : (
@@ -123,7 +132,7 @@ export const Thumbnail = ({
               <Icon
                 name="play_circle"
                 size={iconSize[size]}
-                color="text-white"
+                color="text-on-fill-brand-primary"
                 fill={1}
                 className="drop-shadow-lg"
               />

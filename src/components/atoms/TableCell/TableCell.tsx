@@ -153,7 +153,7 @@ const getTableCellClasses = (
       "pt-4": isTopRow, // Top padding for first row
       "pb-4": true,
       "text-label-s": variant === "header",
-      "border-t border-border": variant === "footer",
+      "border-t border-border-secondary": variant === "footer",
     },
     className
   );
@@ -189,7 +189,9 @@ const ContentText: React.FC<
 > = ({ titleSmall, titleLarge, description }) => {
   return (
     <>
-      {titleSmall && <div className="text-body-s text-content">{titleSmall}</div>}
+      {titleSmall && (
+        <div className="text-body-s text-content">{titleSmall}</div>
+      )}
       {titleLarge && (
         <div className="text-body-l font-300 text-content">{titleLarge}</div>
       )}
@@ -351,7 +353,9 @@ const TableCell: React.FC<TableCellProps> = ({
         props.accordion ? "w-full" : ""
       )}
       role={variant === "header" ? "columnheader" : "cell"}
-      aria-sort={variant === "header" ? getAriaSortValue(sortDirection) : undefined}
+      aria-sort={
+        variant === "header" ? getAriaSortValue(sortDirection) : undefined
+      }
     >
       <StructuredContent {...(props as TableCellStructuredProps)} />
     </div>

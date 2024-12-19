@@ -44,7 +44,7 @@ export const GridWithNav: React.FC<GridWithNavProps> = ({
         {/* Overlay - Only visible when drawer is open */}
         {isDrawerOpen && (
           <div
-            className="fixed inset-0 bg-black bg-opacity-50 z-[90] xl:hidden"
+            className="fixed inset-0 bg-fill-primary bg-opacity-50 z-[90] xl:hidden"
             onClick={() => setIsDrawerOpen(false)}
           />
         )}
@@ -57,7 +57,7 @@ export const GridWithNav: React.FC<GridWithNavProps> = ({
             "transition-transform duration-300 ease-in-out",
             "top-0 right-0 xl:right-auto",
             "col-span-12 xl:col-span-2 bg-surface",
-            "border-l xl:border-l-0 xl:border-r border-border",
+            "border-l xl:border-l-0 xl:border-r border-border-secondary",
             "xl:sticky xl:top-0",
             isDrawerOpen ? "translate-x-0" : "translate-x-full xl:translate-x-0"
           )}
@@ -66,7 +66,7 @@ export const GridWithNav: React.FC<GridWithNavProps> = ({
         </nav>
 
         {/* Main Content - 10 columns on xl and above */}
-        <main className="col-span-12 xl:col-span-10 bg-bg min-h-screen">
+        <main className="col-span-12 xl:col-span-10 bg-surface-secondary min-h-screen">
           {/* Content Grid - 10 columns with 1 column padding on each side */}
           <div className="grid grid-cols-10 h-full">
             <div className="col-span-10 2xl:col-span-8 2xl:col-start-2">

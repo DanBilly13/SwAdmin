@@ -8,10 +8,13 @@ export interface TableHeadProps {
 
 export const TableHead = ({ className, children }: TableHeadProps) => {
   return (
-    <div className={classNames("-mx-6 rounded-t-lg border-b border-border bg-bg", className)}>
-      <div className="px-6">
-        {children}
-      </div>
+    <div
+      className={classNames(
+        "-mx-6 rounded-t-lg border-b border-border-secondary bg-bg",
+        className
+      )}
+    >
+      <div className="px-6">{children}</div>
     </div>
   );
 };

@@ -51,7 +51,7 @@ export const NotificationsCard: React.FC<NotificationsCardProps> = ({
   });
 
   const borderVariantClasses = {
-    default: "border-border",
+    default: "border-border-secondary",
     caution: "border-border-caution",
     error: "border-border-error",
     success: "border-border-success",

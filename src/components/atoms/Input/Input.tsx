@@ -1,13 +1,14 @@
-import React, { forwardRef } from 'react';
-import classNames from 'classnames';
+import React, { forwardRef } from "react";
+import classNames from "classnames";
 
-export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
+export interface InputProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> {
   label?: string;
   error?: string;
   helperText?: string;
   containerClassName?: string;
   fullWidth?: boolean;
-  size?: 'small' | 'medium' | 'large';
+  size?: "small" | "medium" | "large";
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -21,29 +22,31 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       fullWidth = false,
       type,
       id,
-      size = 'medium',
+      size = "medium",
       ...props
     },
     ref
   ) => {
     const inputClasses = classNames(
-      'block w-full rounded-lg border px-4 py-3',
-      'focus:outline-none focus:ring-2',
-      'text-body-s',
+      "block w-full rounded-lg border px-4 py-3",
+      "focus:outline-none focus:ring-1",
+      "text-body-s",
       {
-        'border-red-300 text-red-900 placeholder-red-300 focus:border-content-error focus:ring-content-error': error,
-        'border-border text-content placeholder-content-tertiary focus:border-content focus:ring-content': !error,
-        'bg-gray-50 text-content-disabled cursor-not-allowed': props.disabled,
-        'py-2 text-sm': size === 'small',
-        'py-3 text-base': size === 'medium',
-        'py-4 text-lg': size === 'large'
+        "border-border-error text-content-error placeholder-red-300 focus:border-border-error focus:ring-border-error":
+          error,
+        "border-border-secondary text-content placeholder-content-tertiary focus:border-border-primary focus:ring-border-primary":
+          !error,
+        "bg-gray-50 text-content-disabled cursor-not-allowed": props.disabled,
+        "py-2 text-sm": size === "small",
+        "py-3 text-base": size === "medium",
+        "py-4 text-lg": size === "large",
       },
       className
     );
 
     const containerClasses = classNames(
-      'relative',
-      { 'w-full': fullWidth },
+      "relative",
+      { "w-full": fullWidth },
       containerClassName
     );
 
@@ -63,9 +66,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         />
         {(error || helperText) && (
           <p
-            className={classNames('mt-1 text-sm', {
-              'text-red-500': error,
-              'text-content-secondary': !error && helperText
+            className={classNames("mt-1 text-sm", {
+              "text-content-error": error,
+              "text-content-secondary": !error && helperText,
             })}
           >
             {error || helperText}

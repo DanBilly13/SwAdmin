@@ -48,12 +48,12 @@ export const Dropdown = ({
 
   const buttonClasses = classNames(
     "flex items-center w-full rounded-lg bg-surface-primary",
-    "border border-border focus:border-primary transition-colors",
+    "border border-border-secondary focus:outline-none focus:ring-1 focus:border-border-primary focus:ring-border-primary transition-colors",
     {
       "h-9": size === "small",
       "h-12": size === "large",
       "opacity-50 cursor-not-allowed": disabled,
-      "border-error": error,
+      "border-border-error": error,
     }
   );
 
@@ -109,7 +109,7 @@ export const Dropdown = ({
 
       {/* Dropdown menu */}
       {isOpen && !disabled && (
-        <div className="absolute w-full mt-1 p-1 bg-surface-primary border border-border rounded-lg shadow-lg z-10">
+        <div className="absolute w-full mt-1 p-1 bg-surface-primary border border-border-secondary rounded-lg shadow-lg z-10">
           {options.map((option) => (
             <button
               key={option.value}
@@ -132,7 +132,9 @@ export const Dropdown = ({
         </div>
       )}
       {error && errorMessage && (
-        <div className="text-error text-body-s mt-1">{errorMessage}</div>
+        <div className="text-content-error text-body-s mt-1">
+          {errorMessage}
+        </div>
       )}
     </div>
   );

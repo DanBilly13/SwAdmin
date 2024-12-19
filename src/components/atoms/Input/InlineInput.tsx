@@ -14,25 +14,25 @@ export interface InlineInputProps
 
 export const InlineInput = forwardRef<HTMLInputElement, InlineInputProps>(
   (
-    { 
-      label, 
-      leadingIcon, 
-      trailingIcon, 
-      error, 
-      className, 
+    {
+      label,
+      leadingIcon,
+      trailingIcon,
+      error,
+      className,
       disabled,
       onLeadingIconClick,
       onTrailingIconClick,
-      ...props 
+      ...props
     },
     ref
   ) => {
     const containerClasses = classNames(
       "flex items-center h-12 w-full rounded-lg bg-surface",
-      "border border-border focus-within:border-primary transition-colors",
+      "border border-border-secondary focus-within:border-border-primary transition-colors",
       {
         "opacity-50 cursor-not-allowed": disabled,
-        "border-error": error,
+        "border-border-error": error,
       },
       className
     );
@@ -41,7 +41,8 @@ export const InlineInput = forwardRef<HTMLInputElement, InlineInputProps>(
       "material-symbols-rounded select-none text-content",
       "text-base w-5 h-5 flex items-center justify-center",
       {
-        "cursor-pointer": !disabled && (onLeadingIconClick || onTrailingIconClick),
+        "cursor-pointer":
+          !disabled && (onLeadingIconClick || onTrailingIconClick),
       }
     );
 
@@ -51,7 +52,7 @@ export const InlineInput = forwardRef<HTMLInputElement, InlineInputProps>(
         {(leadingIcon || label) && (
           <div className="flex items-center gap-3.5">
             {leadingIcon && (
-              <div 
+              <div
                 className={classNames("pl-3.5")}
                 onClick={!disabled ? onLeadingIconClick : undefined}
               >
@@ -88,7 +89,7 @@ export const InlineInput = forwardRef<HTMLInputElement, InlineInputProps>(
 
         {/* Trailing icon */}
         {trailingIcon && (
-          <div 
+          <div
             className="pr-3.5"
             onClick={!disabled ? onTrailingIconClick : undefined}
           >

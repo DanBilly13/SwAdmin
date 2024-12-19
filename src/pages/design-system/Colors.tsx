@@ -258,63 +258,63 @@ const Colors = () => {
           <SectionCard title="Border Colors">
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
               <ColorBlock
-                colorClass="border-primary"
+                colorClass="border-border-primary"
                 label="Border Primary"
                 tokenName="border-primary"
-                hexCode={mapped.neutral.light}
+                hexCode={mapped.neutral.darker}
                 isBorder
               />
               <ColorBlock
-                colorClass="border-secondary"
+                colorClass="border-border-secondary"
                 label="Border Secondary"
                 tokenName="border-secondary"
                 hexCode={mapped.neutral.default}
                 isBorder
               />
               <ColorBlock
-                colorClass="border-tertiary"
+                colorClass="border-border-tertiary"
                 label="Border Tertiary"
                 tokenName="border-tertiary"
                 hexCode={mapped.neutral.white}
                 isBorder
               />
               <ColorBlock
-                colorClass="border-active"
+                colorClass="border-border-active"
                 label="Border Active"
                 tokenName="border-active"
                 hexCode={mapped.neutral.darker}
                 isBorder
               />
               <ColorBlock
-                colorClass="border-focus"
+                colorClass="border-border-focus"
                 label="Border Focus"
                 tokenName="border-focus"
                 hexCode={mapped.focus.default}
                 isBorder
               />
               <ColorBlock
-                colorClass="border-success"
+                colorClass="border-border-success"
                 label="Border Success"
                 tokenName="border-success"
                 hexCode={mapped.success.default}
                 isBorder
               />
               <ColorBlock
-                colorClass="border-error"
+                colorClass="border-border-error"
                 label="Border Error"
                 tokenName="border-error"
                 hexCode={mapped.error.default}
                 isBorder
               />
               <ColorBlock
-                colorClass="border-caution"
+                colorClass="border-border-caution"
                 label="Border Caution"
                 tokenName="border-caution"
                 hexCode={mapped.caution.default}
                 isBorder
               />
               <ColorBlock
-                colorClass="border-brand"
+                colorClass="border-border-brand"
                 label="Border Brand"
                 tokenName="border-brand"
                 hexCode={mapped.primary.default}

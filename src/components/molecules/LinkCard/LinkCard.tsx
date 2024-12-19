@@ -14,11 +14,11 @@ export interface LinkCardProps {
 }
 
 const variantClasses = {
-  primary: "bg-primary/5 border-primary/20",
-  secondary: "bg-secondary/5 border-secondary/20",
-  success: "bg-success/5 border-success/20",
-  warning: "bg-warning/5 border-warning/20",
-  info: "bg-info/5 border-info/20",
+  primary: "bg-primary/5 border-border-secondary",
+  secondary: "bg-secondary/5 border-border-secondary/20",
+  success: "bg-success/5 border-border-success/20",
+  warning: "bg-warning/5 border-border-error/20",
+  info: "bg-info/5 border-border-focus/20",
 };
 
 export const LinkCard: React.FC<LinkCardProps> = ({

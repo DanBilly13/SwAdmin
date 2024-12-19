@@ -49,7 +49,7 @@ export const getTableCellClasses = (
       "pr-0": isLastBool,
 
       "text-label-s bg-surface-secondary": variant === "header",
-      "border-t border-border": variant === "footer",
+      "border-t border-border-secondary": variant === "footer",
     },
     className
   );

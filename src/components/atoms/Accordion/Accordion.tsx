@@ -53,7 +53,7 @@ export const Accordion: React.FC<AccordionProps> = ({
 
   const variantClasses = {
     primary: "bg-surface-secondary text-fill-primary border-none",
-    secondary: "bg-surface border border-border text-content",
+    secondary: "bg-surface border border-border-secondary text-content",
   };
 
   const iconStates = {

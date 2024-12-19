@@ -1,6 +1,6 @@
-import React from 'react';
-import classNames from 'classnames';
-import { Link } from 'react-router-dom';
+import React from "react";
+import classNames from "classnames";
+import { Link } from "react-router-dom";
 
 export interface GridCardsProps {
   children: React.ReactNode;
@@ -9,13 +9,10 @@ export interface GridCardsProps {
 
 export const GridCards: React.FC<GridCardsProps> = ({
   children,
-  className
+  className,
 }) => {
   return (
-    <div className={classNames(
-      'grid grid-cols-12 gap-6 p-6',
-      className
-    )}>
+    <div className={classNames("grid grid-cols-12 gap-6 p-6", className)}>
       {children}
     </div>
   );
@@ -34,25 +31,24 @@ export const Card: React.FC<CardProps> = ({
   children,
   className,
   colSpan = 4,
-  to
+  to,
 }) => {
-  const CardWrapper = to ? Link : 'div';
-  
+  const CardWrapper = to ? Link : "div";
+
   return (
     <CardWrapper
-      to={to || ''}
+      to={to || ""}
       className={classNames(
-        'bg-surface rounded-lg border border-border p-6',
+        "bg-surface rounded-lg border border-border-secondary p-6",
         `col-span-12 md:col-span-6 lg:col-span-${colSpan}`,
-        to && 'hover:border-primary/50 hover:shadow-sm transition-all cursor-pointer',
+        to &&
+          "hover:border-border-primary hover:shadow-sm transition-all cursor-pointer",
         className
       )}
     >
       <h3 className="text-title-l mb-4 text-content-primary">{title}</h3>
       {children && (
-        <div className="text-body-m text-content-secondary">
-          {children}
-        </div>
+        <div className="text-body-m text-content-secondary">{children}</div>
       )}
     </CardWrapper>
   );

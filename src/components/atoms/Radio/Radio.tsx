@@ -32,7 +32,7 @@ export const Radio = ({
           "w-5 h-5 rounded-full flex items-center justify-center transition-colors",
           {
             "bg-success text-success-content": checked,
-            "border border-border hover:border-primary": !checked,
+            "border border-border-secondary hover:border-border-primary": !checked,
             "opacity-50 cursor-not-allowed": disabled,
             "cursor-pointer": !disabled,
           },
