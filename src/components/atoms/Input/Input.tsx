@@ -32,9 +32,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       "focus:outline-none focus:ring-1",
       "text-body-s",
       {
-        "border-border-error text-content-error placeholder-red-300 focus:border-border-error focus:ring-border-error":
+        "border-error text-content-error placeholder-red-300 focus:border-error focus:ring-error":
           error,
-        "border-border-secondary text-content placeholder-content-tertiary focus:border-border-primary focus:ring-border-primary":
+        "border-secondary text-content placeholder-content-tertiary focus:border-primary focus:ring-primary":
           !error,
         "bg-gray-50 text-content-disabled cursor-not-allowed": props.disabled,
         "py-2 text-sm": size === "small",

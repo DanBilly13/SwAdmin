@@ -29,10 +29,10 @@ export const InlineInput = forwardRef<HTMLInputElement, InlineInputProps>(
   ) => {
     const containerClasses = classNames(
       "flex items-center h-12 w-full rounded-lg bg-surface",
-      "border border-border-secondary focus-within:border-border-primary transition-colors",
+      "border border-secondary focus-within:border-primary transition-colors",
       {
         "opacity-50 cursor-not-allowed": disabled,
-        "border-border-error": error,
+        "border-error": error,
       },
       className
     );

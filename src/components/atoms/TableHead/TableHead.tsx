@@ -10,7 +10,7 @@ export const TableHead = ({ className, children }: TableHeadProps) => {
   return (
     <div
       className={classNames(
-        "-mx-6 rounded-t-lg border-b border-border-secondary bg-bg",
+        "-mx-6 rounded-t-lg border-b border-secondary bg-bg",
         className
       )}
     >

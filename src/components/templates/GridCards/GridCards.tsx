@@ -39,10 +39,10 @@ export const Card: React.FC<CardProps> = ({
     <CardWrapper
       to={to || ""}
       className={classNames(
-        "bg-surface rounded-lg border border-border-secondary p-6",
+        "bg-surface rounded-lg border border-secondary p-6",
         `col-span-12 md:col-span-6 lg:col-span-${colSpan}`,
         to &&
-          "hover:border-border-primary hover:shadow-sm transition-all cursor-pointer",
+          "hover:border-primary hover:shadow-sm transition-all cursor-pointer",
         className
       )}
     >

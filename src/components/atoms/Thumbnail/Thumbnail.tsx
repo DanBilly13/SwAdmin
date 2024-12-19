@@ -68,7 +68,7 @@ export const Thumbnail = ({
     sizeClasses[size],
     type === "teamBadge" && [
       teamBadgePaddingClasses[size],
-      "border border-border-secondary",
+      "border border-secondary",
     ],
     className
   );

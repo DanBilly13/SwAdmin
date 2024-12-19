@@ -50,7 +50,7 @@ const Templates = () => {
           <SectionCard title="Dashboard Template">
             <div>
               <h3 className="text-title-s text-content-secondary mb-4">Basic Layout</h3>
-              <div className="border border-border-secondary rounded-lg p-4">
+              <div className="border border-secondary rounded-lg p-4">
                 {/* <DashboardTemplate 
                   header={<div className="text-title-m">Dashboard Header</div>}
                   sidebar={<div className="text-body-m">Sidebar Navigation</div>}
@@ -65,7 +65,7 @@ const Templates = () => {
           <SectionCard title="Form Template">
             <div>
               <h3 className="text-title-s text-content-secondary mb-4">Registration Form</h3>
-              <div className="border border-border-secondary rounded-lg p-4">
+              <div className="border border-secondary rounded-lg p-4">
                 {/* <FormTemplate 
                   title="User Registration"
                   description="Create a new user account"
@@ -74,12 +74,12 @@ const Templates = () => {
                       <input 
                         type="text" 
                         placeholder="Full Name" 
-                        className="w-full p-2 border border-border-secondary rounded" 
+                        className="w-full p-2 border border-secondary rounded" 
                       />
                       <input 
                         type="email" 
                         placeholder="Email Address" 
-                        className="w-full p-2 border border-border-secondary rounded" 
+                        className="w-full p-2 border border-secondary rounded" 
                       />
                       <button 
                         className="w-full p-2 bg-primary text-fill-on rounded"
@@ -97,21 +97,21 @@ const Templates = () => {
           <SectionCard title="List Template">
             <div>
               <h3 className="text-title-s text-content-secondary mb-4">User List</h3>
-              <div className="border border-border-secondary rounded-lg p-4">
+              <div className="border border-secondary rounded-lg p-4">
                 {/* <ListTemplate 
                   title="User Management"
                   description="List of registered users"
                   list={
                     <div className="space-y-2">
-                      <div className="flex justify-between p-2 border-b border-border-secondary">
+                      <div className="flex justify-between p-2 border-b border-secondary">
                         <span>John Doe</span>
                         <span>Admin</span>
                       </div>
-                      <div className="flex justify-between p-2 border-b border-border-secondary">
+                      <div className="flex justify-between p-2 border-b border-secondary">
                         <span>Jane Smith</span>
                         <span>User</span>
                       </div>
-                      <div className="flex justify-between p-2 border-b border-border-secondary">
+                      <div className="flex justify-between p-2 border-b border-secondary">
                         <span>Mike Johnson</span>
                         <span>Editor</span>
                       </div>
@@ -131,7 +131,7 @@ const Templates = () => {
           <SectionCard title="Detail Template">
             <div>
               <h3 className="text-title-s text-content-secondary mb-4">User Profile</h3>
-              <div className="border border-border-secondary rounded-lg p-4">
+              <div className="border border-secondary rounded-lg p-4">
                 {/* <DetailTemplate 
                   title="User Profile"
                   description="Detailed information about a user"

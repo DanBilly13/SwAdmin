@@ -47,9 +47,9 @@ const variantClasses: Record<ButtonVariant, string> = {
   primary:
     "bg-fill-brand-primary text-on-fill-brand-primary hover:bg-opacity-90 active:bg-opacity-100",
   secondary:
-    "bg-fill-brand-secondary border border-border-secondary text-on-fill-brand-secondary hover:bg-surface-secondary active:bg-surface",
+    "bg-fill-brand-secondary border border-secondary text-on-fill-brand-secondary hover:bg-surface-secondary active:bg-surface",
   tertiary:
-    "bg-fill-brand-tertiary text-on-fill-brand-secondary border border-border-secondary hover:bg-surface-secondary active:bg-surface",
+    "bg-fill-brand-tertiary text-on-fill-brand-secondary border border-secondary hover:bg-surface-secondary active:bg-surface",
 };
 
 export const Button = forwardRef<

@@ -31,7 +31,7 @@ const ColorBlock = ({
     <div className="flex flex-col">
       {isBorder ? (
         <div
-          className={`h-20 w-full rounded-lg bg-white border-2 ${colorClass} mb-4`}
+          className={`h-20 w-full rounded-lg bg-white border-2 border ${colorClass} mb-4`}
         />
       ) : isTextColor ? (
         <div className={`h-20 w-full rounded-lg bg-surface-secondary mb-4 flex items-center justify-center`}>
@@ -258,63 +258,63 @@ const Colors = () => {
           <SectionCard title="Border Colors">
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
               <ColorBlock
-                colorClass="border-border-primary"
+                colorClass="border-primary"
                 label="Border Primary"
                 tokenName="border-primary"
                 hexCode={mapped.neutral.darker}
                 isBorder
               />
               <ColorBlock
-                colorClass="border-border-secondary"
+                colorClass="border-secondary"
                 label="Border Secondary"
                 tokenName="border-secondary"
                 hexCode={mapped.neutral.default}
                 isBorder
               />
               <ColorBlock
-                colorClass="border-border-tertiary"
+                colorClass="border-tertiary"
                 label="Border Tertiary"
                 tokenName="border-tertiary"
                 hexCode={mapped.neutral.white}
                 isBorder
               />
               <ColorBlock
-                colorClass="border-border-active"
+                colorClass="border-active"
                 label="Border Active"
                 tokenName="border-active"
                 hexCode={mapped.neutral.darker}
                 isBorder
               />
               <ColorBlock
-                colorClass="border-border-focus"
+                colorClass="border-focus"
                 label="Border Focus"
                 tokenName="border-focus"
                 hexCode={mapped.focus.default}
                 isBorder
               />
               <ColorBlock
-                colorClass="border-border-success"
+                colorClass="border-success"
                 label="Border Success"
                 tokenName="border-success"
                 hexCode={mapped.success.default}
                 isBorder
               />
               <ColorBlock
-                colorClass="border-border-error"
+                colorClass="border-error"
                 label="Border Error"
                 tokenName="border-error"
                 hexCode={mapped.error.default}
                 isBorder
               />
               <ColorBlock
-                colorClass="border-border-caution"
+                colorClass="border-caution"
                 label="Border Caution"
                 tokenName="border-caution"
                 hexCode={mapped.caution.default}
                 isBorder
               />
               <ColorBlock
-                colorClass="border-border-brand"
+                colorClass="border-brand"
                 label="Border Brand"
                 tokenName="border-brand"
                 hexCode={mapped.primary.default}

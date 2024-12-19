@@ -153,7 +153,7 @@ const getTableCellClasses = (
       "pt-4": isTopRow, // Top padding for first row
       "pb-4": true,
       "text-label-s": variant === "header",
-      "border-t border-border-secondary": variant === "footer",
+      "border-t border-secondary": variant === "footer",
     },
     className
   );

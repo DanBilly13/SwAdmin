@@ -57,7 +57,7 @@ export const GridWithNav: React.FC<GridWithNavProps> = ({
             "transition-transform duration-300 ease-in-out",
             "top-0 right-0 xl:right-auto",
             "col-span-12 xl:col-span-2 bg-surface",
-            "border-l xl:border-l-0 xl:border-r border-border-secondary",
+            "border-l xl:border-l-0 xl:border-r border-secondary",
             "xl:sticky xl:top-0",
             isDrawerOpen ? "translate-x-0" : "translate-x-full xl:translate-x-0"
           )}

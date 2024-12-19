@@ -14,20 +14,6 @@ export default {
         "span-15": "span 15 / span 15",
         "span-16": "span 16 / span 16",
       },
-      // Border colors must be defined at theme.extend level
-      // This ensures Tailwind can properly process border-{color} utilities
-      // These colors are used across components with the border-* classes
-      borderColor: {
-        primary: mapped.neutral.darker,
-        secondary: mapped.neutral.dark,
-        tertiary: mapped.neutral.white,
-        active: mapped.neutral.darker,
-        focus: mapped.focus.default,
-        success: mapped.success.default,
-        caution: mapped.caution.default,
-        error: mapped.error.default,
-        brand: mapped.primary.default,
-      },
       fontWeight: {
         100: "100",
         200: "200",
@@ -100,6 +86,28 @@ export default {
             caution: mapped.neutral.darker,
             error: mapped.error.dark,
           },
+        },
+        border: {
+          primary: mapped.neutral.darker,
+          secondary: mapped.neutral.light,
+          tertiary: mapped.neutral.white,
+          active: mapped.neutral.darker,
+          focus: mapped.focus.default,
+          success: mapped.success.default,
+          caution: mapped.caution.default,
+          error: mapped.error.default,
+          brand: mapped.primary.default,
+        },
+        "border-border": {
+          primary: mapped.neutral.darker,
+          secondary: mapped.neutral.dark,
+          tertiary: mapped.neutral.white,
+          active: mapped.neutral.darker,
+          focus: mapped.focus.default,
+          success: mapped.success.default,
+          caution: mapped.caution.default,
+          error: mapped.error.default,
+          brand: mapped.primary.default,
         },
       },
       fontFamily: {

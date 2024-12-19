@@ -94,7 +94,7 @@ export const IconButton: React.FC<IconButtonProps> = ({
       {/* Dropdown Menu */}
       {isOpen && menuOptions && (
         <div className={classNames(
-          "absolute mt-1 p-1 bg-surface border border-border-secondary rounded-lg shadow-lg z-10",
+          "absolute mt-1 p-1 bg-surface border border-secondary rounded-lg shadow-lg z-10",
           "min-w-[160px] w-max",
           menuPositionClasses[menuPosition]
         )}>

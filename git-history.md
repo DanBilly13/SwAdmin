@@ -22,3 +22,12 @@
 - Implemented screen-size-dependent accordion behavior
 - Synchronized accordion states on md+ screens
 - Maintained independent accordion states on smaller screens
+
+## December 19, 2023
+
+###  - fix: border color configuration
+- Fixed border color configuration in Tailwind
+  - Moved `borderColor` configuration to correct level in `theme.extend`
+  - Removed redundant `border-border-*` configuration
+  - Updated all component border color classes to use simpler `border-*` pattern
+  - Added documentation comments in tailwind.config.js
