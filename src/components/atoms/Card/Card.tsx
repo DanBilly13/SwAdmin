@@ -1,7 +1,7 @@
-import React from 'react';
-import classNames from 'classnames';
+import React from "react";
+import classNames from "classnames";
 
-export type CardVariant = 'default' | 'table';
+export type CardVariant = "default" | "table";
 
 export interface CardProps {
   children: React.ReactNode;
@@ -10,19 +10,19 @@ export interface CardProps {
 }
 
 const variantClasses: Record<CardVariant, string> = {
-  default: 'p-6',
-  table: 'px-6'
+  default: "p-6",
+  table: "px-6",
 };
 
-export const Card: React.FC<CardProps> = ({ 
-  children, 
+export const Card: React.FC<CardProps> = ({
+  children,
   className,
-  variant = 'default' 
+  variant = "default",
 }) => {
   return (
-    <div 
+    <div
       className={classNames(
-        'rounded-lg border border-border bg-surface',
+        "rounded-lg border border-brand bg-surface-primary",
         variantClasses[variant],
         className
       )}

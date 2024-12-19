@@ -51,7 +51,7 @@ const Cards = () => {
           <SectionCard title="Link Cards">
             <div className="space-y-6">
               <div>
-                <h3 className="text-title-s text-content-secondary mb-4">
+                <h3 className="text-title-s text-on-surface-secondar mb-4">
                   Basic Link Card
                 </h3>
                 <div className="w-[320px]">
@@ -66,7 +66,7 @@ const Cards = () => {
               </div>
 
               <div>
-                <h3 className="text-title-s text-content-secondary mb-4">
+                <h3 className="text-title-s text-on-surface-secondar mb-4">
                   Link Card with Buttons
                 </h3>
                 <div className="w-[320px]">
@@ -81,7 +81,7 @@ const Cards = () => {
               </div>
 
               <div>
-                <h3 className="text-title-s text-content-secondary mb-4">
+                <h3 className="text-title-s text-on-surface-secondar mb-4">
                   Card Variants
                 </h3>
                 <div className="grid grid-cols-2 gap-4 w-full max-w-[660px]">
@@ -121,14 +121,14 @@ const Cards = () => {
           <SectionCard title="Basic Cards">
             {/* Basic Card */}
             <div>
-              <h3 className="text-title-s text-content-secondary mb-4">
+              <h3 className="text-title-s text-on-surface-secondar mb-4">
                 Basic Card
               </h3>
               <div className="w-[320px]">
                 <Card>
                   <div className="p-4">
                     <h4 className="text-title-m mb-2">Card Title</h4>
-                    <p className="text-body-m text-content-secondary">
+                    <p className="text-body-m text-on-surface-secondar">
                       This is a basic card with some content inside.
                     </p>
                   </div>
@@ -138,14 +138,14 @@ const Cards = () => {
 
             {/* With Actions */}
             <div className="mt-8">
-              <h3 className="text-title-s text-content-secondary mb-4">
+              <h3 className="text-title-s text-on-surface-secondar mb-4">
                 With Actions
               </h3>
               <div className="w-[320px]">
                 <Card>
                   <div className="p-4">
                     <h4 className="text-title-m mb-2">Card with Actions</h4>
-                    <p className="text-body-m text-content-secondary mb-4">
+                    <p className="text-body-m text-on-surface-secondar mb-4">
                       This card has action buttons below the content.
                     </p>
                     <div className="flex justify-end gap-2">
@@ -161,11 +161,11 @@ const Cards = () => {
           <SectionCard title="Section Cards">
             {/* Basic Section Card */}
             <div>
-              <h3 className="text-title-s text-content-secondary mb-4">
+              <h3 className="text-title-s text-on-surface-secondar mb-4">
                 Basic Section Card
               </h3>
               <SectionCard title="Example Section">
-                <p className="text-body-m text-content-secondary">
+                <p className="text-body-m text-on-surface-secondar">
                   Section cards are used to group related content under a
                   section title. They're commonly used in documentation and
                   settings pages.
@@ -175,14 +175,14 @@ const Cards = () => {
 
             {/* With Actions */}
             <div className="mt-8">
-              <h3 className="text-title-s text-content-secondary mb-4">
+              <h3 className="text-title-s text-on-surface-secondar mb-4">
                 With Actions
               </h3>
               <SectionCard
                 title="Section with Actions"
                 action={<IconButton icon="more_vert" />}
               >
-                <p className="text-body-m text-content-secondary">
+                <p className="text-body-m text-on-surface-secondar">
                   Section cards can include action buttons in their header for
                   additional functionality.
                 </p>
@@ -194,7 +194,7 @@ const Cards = () => {
           <SectionCard title="Modals">
             {/* Basic Modal */}
             <div>
-              <h3 className="text-title-s text-content-secondary mb-4">
+              <h3 className="text-title-s text-on-surface-secondar mb-4">
                 Basic Modal
               </h3>
               <div className="flex gap-4">
@@ -207,7 +207,7 @@ const Cards = () => {
                   title="Basic Modal"
                   description="Hantera åtkomstnivåer och behörigheter för denna roll i Min Fotboll."
                 >
-                  <p className="text-body-m text-content-secondary">
+                  <p className="text-body-m text-on-surface-secondar">
                     This is a basic modal with a simple title and content. It
                     can be closed using the close button in the top-right corner
                     or by clicking outside the modal.
@@ -218,7 +218,7 @@ const Cards = () => {
 
             {/* Custom Header Modal */}
             <div className="mt-8">
-              <h3 className="text-title-s text-content-secondary mb-4">
+              <h3 className="text-title-s text-on-surface-secondar mb-4">
                 Custom Header
               </h3>
               <div className="flex gap-4">
@@ -237,7 +237,7 @@ const Cards = () => {
                     </div>
                   }
                 >
-                  <p className="text-body-m text-content-secondary">
+                  <p className="text-body-m text-on-surface-secondar">
                     This modal demonstrates a custom header with an icon and
                     styled title. You can customize the header content to match
                     your needs.
@@ -248,7 +248,7 @@ const Cards = () => {
 
             {/* Modal with Actions */}
             <div className="mt-8">
-              <h3 className="text-title-s text-content-secondary mb-4">
+              <h3 className="text-title-s text-on-surface-secondar mb-4">
                 With Actions
               </h3>
               <div className="flex gap-4">
@@ -284,7 +284,7 @@ const Cards = () => {
                     ],
                   }}
                 >
-                  <p className="text-body-m text-content-secondary">
+                  <p className="text-body-m text-on-surface-secondar">
                     This modal includes action buttons in the footer. It's
                     commonly used for confirmation dialogs or forms that require
                     user actions.
@@ -297,7 +297,7 @@ const Cards = () => {
           <SectionCard title="Notifications Card">
             <div className="space-y-6">
               <div>
-                <h3 className="text-title-s text-content-secondary mb-4">
+                <h3 className="text-title-s text-on-surface-secondar mb-4">
                   Stacked Notifications Card
                 </h3>
                 <div className="space-y-4">
@@ -336,7 +336,7 @@ const Cards = () => {
               </div>
 
               <div>
-                <h3 className="text-title-s text-content-secondary mb-4">
+                <h3 className="text-title-s text-on-surface-secondar mb-4">
                   Inline Notifications Card
                 </h3>
                 <div className="space-y-4">
@@ -375,7 +375,7 @@ const Cards = () => {
               </div>
 
               <div>
-                <h3 className="text-title-s text-content-secondary mb-4">
+                <h3 className="text-title-s text-on-surface-secondar mb-4">
                   Basic Notifications Card
                 </h3>
                 <div className="space-y-4">

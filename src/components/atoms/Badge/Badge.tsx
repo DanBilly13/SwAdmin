@@ -8,31 +8,31 @@ const variantClasses: Record<
   { background: string; icon: string; fill?: number; weight?: number }
 > = {
   success: {
-    background: "bg-content-success text-fill-on",
+    background: "bg-fill-success text-fill-on",
     icon: "check",
     fill: 1,
     weight: 700,
   },
   error: {
-    background: "bg-content-error text-fill-on",
+    background: "bg-fill-error text-fill-on",
     icon: "priority_high",
     fill: 1,
     weight: 500,
   },
   warning: {
-    background: "bg-content-caution text-fill-on",
+    background: "bg-fill-caution text-fill-on",
     icon: "stat_0",
     fill: 1,
     weight: 700,
   },
   info: {
-    background: "bg-content-info text-fill-on",
+    background: "bg-fill-secondary text-fill-on",
     icon: "info_i",
     fill: 0,
     weight: 600,
   },
   neutral: {
-    background: "bg-content text-fill-on",
+    background: "bg-fill-secondary text-fill-on",
     icon: "circle",
     fill: 1,
     weight: 700,

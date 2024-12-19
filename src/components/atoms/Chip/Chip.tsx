@@ -1,7 +1,13 @@
 import React from "react";
 import classNames from "classnames";
 
-export type ChipVariant = "success" | "error" | "warning" | "info" | "neutral" | "primary";
+export type ChipVariant =
+  | "success"
+  | "error"
+  | "warning"
+  | "info"
+  | "neutral"
+  | "primary";
 
 const variantClasses: Record<
   ChipVariant,
@@ -20,7 +26,7 @@ const variantClasses: Record<
     text: "text-content-caution",
   },
   info: {
-    background: "bg-surface-info",
+    background: "bg-surface-secondary",
     text: "text-content-info",
   },
   neutral: {
@@ -42,10 +48,10 @@ export interface ChipProps {
   disabled?: boolean;
 }
 
-export const Chip = ({ 
-  variant, 
-  children, 
-  className, 
+export const Chip = ({
+  variant,
+  children,
+  className,
   leadingIcon,
   onClose,
   disabled = false,

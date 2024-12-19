@@ -4,6 +4,7 @@ import { MainContentHead } from "../../components/molecules/MainContentHead/Main
 import { useDrawerControl } from "../../components/templates";
 import { PageTitle } from "../../components/atoms/PageTitle/PageTitle";
 import { SectionCard } from "../../components/atoms";
+import { mapped } from "../../theme/colorPalettes";
 
 interface ColorBlockProps {
   colorClass: string;
@@ -12,6 +13,7 @@ interface ColorBlockProps {
   tokenName: string;
   textClass?: string;
   isBorder?: boolean;
+  bgClass?: string;
 }
 
 const ColorBlock = ({
@@ -19,11 +21,11 @@ const ColorBlock = ({
   label,
   hexCode,
   tokenName,
-  textClass = "text-content",
+  textClass = "text-content-primary",
   isBorder,
+  bgClass,
 }: ColorBlockProps) => {
-  // For text colors, convert them to background colors
-  const bgColorClass = colorClass.replace("text-", "bg-");
+  const isTextColor = colorClass.startsWith("text-");
 
   return (
     <div className="flex flex-col">
@@ -31,8 +33,12 @@ const ColorBlock = ({
         <div
           className={`h-20 w-full rounded-lg bg-white border-2 ${colorClass} mb-4`}
         />
+      ) : isTextColor ? (
+        <div className={`h-20 w-full rounded-lg bg-surface-secondary mb-4 flex items-center justify-center`}>
+          <span className={`text-2xl font-medium ${colorClass}`}>Aa</span>
+        </div>
       ) : (
-        <div className={`h-20 w-full rounded-lg ${bgColorClass} mb-4`} />
+        <div className={`h-20 w-full rounded-lg ${colorClass} mb-4`} />
       )}
       <div className="space-y-1">
         <p className={`text-label-l ${textClass}`}>{label}</p>
@@ -80,92 +86,26 @@ const Colors = () => {
       }
       content={
         <div className="space-y-8">
-          {/* Raw Colors */}
-          <SectionCard title="Gray Scale">
+          {/* Brand Colors */}
+          <SectionCard title="Brand Colors">
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
               <ColorBlock
-                colorClass="bg-gray-950"
-                label="Gray 950"
-                tokenName="gray-950"
-                hexCode="#222222"
+                colorClass="bg-fill-brand-primary"
+                label="Brand Primary"
+                tokenName="fill-brand-primary"
+                hexCode={mapped.primary.dark}
               />
               <ColorBlock
-                colorClass="bg-gray-650"
-                label="Gray 650"
-                tokenName="gray-650"
-                hexCode="#767676"
+                colorClass="bg-fill-brand-secondary"
+                label="Brand Secondary"
+                tokenName="fill-brand-secondary"
+                hexCode={mapped.primary.default}
               />
               <ColorBlock
-                colorClass="bg-gray-450"
-                label="Gray 450"
-                tokenName="gray-450"
-                hexCode="#AFAFAF"
-              />
-              <ColorBlock
-                colorClass="bg-gray-200"
-                label="Gray 200"
-                tokenName="gray-200"
-                hexCode="#E2E2E2"
-              />
-              <ColorBlock
-                colorClass="bg-gray-white"
-                label="Gray White"
-                tokenName="gray-white"
-                hexCode="#FFFFFF"
-              />
-            </div>
-          </SectionCard>
-
-          {/* Content Colors */}
-          <SectionCard title="Content Colors">
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
-              <ColorBlock
-                colorClass="bg-content"
-                label="Content"
-                tokenName="color-content"
-                hexCode="#222222"
-              />
-              <ColorBlock
-                colorClass="bg-content-secondary"
-                label="Content Secondary"
-                tokenName="color-content-secondary"
-                hexCode="#767676"
-              />
-              <ColorBlock
-                colorClass="bg-content-tertiary"
-                label="Content Tertiary"
-                tokenName="color-content-tertiary"
-                hexCode="#AFAFAF"
-              />
-              <ColorBlock
-                colorClass="bg-content-disabled"
-                label="Content Disabled"
-                tokenName="color-content-disabled"
-                hexCode="#E2E2E2"
-              />
-              <ColorBlock
-                colorClass="bg-content-error"
-                label="Content Error"
-                tokenName="color-content-error"
-                hexCode="#FF0000"
-              />
-              <ColorBlock
-                colorClass="bg-content-success"
-                label="Content Success"
-                tokenName="color-content-success"
-                hexCode="#4BB543"
-              />
-              <ColorBlock
-                colorClass="bg-content-caution"
-                label="Content Caution"
-                tokenName="color-content-caution"
-                hexCode="#FF9500"
-              />
-              <ColorBlock
-                colorClass="bg-content-info"
-                label="Content Info"
-                tokenName="color-content-info"
-                hexCode="#222222"
+                colorClass="bg-bg-brand-primary"
+                label="Brand Background"
+                tokenName="bg-brand-primary"
+                hexCode={mapped.primary.default}
               />
             </div>
           </SectionCard>
@@ -174,46 +114,40 @@ const Colors = () => {
           <SectionCard title="Surface Colors">
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
               <ColorBlock
-                colorClass="bg-surface"
-                label="Surface"
-                tokenName="color-surface"
-                hexCode="#FFFFFF"
+                colorClass="bg-surface-primary"
+                label="Surface Primary"
+                tokenName="surface-primary"
+                hexCode={mapped.neutral.white}
               />
               <ColorBlock
                 colorClass="bg-surface-secondary"
                 label="Surface Secondary"
-                tokenName="color-surface-secondary"
-                hexCode="#E2E2E2"
+                tokenName="surface-secondary"
+                hexCode={mapped.neutral.lighter}
               />
               <ColorBlock
                 colorClass="bg-surface-tertiary"
                 label="Surface Tertiary"
-                tokenName="color-surface-tertiary"
-                hexCode="#F5F5F5"
-              />
-              <ColorBlock
-                colorClass="bg-surface-error"
-                label="Surface Error"
-                tokenName="color-surface-error"
-                hexCode="#F9DEDC"
+                tokenName="surface-tertiary"
+                hexCode={mapped.neutral.light}
               />
               <ColorBlock
                 colorClass="bg-surface-success"
                 label="Surface Success"
-                tokenName="color-surface-success"
-                hexCode="#C0EECC"
+                tokenName="surface-success"
+                hexCode={mapped.success.light}
+              />
+              <ColorBlock
+                colorClass="bg-surface-error"
+                label="Surface Error"
+                tokenName="surface-error"
+                hexCode={mapped.error.light}
               />
               <ColorBlock
                 colorClass="bg-surface-caution"
                 label="Surface Caution"
-                tokenName="color-surface-caution"
-                hexCode="#FFE7C6"
-              />
-              <ColorBlock
-                colorClass="bg-surface-info"
-                label="Surface Info"
-                tokenName="color-surface-info"
-                hexCode="#F5F5F5"
+                tokenName="surface-caution"
+                hexCode={mapped.caution.light}
               />
             </div>
           </SectionCard>
@@ -224,14 +158,98 @@ const Colors = () => {
               <ColorBlock
                 colorClass="bg-fill-primary"
                 label="Fill Primary"
-                tokenName="color-fill-primary"
-                hexCode="#222222"
+                tokenName="fill-primary"
+                hexCode={mapped.neutral.darker}
               />
               <ColorBlock
-                colorClass="bg-fill-on"
-                label="Fill On"
-                tokenName="color-on-fill"
-                hexCode="#FFFFFF"
+                colorClass="bg-fill-secondary"
+                label="Fill Secondary"
+                tokenName="fill-secondary"
+                hexCode={mapped.neutral.light}
+              />
+              <ColorBlock
+                colorClass="bg-fill-tertiary"
+                label="Fill Tertiary"
+                tokenName="fill-tertiary"
+                hexCode={mapped.neutral.white}
+              />
+              <ColorBlock
+                colorClass="bg-fill-success"
+                label="Fill Success"
+                tokenName="fill-success"
+                hexCode={mapped.success.default}
+              />
+              <ColorBlock
+                colorClass="bg-fill-error"
+                label="Fill Error"
+                tokenName="fill-error"
+                hexCode={mapped.error.default}
+              />
+              <ColorBlock
+                colorClass="bg-fill-caution"
+                label="Fill Caution"
+                tokenName="fill-caution"
+                hexCode={mapped.caution.default}
+              />
+              <ColorBlock
+                colorClass="bg-fill-disabled"
+                label="Fill Disabled"
+                tokenName="fill-disabled"
+                hexCode={mapped.neutral.lighter}
+              />
+            </div>
+          </SectionCard>
+
+          {/* Content Colors */}
+          <SectionCard title="Content Colors">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
+              <ColorBlock
+                colorClass="bg-content-primary"
+                label="Content Primary"
+                tokenName="content-primary"
+                hexCode={mapped.neutral.darker}
+              />
+              <ColorBlock
+                colorClass="bg-content-secondary"
+                label="Content Secondary"
+                tokenName="content-secondary"
+                hexCode={mapped.neutral.dark}
+              />
+              <ColorBlock
+                colorClass="bg-content-tertiary"
+                label="Content Tertiary"
+                tokenName="content-tertiary"
+                hexCode={mapped.neutral.lighter}
+              />
+              <ColorBlock
+                colorClass="bg-content-brand"
+                label="Content Brand"
+                tokenName="content-brand"
+                hexCode={mapped.primary.default}
+              />
+              <ColorBlock
+                colorClass="bg-content-success"
+                label="Content Success"
+                tokenName="content-success"
+                hexCode={mapped.success.default}
+              />
+              <ColorBlock
+                colorClass="bg-content-error"
+                label="Content Error"
+                tokenName="content-error"
+                hexCode={mapped.error.default}
+              />
+              <ColorBlock
+                colorClass="bg-content-caution"
+                label="Content Caution"
+                tokenName="content-caution"
+                hexCode={mapped.caution.default}
+              />
+              <ColorBlock
+                colorClass="bg-content-disabled"
+                label="Content Disabled"
+                tokenName="content-disabled"
+                hexCode={mapped.neutral.light}
               />
             </div>
           </SectionCard>
@@ -240,44 +258,101 @@ const Colors = () => {
           <SectionCard title="Border Colors">
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
               <ColorBlock
-                colorClass="border-border"
-                label="Border"
-                tokenName="color-border"
-                hexCode="#E2E2E2"
+                colorClass="border-primary"
+                label="Border Primary"
+                tokenName="border-primary"
+                hexCode={mapped.neutral.light}
                 isBorder
               />
               <ColorBlock
-                colorClass="border-border-caution"
-                label="Border Caution"
-                tokenName="border-caution"
-                hexCode="#FFE7C6"
+                colorClass="border-secondary"
+                label="Border Secondary"
+                tokenName="border-secondary"
+                hexCode={mapped.neutral.default}
                 isBorder
               />
               <ColorBlock
-                colorClass="border-border-error"
-                label="Border Error"
-                tokenName="border-error"
-                hexCode="#F9DEDC"
+                colorClass="border-tertiary"
+                label="Border Tertiary"
+                tokenName="border-tertiary"
+                hexCode={mapped.neutral.white}
                 isBorder
               />
               <ColorBlock
-                colorClass="border-border-success"
+                colorClass="border-active"
+                label="Border Active"
+                tokenName="border-active"
+                hexCode={mapped.neutral.darker}
+                isBorder
+              />
+              <ColorBlock
+                colorClass="border-focus"
+                label="Border Focus"
+                tokenName="border-focus"
+                hexCode={mapped.focus.default}
+                isBorder
+              />
+              <ColorBlock
+                colorClass="border-success"
                 label="Border Success"
                 tokenName="border-success"
-                hexCode="#C0EECC"
+                hexCode={mapped.success.default}
+                isBorder
+              />
+              <ColorBlock
+                colorClass="border-error"
+                label="Border Error"
+                tokenName="border-error"
+                hexCode={mapped.error.default}
+                isBorder
+              />
+              <ColorBlock
+                colorClass="border-caution"
+                label="Border Caution"
+                tokenName="border-caution"
+                hexCode={mapped.caution.default}
+                isBorder
+              />
+              <ColorBlock
+                colorClass="border-brand"
+                label="Border Brand"
+                tokenName="border-brand"
+                hexCode={mapped.primary.default}
                 isBorder
               />
             </div>
           </SectionCard>
 
-          {/* Background Colors */}
-          <SectionCard title="Background Colors">
+          {/* On Colors */}
+          <SectionCard title="On Colors">
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
               <ColorBlock
-                colorClass="bg-bg"
-                label="Background"
-                tokenName="color-bg"
-                hexCode="#F5F5F5"
+                colorClass="text-on-fill-brand-primary"
+                label="On Brand Primary"
+                tokenName="on-fill-brand-primary"
+                hexCode={mapped.neutral.white}
+                bgClass="bg-fill-brand-primary"
+              />
+              <ColorBlock
+                colorClass="text-on-fill-brand-secondary"
+                label="On Brand Secondary"
+                tokenName="on-fill-brand-secondary"
+                hexCode={mapped.neutral.darker}
+                bgClass="bg-fill-brand-secondary"
+              />
+              <ColorBlock
+                colorClass="text-on-surface"
+                label="On Surface"
+                tokenName="on-surface"
+                hexCode={mapped.neutral.darker}
+                bgClass="bg-surface"
+              />
+              <ColorBlock
+                colorClass="text-on-surface-secondary"
+                label="On Surface Secondary"
+                tokenName="on-surface-secondary"
+                hexCode={mapped.neutral.dark}
+                bgClass="bg-surface-secondary"
               />
             </div>
           </SectionCard>

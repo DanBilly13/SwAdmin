@@ -1,7 +1,7 @@
 import React, { useState, useId } from "react";
 import classNames from "classnames";
-import { Radio } from '../Radio/Radio';
-import { useMenu } from '../../../contexts/MenuContext';
+import { Radio } from "../Radio/Radio";
+import { useMenu } from "../../../contexts/MenuContext";
 
 export interface DropdownOption {
   value: string;
@@ -9,7 +9,7 @@ export interface DropdownOption {
 }
 
 export type DropdownSize = "small" | "large";
-export type MenuType = 'action' | 'select';
+export type MenuType = "action" | "select";
 
 export interface DropdownProps {
   label?: string;
@@ -38,23 +38,20 @@ export const Dropdown = ({
   className,
   trailingIcon = "expand_more",
   size = "large",
-  menuType = 'action',
+  menuType = "action",
 }: DropdownProps) => {
   const menuId = useId();
   const { openMenuId, setOpenMenuId } = useMenu();
   const isOpen = openMenuId === menuId;
 
-  const containerClasses = classNames(
-    "relative w-full",
-    className
-  );
+  const containerClasses = classNames("relative w-full", className);
 
   const buttonClasses = classNames(
-    "flex items-center w-full rounded-lg bg-surface",
+    "flex items-center w-full rounded-lg bg-surface-primary",
     "border border-border focus:border-primary transition-colors",
     {
-      "h-9": size === "small", 
-      "h-12": size === "large", 
+      "h-9": size === "small",
+      "h-12": size === "large",
       "opacity-50 cursor-not-allowed": disabled,
       "border-error": error,
     }
@@ -65,7 +62,7 @@ export const Dropdown = ({
     "text-base w-5 h-5 flex items-center justify-center"
   );
 
-  const selectedOption = options.find(opt => opt.value === value);
+  const selectedOption = options.find((opt) => opt.value === value);
 
   const handleSelect = (optionValue: string) => {
     onChange?.(optionValue);
@@ -93,14 +90,13 @@ export const Dropdown = ({
 
         {/* Value section */}
         <div className="flex-1">
-          <div className={classNames(
-            "text-body-s px-3.5",
-            {
+          <div
+            className={classNames("text-body-s px-3.5", {
               "text-right": label,
               "text-left": !label,
-              "text-content-tertiary": !selectedOption,
-            }
-          )}>
+              "text-on-surface": !selectedOption,
+            })}
+          >
             {selectedOption ? selectedOption.label : placeholder}
           </div>
         </div>
@@ -113,7 +109,7 @@ export const Dropdown = ({
 
       {/* Dropdown menu */}
       {isOpen && !disabled && (
-        <div className="absolute w-full mt-1 p-1 bg-surface border border-border rounded-lg shadow-lg z-10">
+        <div className="absolute w-full mt-1 p-1 bg-surface-primary border border-border rounded-lg shadow-lg z-10">
           {options.map((option) => (
             <button
               key={option.value}
@@ -121,12 +117,14 @@ export const Dropdown = ({
               className={classNames(
                 "w-full pl-2.5 rounded-md hover:bg-bg py-2",
                 "flex items-center justify-between gap-2",
-                menuType === 'select' ? 'pr-2.5' : 'pr-3.5'
+                menuType === "select" ? "pr-2.5" : "pr-3.5"
               )}
               onClick={() => handleSelect(option.value)}
             >
-              <span className="text-body-s text-content truncate">{option.label}</span>
-              {menuType === 'select' && (
+              <span className="text-body-s text-content truncate">
+                {option.label}
+              </span>
+              {menuType === "select" && (
                 <Radio checked={option.value === value} />
               )}
             </button>

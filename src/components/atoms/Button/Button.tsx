@@ -2,8 +2,8 @@ import React, { forwardRef } from "react";
 import classNames from "classnames";
 import { Link, LinkProps } from "react-router-dom";
 
-export type ButtonSize = 'small' | 'medium' | 'large' | (string & {});
-export type ButtonVariant = 'primary' | 'secondary' | 'tertiary';
+export type ButtonSize = "small" | "medium" | "large" | (string & {});
+export type ButtonVariant = "primary" | "secondary" | "tertiary";
 
 type ButtonBaseProps = {
   size?: ButtonSize;
@@ -26,9 +26,9 @@ type ButtonAsLinkProps = ButtonBaseProps &
 export type ButtonProps = ButtonAsButtonProps | ButtonAsLinkProps;
 
 const defaultSizeClasses: Record<string, string> = {
-  small: 'h-6 text-label-s',
-  medium: 'h-9 text-label-m',
-  large: 'h-12 text-label-m',
+  small: "h-6 text-label-s",
+  medium: "h-9 text-label-m",
+  large: "h-12 text-label-m",
 };
 
 const paddingClasses: Record<string, string> = {
@@ -45,10 +45,11 @@ const iconPaddingClasses: Record<string, string> = {
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    "bg-fill-primary text-fill-on hover:bg-opacity-90 active:bg-opacity-100",
+    "bg-fill-brand-primary text-on-fill-brand-primary hover:bg-opacity-90 active:bg-opacity-100",
   secondary:
-    "bg-surface border border-border text-content hover:bg-bg active:bg-surface",
-  tertiary: "text-content border border-border hover:bg-bg active:bg-surface",
+    "bg-fill-brand-secondary border border-brand text-on-fill-brand-secondary hover:bg-surface-secondary active:bg-surface",
+  tertiary:
+    "bg-fill-brand-tertiary text-on-fill-brand-secondary border border-brand hover:bg-surface-secondary active:bg-surface",
 };
 
 export const Button = forwardRef<
@@ -72,14 +73,20 @@ export const Button = forwardRef<
   ) => {
     const iconClasses = classNames(
       "material-symbols-rounded select-none text-base",
-      { "opacity-50": disabled }
+      {
+        "text-on-fill-brand-primary": variant === "primary",
+        "text-on-fill-brand-secondary": variant === "secondary" || variant === "tertiary",
+        "opacity-50": disabled
+      }
     );
 
     const commonClasses = classNames(
       "rounded-lg font-medium transition-colors duration-200 flex items-center gap-2",
       defaultSizeClasses[size as string],
       variantClasses[variant],
-      leadingIcon ? iconPaddingClasses[size as string] : paddingClasses[size as string],
+      leadingIcon
+        ? iconPaddingClasses[size as string]
+        : paddingClasses[size as string],
       {
         "w-full": fullWidth,
         "opacity-50 cursor-not-allowed": disabled,

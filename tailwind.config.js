@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import { mapped } from "./src/theme/colorPalettes";
+
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
@@ -24,45 +26,78 @@ export default {
         900: "900",
       },
       colors: {
-        // Raw hex colors
-        gray: {
-          950: "#222222",
-          650: "#767676",
-          450: "#AFAFAF",
-          200: "#E2E2E2",
-          white: "#FFFFFF",
-        },
-        // Semantic tokens
-        content: {
-          DEFAULT: "#222222", // color-content
-          secondary: "#767676", // color-content-secondary
-          tertiary: "#AFAFAF", // color-content-tertiary
-          disabled: "#E2E2E2", // color-content-disabled
-          error: "#FF0000", // color-content-error
-          success: "#4BB543", // color-content-success
-          caution: "#FF9500", // color-content-caution
-          info: "#222222", // color-content-info
-        },
-        fill: {
-          primary: "#222222", // color-fill-primary
-          on: "#FFFFFF", // color-on-fill
+        bg: {
+          primary: mapped.neutral.lighter,
+          brand: {
+            primary: mapped.primary.default,
+          },
         },
         surface: {
-          DEFAULT: "#FFFFFF", // color-surface
-          secondary: "#E2E2E2", // color-surface-secondary
-          tertiary: "#F5F5F5", // color-surface-tertiary
-          error: "#F9DEDC", // color-surface-error
-          success: "#C0EECC", // color-surface-success
-          caution: "#FFE7C6", // color-surface-caution
-          info: "#F5F5F5", // color-surface-info
+          primary: mapped.neutral.white,
+          secondary: mapped.neutral.lighter,
+          tertiary: mapped.neutral.light,
+          success: mapped.success.light,
+          error: mapped.error.light,
+          caution: mapped.caution.light,
+        },
+        fill: {
+          primary: mapped.neutral.darker,
+          secondary: mapped.neutral.light,
+          tertiary: mapped.neutral.white,
+          brand: {
+            primary: mapped.primary.dark,
+            secondary: mapped.neutral.white,
+            tertiary: "transparent",
+          },
+          success: mapped.success.default,
+          caution: mapped.caution.default,
+          error: mapped.error.default,
+          disabled: mapped.neutral.lighter,
+        },
+        content: {
+          primary: mapped.neutral.darker,
+          secondary: mapped.neutral.dark,
+          tertiary: mapped.neutral.lighter,
+          success: mapped.success.default,
+          caution: mapped.caution.default,
+          error: mapped.error.default,
+          disabled: mapped.neutral.light,
+          brand: mapped.primary.dark,
+        },
+        link: mapped.primary.dark,
+        on: {
+          fill: {
+            primary: mapped.neutral.white,
+            secondary: mapped.neutral.darker,
+            tertiary: mapped.neutral.darker,
+            success: mapped.success["on-success"],
+            caution: mapped.caution["on-caution"],
+            error: mapped.error["on-error"],
+            disabled: mapped.neutral.default,
+            brand: {
+              primary: mapped.neutral.white,
+              secondary: mapped.neutral.darker,
+            },
+          },
+          surface: {
+            primary: mapped.neutral.darker,
+            secondary: mapped.neutral.dark,
+            success: mapped.success.dark,
+            caution: mapped.neutral.darker,
+            error: mapped.error.dark,
+          },
         },
         border: {
-          DEFAULT: "#E2E2E2", // color-border
-          caution: "#FFE7C6", // color-border-caution
-          error: "#F9DEDC", // color-border-error
-          success: "#C0EECC", // color-border-success
+          primary: mapped.neutral.darker,
+          secondary: mapped.neutral.default,
+          tertiary: mapped.neutral.white,
+          active: mapped.neutral.darker,
+          focus: mapped.focus.default,
+          success: mapped.success.default,
+          caution: mapped.caution.default,
+          error: mapped.error.default,
+          brand: mapped.primary.default,
         },
-        bg: "#F5F5F5", // color-bg
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],

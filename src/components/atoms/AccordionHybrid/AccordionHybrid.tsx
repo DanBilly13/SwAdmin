@@ -43,7 +43,7 @@ export const AccordionHybrid: React.FC<AccordionHybridProps> = ({
     "cursor-pointer",
     "transition-colors",
     "h-6 text-label-s   px-2",
-    "bg-surface-info text-fill-primary border-none",
+    "bg-surface-secondary text-fill-primary border-none",
     {
       rounded: !removeRoundedLeft && !removeRoundedRight,
       "rounded-l": !removeRoundedLeft && removeRoundedRight,
