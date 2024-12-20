@@ -12,7 +12,8 @@ import type { TableCellStructuredProps } from "../types";
  * This component handles different layouts based on the content type
  */
 export const StructuredContent: React.FC<TableCellStructuredProps> = ({
-  title,
+  titleSmall,
+  titleLarge,
   description,
   imageType = "thumbnail",
   thumbnail,
@@ -44,7 +45,7 @@ export const StructuredContent: React.FC<TableCellStructuredProps> = ({
     <>
       {renderImage()}
       <div className="flex-1 min-w-0">
-        <ContentText title={title} description={description} />
+        <ContentText titleSmall={titleSmall} titleLarge={titleLarge} description={description} />
         {chip && <Chip {...chip} className="mt-1" />}
       </div>
       <ActionButtons iconButton={iconButton} dropdown={dropdown} />
