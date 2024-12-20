@@ -31,3 +31,10 @@
   - Removed redundant `border-border-*` configuration
   - Updated all component border color classes to use simpler `border-*` pattern
   - Added documentation comments in tailwind.config.js
+
+## December 20, 2023
+
+###  - refactor: design system consistency updates
+- Updated Card component to use `border-secondary` for consistent border styling
+- Changed TableHead background to use correct surface token `bg-surface-secondary`
+- Standardized placeholder text colors across form components to use `fill-tertiary`

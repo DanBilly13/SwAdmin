@@ -48,7 +48,8 @@ export const Dropdown = ({
 
   const buttonClasses = classNames(
     "flex items-center w-full rounded-lg bg-surface-primary",
-    "border border-secondary focus:outline-none focus:ring-1 focus:border-primary focus:ring-primary transition-colors",
+    "border focus:outline-none",
+    isOpen ? "border-active" : "border-secondary hover:border-active focus:border-active",
     {
       "h-9": size === "small",
       "h-12": size === "large",
@@ -94,7 +95,7 @@ export const Dropdown = ({
             className={classNames("text-body-s px-3.5", {
               "text-right": label,
               "text-left": !label,
-              "text-on-surface": !selectedOption,
+              "text-fill-tertiary": !selectedOption,
             })}
           >
             {selectedOption ? selectedOption.label : placeholder}

@@ -29,12 +29,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
   ) => {
     const inputClasses = classNames(
       "block w-full rounded-lg border px-4 py-3",
-      "focus:outline-none focus:ring-1",
+      "focus:outline-none",
       "text-body-s",
       {
-        "border-error text-content-error placeholder-red-300 focus:border-error focus:ring-error":
+        "border-error text-content-error placeholder-red-300 focus:border-error":
           error,
-        "border-secondary text-content placeholder-content-tertiary focus:border-primary focus:ring-primary":
+        "border-secondary text-content placeholder-fill-tertiary hover:border-active focus:border-active":
           !error,
         "bg-gray-50 text-content-disabled cursor-not-allowed": props.disabled,
         "py-2 text-sm": size === "small",

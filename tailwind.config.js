@@ -19,10 +19,10 @@ export default {
       // These colors are used across components with the border-* classes
       borderColor: {
         primary: mapped.neutral.darker,
-        secondary: mapped.neutral.dark,
+        secondary: mapped.neutral.light,
         tertiary: mapped.neutral.white,
         active: mapped.neutral.darker,
-        focus: mapped.focus.default,
+        focus: mapped.neutral.darker,
         success: mapped.success.default,
         caution: mapped.caution.default,
         error: mapped.error.default,

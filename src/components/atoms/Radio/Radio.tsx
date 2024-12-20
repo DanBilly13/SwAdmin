@@ -42,7 +42,9 @@ export const Radio = ({
         disabled={disabled || readOnly}
       >
         {checked && (
-          <span className="material-symbols-rounded text-fill-on text-sm">check</span>
+          <span className="material-symbols-rounded text-fill-tertiary text-sm">
+            check
+          </span>
         )}
       </button>
       {label && <span className="ml-2 text-sm">{label}</span>}
