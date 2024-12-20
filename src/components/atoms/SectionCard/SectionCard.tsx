@@ -2,13 +2,15 @@ import React from "react";
 
 type SectionCardProps = {
   title: string;
-  children: React.ReactNode;
+  description?: string;
+  children?: React.ReactNode;
   className?: string;
   action?: React.ReactNode;
 };
 
 export const SectionCard = ({
   title,
+  description,
   children,
   className = "",
   action,
@@ -18,7 +20,12 @@ export const SectionCard = ({
       className={`p-6 rounded-lg border border-secondary bg-surface-primary ${className}`}
     >
       <div className="flex justify-between items-center mb-8">
-        <h2 className="text-title-l">{title}</h2>
+        <div>
+          <h2 className="text-title-l">{title}</h2>
+          {description && (
+            <p className="text-body-m text-content-secondary mt-1">{description}</p>
+          )}
+        </div>
         {action && <div>{action}</div>}
       </div>
       <div className="space-y-8">{children}</div>

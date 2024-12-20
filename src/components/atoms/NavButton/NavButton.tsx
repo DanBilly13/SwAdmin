@@ -27,9 +27,9 @@ export const NavButton = ({
   const buttonClasses = classNames(
     "h-9 px-3.5 rounded-lg transition-colors duration-200",
     "flex items-center gap-2 no-underline w-full",
-    "text-content hover:bg-bg active:bg-bg",
+    "text-content-primary hover:bg-surface-secondary active:bg-surface-secondary",
     "text-label-m",
-    isActive && "bg-bg text-content",
+    isActive && "bg-surface-secondary text-content",
     className
   );
 
@@ -40,7 +40,8 @@ export const NavButton = ({
 
   const handleClick = () => {
     // Close drawer on mobile when navigating
-    if (window.innerWidth < 1280) { // 1280px is xl breakpoint
+    if (window.innerWidth < 1280) {
+      // 1280px is xl breakpoint
       setIsDrawerOpen(false);
     }
   };

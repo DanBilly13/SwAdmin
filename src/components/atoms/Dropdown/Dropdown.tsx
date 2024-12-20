@@ -49,12 +49,15 @@ export const Dropdown = ({
   const buttonClasses = classNames(
     "flex items-center w-full rounded-lg bg-surface-primary",
     "border focus:outline-none",
-    isOpen ? "border-active" : "border-secondary hover:border-active focus:border-active",
+    error
+      ? "border-error hover:border-error focus:border-error"
+      : isOpen
+      ? "border-active"
+      : "border-secondary hover:border-active focus:border-active",
     {
       "h-9": size === "small",
       "h-12": size === "large",
       "opacity-50 cursor-not-allowed": disabled,
-      "border-error": error,
     }
   );
 

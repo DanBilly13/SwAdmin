@@ -188,6 +188,41 @@ const Cards = () => {
                 </p>
               </SectionCard>
             </div>
+
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-title-s text-content-secondary mb-4">
+                  Basic Section Card
+                </h3>
+                <SectionCard 
+                  title="Card Title" 
+                  description="Optional description text that provides more context about the section."
+                >
+                  <div className="h-32 flex items-center justify-center border border-secondary rounded-lg">
+                    Card Content
+                  </div>
+                </SectionCard>
+              </div>
+
+              <div>
+                <h3 className="text-title-s text-content-secondary mb-4">
+                  With Action
+                </h3>
+                <SectionCard 
+                  title="Card with Action" 
+                  description="Cards can include both a description and an action button."
+                  action={
+                    <Button variant="secondary" size="small">
+                      Action
+                    </Button>
+                  }
+                >
+                  <div className="h-32 flex items-center justify-center border border-secondary rounded-lg">
+                    Card Content
+                  </div>
+                </SectionCard>
+              </div>
+            </div>
           </SectionCard>
 
           {/* Modal Examples */}

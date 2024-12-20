@@ -38,3 +38,14 @@
 - Updated Card component to use `border-secondary` for consistent border styling
 - Changed TableHead background to use correct surface token `bg-surface-secondary`
 - Standardized placeholder text colors across form components to use `fill-tertiary`
+
+## December 20, 2023
+
+###  - feat: enhance SectionCard and color documentation
+- Added description prop to SectionCard component
+- Enhanced color system documentation with detailed descriptions:
+  - Surface colors: Component backgrounds and elevated elements
+  - Fill colors: Interactive element backgrounds
+  - Border colors: Component outlines and separators
+  - On colors: Content on filled components
+- Added questions and notes about content color usage
