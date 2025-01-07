@@ -63,3 +63,15 @@
 - Created clean main branch from stable color-palette implementation
 - Preserved old main as main-backup
 - Streamlined deployment process for GitHub Pages
+
+## January 7, 2024
+
+### - fix: update overlay opacity and color tokens
+- Fixed overlay opacity in GridWithNav using Tailwind's modern opacity syntax (`bg-black/50`)
+- Updated color tokens in GridWithNav for better consistency
+- Changed surface background color to use primary token
+
+### - chore: cleanup configuration files
+- Removed old Tailwind config backup files
+- Streamlined configuration to single source of truth
+- Maintained clean main branch structure
