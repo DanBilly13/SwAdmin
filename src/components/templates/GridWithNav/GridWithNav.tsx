@@ -44,7 +44,7 @@ export const GridWithNav: React.FC<GridWithNavProps> = ({
         {/* Overlay - Only visible when drawer is open */}
         {isDrawerOpen && (
           <div
-            className="fixed inset-0 bg-fill-primary bg-opacity-50 z-[90] xl:hidden"
+            className="fixed inset-0 bg-black/50  z-[90] xl:hidden"
             onClick={() => setIsDrawerOpen(false)}
           />
         )}
@@ -56,7 +56,7 @@ export const GridWithNav: React.FC<GridWithNavProps> = ({
             "w-80 xl:w-auto",
             "transition-transform duration-300 ease-in-out",
             "top-0 right-0 xl:right-auto",
-            "col-span-12 xl:col-span-2 bg-surface",
+            "col-span-12 xl:col-span-2 bg-surface-primary",
             "border-l xl:border-l-0 xl:border-r border-secondary",
             "xl:sticky xl:top-0",
             isDrawerOpen ? "translate-x-0" : "translate-x-full xl:translate-x-0"
