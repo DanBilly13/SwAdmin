@@ -41,9 +41,9 @@ export default {
       },
       colors: {
         bg: {
-          primary: mapped.neutral.lighter,
+          default: mapped.neutral.lighter,
           brand: {
-            primary: mapped.primary.default,
+            primary: mapped.neutral.darker,
           },
         },
         surface: {

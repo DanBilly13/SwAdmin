@@ -31,16 +31,16 @@ const ColorBlock = ({
     <div className="flex flex-col">
       {isBorder ? (
         <div
-          className={`h-20 w-full rounded-lg bg-white border-2 border ${colorClass} mb-4`}
+          className={`h-16 w-full rounded-lg bg-white border-2 border ${colorClass} mb-4`}
         />
       ) : isTextColor ? (
         <div
-          className={`h-20 w-full rounded-lg bg-surface-secondary mb-4 flex items-center justify-center`}
+          className={`h-16 w-full rounded-lg bg-surface-secondary mb-4 flex items-center justify-center`}
         >
           <span className={`text-2xl font-medium ${colorClass}`}>Aa</span>
         </div>
       ) : (
-        <div className={`h-20 w-full rounded-lg ${colorClass} mb-4`} />
+        <div className={`h-16 w-full rounded-lg ${colorClass} mb-4`} />
       )}
       <div className="space-y-1">
         <p className={`text-label-l ${textClass}`}>{label}</p>
@@ -48,7 +48,7 @@ const ColorBlock = ({
         <p className="text-body-s text-content-secondary">
           Class: {colorClass}
         </p>
-        <p className="text-body-s text-content-tertiary">{hexCode}</p>
+        {/* <p className="text-body-s text-content-secondary">{hexCode}</p> */}
       </div>
     </div>
   );
@@ -89,7 +89,7 @@ const Colors = () => {
       content={
         <div className="space-y-8">
           {/* Brand Colors */}
-          <SectionCard title="Brand Colors" description="When do we use this?">
+          {/* <SectionCard title="Brand Colors" description="When do we use this?">
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
               <ColorBlock
                 colorClass="bg-fill-brand-primary"
@@ -104,10 +104,31 @@ const Colors = () => {
                 hexCode={mapped.primary.default}
               />
               <ColorBlock
+                colorClass="bg-brand-primary"
+                label="Brand Background"
+                tokenName="bg-brand-primary"
+                hexCode={mapped.success.default}
+              />
+            </div>
+          </SectionCard> */}
+
+          {/* Background Colors */}
+          <SectionCard
+            title="Background Colors"
+            description="Base background colors used for pages, containers, and interactive elements."
+          >
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-8">
+              <ColorBlock
+                colorClass="bg-bg-default"
+                label="Default Background"
+                tokenName="bg-default"
+                hexCode={mapped.neutral.lighter}
+              />
+              <ColorBlock
                 colorClass="bg-bg-brand-primary"
                 label="Brand Background"
                 tokenName="bg-brand-primary"
-                hexCode={mapped.primary.default}
+                hexCode={mapped.neutral.darker}
               />
             </div>
           </SectionCard>
@@ -117,7 +138,7 @@ const Colors = () => {
             title="Surface Colors"
             description="Represents the color of components that sit on top of the background. This includes containers like cards, modals, or sections that are visually distinct from the page background. Surfaces may include elevated elements that require a shadow or border to differentiate them."
           >
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-8">
               <ColorBlock
                 colorClass="bg-surface-primary"
                 label="Surface Primary"
@@ -162,7 +183,7 @@ const Colors = () => {
             title="Fill Colors"
             description="Defines the background color for interactive elements like buttons, chips, toggles, and other filled components."
           >
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-8">
               <ColorBlock
                 colorClass="bg-fill-primary"
                 label="Fill Primary"
@@ -213,7 +234,7 @@ const Colors = () => {
             title="Content Colors"
             description="Part of me feels like this is a bit off - and that is should be an 'on surace'. What am i missing? "
           >
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-8">
               <ColorBlock
                 colorClass="bg-content-primary"
                 label="Content Primary"
@@ -270,7 +291,7 @@ const Colors = () => {
             title="Border Colors"
             description="Defines the color of lines and outlines used for separating content or delineating components. Includes borders on cards, input fields, dividers, and other structural elements."
           >
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-8">
               <ColorBlock
                 colorClass="border-primary"
                 label="Border Primary"
@@ -342,7 +363,7 @@ const Colors = () => {
             title="On Colors"
             description="Used for the text, icons, or other content that appears on fill elements. Ensures proper contrast and visibility when layered on buttons, toggles, or other filled components."
           >
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-8">
               <ColorBlock
                 colorClass="text-on-fill-brand-primary"
                 label="On Brand Primary"
