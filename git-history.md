@@ -91,3 +91,11 @@
 ### - Working on Dropdown component and related UI components
 - Improvements to InlineInput component
 - Updates to design system and template components
+
+## January 13, 2025
+
+### 2025-01-13 15:01:58 +0100
+
+- Updated Radio component styling to match success badge
+- Fixed icon weight and color in Radio component using fontVariationSettings
+- Aligned Radio component visual design with design system

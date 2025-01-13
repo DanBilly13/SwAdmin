@@ -31,7 +31,7 @@ export const Radio = ({
         className={classNames(
           "w-5 h-5 rounded-full flex items-center justify-center transition-colors",
           {
-            "bg-success text-success-content": checked,
+            "bg-fill-success text-fill-on": checked,
             "border border-secondary hover:border-primary": !checked,
             "opacity-50 cursor-not-allowed": disabled,
             "cursor-pointer": !disabled,
@@ -42,7 +42,12 @@ export const Radio = ({
         disabled={disabled || readOnly}
       >
         {checked && (
-          <span className="material-symbols-rounded text-fill-tertiary text-sm">
+          <span 
+            className="material-symbols-rounded text-sm text-white"
+            style={{
+              fontVariationSettings: "'FILL' 1, 'wght' 700"
+            }}
+          >
             check
           </span>
         )}
