@@ -85,3 +85,9 @@
 - Fixed background color classes to use correct Tailwind tokens
 - Updated hex code display styling
 - Adjusted color mappings for background colors to use neutral palette
+
+## January 13, 2025
+
+### - Working on Dropdown component and related UI components
+- Improvements to InlineInput component
+- Updates to design system and template components

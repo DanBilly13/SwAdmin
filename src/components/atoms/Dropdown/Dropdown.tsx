@@ -136,7 +136,7 @@ export const Dropdown = ({
         </div>
       )}
       {error && errorMessage && (
-        <div className="text-content-error text-body-s mt-1">
+        <div className="text-error text-label-s mt-1">
           {errorMessage}
         </div>
       )}

@@ -3,7 +3,13 @@
 ## Overview
 This document tracks the Git commit history of the SwAdmin project, providing insights into the project's evolution and development decisions.
 
-## Recent Changes (December 2024)
+## Recent Changes (January 2025)
+
+### January 13, 2025
+- `commit-hash` - fix: update error styling in form components
+  - Fix InlineInput error border color
+  - Standardize error message typography between Dropdown and InlineInput
+  - Update DataInput page examples
 
 ### December 19, 2024
 - `2ad3eb7` - feat: initial color palette implementation
@@ -150,3 +156,4 @@ The most recent changes focus on:
 - Accordion preview content display when collapsed
 - Second reporter NotificationsCard display restoration
 - Initial color palette implementation
+- Error styling updates in form components

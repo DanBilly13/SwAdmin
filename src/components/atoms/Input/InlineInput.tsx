@@ -29,10 +29,12 @@ export const InlineInput = forwardRef<HTMLInputElement, InlineInputProps>(
   ) => {
     const containerClasses = classNames(
       "flex items-center h-12 w-full rounded-lg bg-surface",
-      "border border-secondary focus-within:border-primary transition-colors",
+      "border",
+      error
+        ? "border-error hover:border-error focus-within:border-error"
+        : "border-secondary hover:border-active focus-within:border-primary",
       {
         "opacity-50 cursor-not-allowed": disabled,
-        "border-error": error,
       },
       className
     );
@@ -75,7 +77,7 @@ export const InlineInput = forwardRef<HTMLInputElement, InlineInputProps>(
           className={classNames(
             "flex-1 bg-transparent px-3.5 text-content outline-none",
             "text-body-s placeholder:text-body-s",
-            "placeholder:text-content-tertiary",
+            "placeholder:text-content-secondary",
             {
               "text-right placeholder:text-right":
                 leadingIcon || trailingIcon || label,

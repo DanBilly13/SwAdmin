@@ -13,21 +13,26 @@ export interface BreadcrumbProps {
   maxItems?: number;
 }
 
-export const Breadcrumb: React.FC<BreadcrumbProps> = ({ items, className = "", maxItems }) => {
-  const displayItems = maxItems && items.length > maxItems
-    ? [
-        ...items.slice(0, 1),
-        { label: "...", href: "#" },
-        ...items.slice(items.length - (maxItems - 2))
-      ]
-    : items;
+export const Breadcrumb: React.FC<BreadcrumbProps> = ({
+  items,
+  className = "",
+  maxItems,
+}) => {
+  const displayItems =
+    maxItems && items.length > maxItems
+      ? [
+          ...items.slice(0, 1),
+          { label: "...", href: "#" },
+          ...items.slice(items.length - (maxItems - 2)),
+        ]
+      : items;
 
   return (
     <nav className={classNames("flex items-center", className)}>
       {displayItems.map((item, index) => (
         <React.Fragment key={item.href}>
           {index > 0 && (
-            <span className="material-symbols-rounded text-content-tertiary select-none mx-1 text-sm">
+            <span className="material-symbols-rounded text-content-secondary select-none mx-1 text-sm">
               chevron_right
             </span>
           )}

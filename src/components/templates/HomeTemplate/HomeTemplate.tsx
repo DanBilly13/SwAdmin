@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
-import { LinkCard, LinkCardButton } from '../../molecules/LinkCard';
+import { Link } from 'react-router-dom';
+import { Button } from '../../atoms/Button';
 
 interface CardProps {
   title: string;
@@ -74,4 +75,5 @@ export const HomeTemplate: React.FC<HomeTemplateProps> = ({
   );
 };
 
+export { Card };
 export default HomeTemplate;

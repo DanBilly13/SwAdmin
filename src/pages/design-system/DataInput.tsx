@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Input, InlineInput, SectionCard, Radio, SearchBar, Dropdown } from "../../components/atoms";
+import {
+  Input,
+  InlineInput,
+  SectionCard,
+  Radio,
+  SearchBar,
+  Dropdown,
+} from "../../components/atoms";
 import { DesignSystemContentContainerSlots } from "../../components/atoms/ContentContainerSlots/DesignSystemContentContainerSlots";
 import { MainContentHead } from "../../components/molecules/MainContentHead/MainContentHead";
 import { useDrawerControl } from "../../components/templates";
@@ -39,8 +46,8 @@ const DataInput = () => {
               },
             ]}
           />
-          <PageTitle 
-            title="Data Input" 
+          <PageTitle
+            title="Data Input"
             description="Form controls and input components for collecting user data."
           />
         </>
@@ -51,7 +58,9 @@ const DataInput = () => {
           <SectionCard title="Dropdowns">
             {/* Basic */}
             <div>
-              <h3 className="text-title-s text-content-secondary mb-4">Sizes</h3>
+              <h3 className="text-title-s text-content-secondary mb-4">
+                Sizes
+              </h3>
               <div className="flex flex-col gap-4 max-w-md">
                 <Dropdown
                   label="Small"
@@ -90,7 +99,9 @@ const DataInput = () => {
 
             {/* Menu Types */}
             <div className="mt-8">
-              <h3 className="text-title-s text-content-secondary mb-4">Menu Types</h3>
+              <h3 className="text-title-s text-content-secondary mb-4">
+                Menu Types
+              </h3>
               <div className="flex flex-col gap-4 max-w-md">
                 <Dropdown
                   label="Action Menu (Default)"
@@ -119,7 +130,9 @@ const DataInput = () => {
 
             {/* States */}
             <div className="mt-8">
-              <h3 className="text-title-s text-content-secondary mb-4">States</h3>
+              <h3 className="text-title-s text-content-secondary mb-4">
+                States
+              </h3>
               <div className="flex flex-col gap-4 max-w-md">
                 <Dropdown
                   label="Disabled"
@@ -148,142 +161,49 @@ const DataInput = () => {
             </div>
           </SectionCard>
 
-          {/* Regular Inputs */}
-          <SectionCard title="Regular Inputs">
-            <div className="space-y-8">
-              {/* Basic */}
-              <div>
-                <h3 className="text-title-s text-content-secondary mb-4">Basic</h3>
-                <div className="space-y-4 max-w-md">
-                  <Input
-                    label="Label"
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    placeholder="Placeholder..."
-                  />
-                  <Input
-                    label="Disabled"
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    placeholder="Placeholder..."
-                    disabled
-                  />
-                  <Input
-                    label="Error"
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    placeholder="Placeholder..."
-                    error={hasError ? "This field has an error" : undefined}
-                  />
-                </div>
-              </div>
-
-              {/* With Icons */}
-              <div>
-                <h3 className="text-title-s text-content-secondary mb-4">With Icons</h3>
-                <div className="space-y-4 max-w-md">
-                  <div className="relative">
-                    <Input
-                      label="Leading Icon"
-                      value={inputValue}
-                      onChange={(e) => setInputValue(e.target.value)}
-                      placeholder="Search..."
-                      className="pl-10"
-                    />
-                    <span className="material-symbols-rounded absolute left-3 top-[34px] text-content-secondary">
-                      search
-                    </span>
-                  </div>
-                  <div className="relative">
-                    <Input
-                      label="Trailing Icon"
-                      value={inputValue}
-                      onChange={(e) => setInputValue(e.target.value)}
-                      placeholder="Password..."
-                      type="password"
-                      className="pr-10"
-                    />
-                    <span className="material-symbols-rounded absolute right-3 top-[34px] text-content-secondary">
-                      visibility
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </SectionCard>
-
           {/* Inline Inputs */}
           <SectionCard title="Inline Inputs">
             <div className="space-y-8">
-              {/* Basic */}
-              <div>
-                <h3 className="text-title-s text-content-secondary mb-4">Basic</h3>
-                <div className="flex items-center gap-2">
-                  <span className="text-label-s text-content">$</span>
-                  <InlineInput
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    placeholder="0.00"
-                  />
-                </div>
-              </div>
-
               {/* With Label */}
               <div>
-                <h3 className="text-title-s text-content-secondary mb-4">With Label</h3>
+                <h3 className="text-title-s text-content-secondary mb-4">
+                  With Label
+                </h3>
                 <div className="flex items-center gap-2">
                   <InlineInput
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
-                    placeholder="0.00"
-                    label="Amount"
+                    placeholder="john.doe@mail.com"
+                    label="Email"
                   />
-                  <span className="text-label-s text-content">USD</span>
-                </div>
-              </div>
-
-              {/* With Icons */}
-              <div>
-                <h3 className="text-title-s text-content-secondary mb-4">With Icons</h3>
-                <div className="flex flex-col gap-2">
-                  <InlineInput
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    placeholder="Search..."
-                    leadingIcon="search"
-                  />
-                  <InlineInput
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    placeholder="Password"
-                    type="password"
-                    trailingIcon="visibility"
-                  />
-                  <InlineInput
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    placeholder="Amount"
-                    leadingIcon="attach_money"
-                    trailingIcon="info"
-                  />
+                  {/* <span className="text-label-s text-content">USD</span> */}
                 </div>
               </div>
 
               {/* States */}
               <div>
-                <h3 className="text-title-s text-content-secondary mb-4">States</h3>
+                <h3 className="text-title-s text-content-secondary mb-4">
+                  States
+                </h3>
                 <div className="flex flex-col gap-2">
-                  <InlineInput
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    placeholder="Error state"
-                    error={hasError}
-                  />
+                  <div className="flex flex-col gap-1">
+                    <InlineInput
+                      value={inputValue}
+                      onChange={(e) => setInputValue(e.target.value)}
+                      placeholder="Error state"
+                      error={true}
+                      label="Email"
+                    />
+                    <span className="text-error text-label-s">
+                      This field is required
+                    </span>
+                  </div>
                   <InlineInput
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     placeholder="Disabled state"
                     disabled
+                    label="Password"
                   />
                 </div>
               </div>
@@ -318,7 +238,7 @@ const DataInput = () => {
           <SectionCard title="Search">
             <div className="space-y-4">
               <div className="flex items-center gap-4">
-                <SearchBar 
+                <SearchBar
                   value={searchValue}
                   onChange={setSearchValue}
                   placeholder="Search for anything..."
@@ -326,7 +246,7 @@ const DataInput = () => {
                 />
               </div>
               <div className="flex items-center gap-4">
-                <SearchBar 
+                <SearchBar
                   value=""
                   onChange={() => {}}
                   placeholder="Disabled search..."
